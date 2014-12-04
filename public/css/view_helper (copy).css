@@ -1,0 +1,170 @@
+body
+{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+
+
+.dashboard{
+    float: left;
+    
+}
+   
+.dash_table{
+    float: left;
+    padding-left: 500px; 
+     
+}
+   
+
+.profile{
+        padding-left: 150px;
+        padding-top: 20px;
+        float: left;   
+    }
+    
+    .profile_img{
+        border-radius: 25px;
+        padding-top: 10px;
+ float: left;       
+    }
+    .profile_img1{
+        
+        padding-top: 5px;
+        padding-bottom: 50px;
+        padding-left: 10px;
+        
+ float: left;       
+    }
+    
+    .img_class{
+        border: 2px solid black;
+        
+    }
+    
+    .pdf{
+     background-image: url(https://localhost:8811/images/letter_head.png); background-position: center;
+background-repeat: no-repeat;
+background-size: 100% 100%;
+    }
+    
+    .bdy{
+        padding-top: 25%;
+padding-bottom: 25%;
+    }
+    
+    .val_err{
+        
+        color: red;
+    }
+    
+    
+.navbar-default
+{
+    padding-top: 0px !important; // header top
+    padding-right: 0px !important;
+    padding-left: 0px !important; 
+}
+.navbar-right
+{
+    padding-top: 0px;
+    padding-left: 550px !important;
+}
+.navbar{
+    background-color: #2d3540 !important;
+}
+.container
+{
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-left: 85px;
+    background-color: none;
+    box-shadow: 0px 2px 2px #888888; 
+}
+.menu_txt
+{
+    
+    font-size: 50px;
+    font-family: sans-serif;
+}
+
+#header{
+    
+}
+#content
+{
+    padding-left: 100px;
+    padding-right: 100px;
+    
+}
+#footer{
+    
+}
+textarea{
+    height: auto;
+ width: 400;   
+}
+.form_txt{
+    font-size: 15px;
+    
+}
+
+.apply{
+    
+    font-weight: none; 
+    font-family: Georgia;
+     
+}
+.apply_form{
+    float: left;
+}
+.apply_left{
+    
+    float: right;
+    padding-top: 30px;
+    padding-right: 0px; 
+        
+}
+
+.overflow{
+    overflow: scroll;
+    height: 500px;
+}
+
+.user_details{
+    float: left;
+}
+
+.emr_details{
+    
+    padding-left: 100px;
+    float: left;
+}
+
+.emr_details_all{
+    padding-top: 10px;
+    padding-left: 70px;
+    float: left;
+}
+
+.caret{
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 120px;
+    margin-right: 0px;
+    vertical-align: middle;
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.dropdown{
+    
+    height: auto;
+    width: auto;
+    box-shadow: 2px, 2px, 2px #888888;
+}
+#dLabel{
+    padding-left: 0px;
+    
+}
