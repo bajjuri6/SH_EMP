@@ -368,7 +368,7 @@ public function bank_statement(){
         $allowedExts = array("png", "jpg", "jpeg", "JPG", "JPEG");
         $temp = explode(".", $file["name"]);
         $extension = end($temp);
-        $folder = "/var/www/Emp_mvc/uploads/$email/profile_pic/";
+        $folder = UPLOADS."/$email/profile_pic/";
         if ((($file["type"] == "application/pdf") || ($file["type"] == "application/x-pdf") || ($file["type"] == "image/png") || ($file["type"] == "image/jpg") || ($file["type"] == "image/jpeg")|| ($file["type"] == "image/JPG") || ($file["type"] == "image/JPEG")) && ($file["size"] < 40000000) && in_array($extension, $allowedExts)) {
             if ($file["error"] > 0) {
                 $mpty = "Selece max one file" .$file['error'];
@@ -378,19 +378,20 @@ public function bank_statement(){
                  "Type: " . $file["type"] . "<br>";
                  "Size: " . ($file["size"] / 40000) . " kB<br>";
                  "Temp file: " . $file["tmp_name"] . "<br>";
+                  $intial_folder = UPLOADS."/$email/";
+                 if (!file_exists($intial_folder)) {
+                    mkdir($intial_folder, 0777);
+                }
                 if (!file_exists($folder)) {
                     mkdir($folder, 0777);
                 }
-                if (file_exists($folder . $file["name"])) {
-                   echo $file["name"] . " already exists. ";
-                } else {
-                    $finalname = "/var/www/Emp_mvc/uploads/$email/profile_pic/";
+                    $finalname = UPLOADS."/$email/profile_pic/";
                     array_map('unlink', glob("$finalname/*"));
                     $move = move_uploaded_file($file["tmp_name"], $folder . str_replace(" ", "-", "Profile_pic.$extension"));
                      $folder . $file["name"];
                     
-                }
-                $retrnimg = "/uploads/$email/profile_pic/Profile_pic.$extension";
+                
+                $retrnimg = UPLOADS."/$email/profile_pic/Profile_pic.$extension";
                 return $retrnimg;
             }
         } else {
