@@ -608,3 +608,13 @@ height: 250px;
 border-radius: 10px;
 border: 1px solid #333;
 }
+.modal_trigger5 .icon-eye-open:hover{
+    opacity: 0.8;
+}
+.prsnl-levs-list:hover{
+    color: #FF7171;
+}
+.prsnl-levs-list{
+    text-decoration: none !important;
+    color: #333;
+}

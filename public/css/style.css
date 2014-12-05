@@ -102,3 +102,38 @@ padding-left: 10px;
 }
 
 
+
+.ui-widget-header {
+	border: 1px solid #aaaaaa;
+	background: #21B0B6 !important;
+	font-weight: normal;
+	color: #212121;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+	border: 1px solid #999999;
+	background: #21B0B6 !important ;
+	font-weight: normal;
+	color: #212121;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+	border: none !important;
+	background: #FDB600 !important;
+	font-weight: normal;
+	color: #212121;
+};
+/*.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+	border: 1px solid #fcefa1;
+	background: #FDB600 !important;
+	color: #363636;
+}*/

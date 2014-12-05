@@ -57,37 +57,23 @@
                         for ($i = 0; $i < sizeof($row); $i++) {
                             ?>
                             <tr>
-                                <td align="center"><a id="<?php echo $i; ?>" href="#payslip-popup" class="modal_trigger6 hr-lev"><?php echo $row[$i]['emp_name']; ?></a></td>
-                                <td align="center"><?php echo $row[$i]['apply_date']; ?></td>
-                                <td align="center"><?php echo $row[$i]['manager_status']; ?></td>
-                                <td align="center"><?php echo $row[$i]['status']; ?></td>
-                                
-                                
-                                
-<!--                               <div id="<?php echo $i; ?>" class="popupContainer6 pop_cont" style="display:none;">
-                    <header class="popupHeader6">
-                        <span class="header_title">Leave application</span>
-                        <span class="modal_close"></span>
-                    </header>
-                    <section class="popupBody6">
-                        <p><i><b><?php echo $row[$i]['emp_name'];?></b><br/>Address:<br/>Employee code:</i></p>
-                        <p><i>Date: <?php echo $row[$i]['apply_date']; ?></i></p>
-                        <p><i>To:<br/>HR Department<br/>SADDAHAQ</i></p><br/>
-                        <p><b>SUB:</b><i><?php echo $row[$i]['subject']; ?></i></p>
-                        <p><i>Dear Sir,</i></p>
-                        <p><i><?php echo $row[$i]['description']; ?>......</i></p><br/>
-                        <p><i>Sincerely,<br/><?php echo $row[$i]['emp_name']; ?>.</i></p>
-                        <input type="hidden" id="lid" value="<?php echo $row[$i]['id'];?>">
-                        <button name="hr_status" value="Approved" class="btn-info btn-small hr_status">approve</button>
-                        <button name="hr_status" value="Rejected" class="btn-info btn-small hr_status">reject</button>
-                    </section>
-                </div>-->
-                                
-                                
-                            </tr>
-                
-
-    <?php } ?>
+                                <td align="center"><a id="<?php echo $i; ?>" href="#payslip-popup" class="modal_trigger6 hr-lev prsnl-levs-list"><?php echo $row[$i]['emp_name']; ?></a></td>
+                                <td align="center"><?php echo date("j-m-Y", $row[$i]['apply_date']); ?></td>
+                                <td align="center"><?php if($row[$i]['manager_status'] == 1){
+                                    echo 'Approved';
+                                }           ?></td>
+                                <td align="center"><a id="<?php echo $i; ?>" href="#payslip-popup" class="modal_trigger6 hr-lev prsnl-levs-list"><i class="icon-eye-open"></i>
+                                            <?php
+                                            if ($row[$i]['status'] == '') {
+                                                echo "Pending";
+                                            } elseif ($row[$i]['status'] == 1) {
+                                                echo "Approved";
+                                            } elseif ($row[$i]['status'] == 0) {
+                                                echo "Rejected";
+                                            }
+                                            ?></a></td>
+                               </tr>
+                                            <?php } ?>
                     </table>
                 </div>
             </div>
@@ -108,12 +94,19 @@
                         for ($i = 0; $i < sizeof($row); $i++) {
                             ?>
                             <tr>
-                                <td  align="center"><a id="<?php echo $i; ?>" href="#leave_manager" class="modal_trigger6 maneger-lev"><?php echo $row[$i]['emp_name']; ?></a></td>
-                                <td  align="center"><?php echo $row[$i]['apply_date']; ?></td>
-                                <td  align="center"><?php echo $row[$i]['manager_status']; ?></td>
-
+                                <td  align="center"><a id="<?php echo $i; ?>" href="#leave_manager" class="modal_trigger6 maneger-lev prsnl-levs-list"><?php echo $row[$i]['emp_name']; ?></a></td>
+                                <td  align="center"><?php echo date("j-m-Y", $row[$i]['apply_date']); ?></td>
+                                <td  align="center"><a id="<?php echo $i; ?>" href="#leave_manager" class="modal_trigger6 maneger-lev prsnl-levs-list"><i class="icon-eye-open"></i>
+                                            <?php
+                                            if ($row[$i]['manager_status'] == '') {
+                                                echo "Pending";
+                                            } elseif ($row[$i]['manager_status'] == 1) {
+                                                echo "Approved";
+                                            } elseif ($row[$i]['manager_status'] == 0) {
+                                                echo "Rejected";
+                                            }
+                                            ?></a></td>
                             </tr>
-                            
     <?php } ?>
                     </table>
                 </div>
@@ -172,7 +165,6 @@
                 <div class="mngr"><i>
                         Place : Hyderabad, 
                         <p><span>Date:</span> <span id="mngrlev-date"></span></p>  
-                        
                         To:<br>
                         HR Department <br>
                         SADDAHAQ <br>
@@ -182,8 +174,8 @@
                         Sincerely.,
                         <p id="mngrlev-emp-name"> </p>
                     </i></div>
-                <button name="mngr_status" value="Rejected" class="btn btn-info lev-rejct-btn mngr_status">Reject</button>
-                <button name="mngr_status" value="Approved" class="btn btn-info lev-aprv-btn mngr_status">Approve</button>
+                <button name="mngr_status" value="0" class="btn btn-info lev-rejct-btn mngr_status">Reject</button>
+                <button name="mngr_status" value="1" class="btn btn-info lev-aprv-btn mngr_status">Approve</button>
             </section>
         </div>
         <!--manager leave pop up area close-->
@@ -227,7 +219,7 @@
             data: {
                 "id": $(this).parents("#payslip-popup").data("lid"),
                 "hr_status": $(this).attr("value")
-                        // "reject":regform.elements['reject'].value,
+                 // "reject":regform.elements['reject'].value,
             },
             success: function (res) {
                 $("#payslip-popup").css("display", "none");
@@ -235,7 +227,7 @@
                 $("#btn-trgr").trigger('click');
                 setTimeout(function () {
                     window.location.reload();
-                }, 1500);
+                }, 2000);
             }
         });
     });
@@ -254,9 +246,9 @@
                 $("#leave_manager").css("display", "none");
                 $("#resp-popup").find(".popupBody").html(res);
                 $("#btn-trgr").trigger('click');
-//                setTimeout(function () {
-//                    window.location.reload();
-//                }, 1500);
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
             }
         });
     });

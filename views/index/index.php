@@ -73,19 +73,19 @@
         }
        });
     });
-            $(window).load(function() {          
-          var i =0;
-          var images = ['/images/item1.jpg', '/images/sav.jpg','/images/item3.jpg'];
-          var image = $('body');
-          image.css('background-image', 'url(/images/item1.jpg)');
-           //Change image at regular intervals
-          setInterval(function(){
-           image.css('background-image', 'url(' + images [i++] +')');
-           image.fadeIn(1000);
-           if(i == images.length)
-            i = 0;
-          }, 5000);           
-         });
+//            $(window).load(function() {          
+//          var i =0;
+//          var images = ['/images/item1.jpg', '/images/sav.jpg','/images/item3.jpg'];
+//          var image = $('body');
+//          image.css('background-image', 'url(/images/item1.jpg)');
+//           //Change image at regular intervals
+//          setInterval(function(){
+//           image.css('background-image', 'url(' + images [i++] +')');
+//           image.fadeIn(1000);
+//           if(i == images.length)
+//            i = 0;
+//          }, 5000);           
+//         });
 
         </script>
     </body>

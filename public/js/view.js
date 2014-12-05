@@ -1,6 +1,6 @@
 
 $(function () {
-
+$(".datepicker" ).datepicker({minDate: 0});
     var avlble_days;
     $(document).on('keyup', '.mtnh-leavs', function () {
         // $('#textarea_hidden').val($('#mtnh-leavs').val());
@@ -18,16 +18,8 @@ $(function () {
         var total = maxpay - cut;
         $this.parents("tr").find(".tol-pay").html(total);
     });
-
-//        $('.add').on("clcik", function () {
-//            alert();
-//            var name = $(this).parents("tr").find('.sal-name').text();
-//            var leaves = $('.mtnh-leavs').val();
-//            var maxpay = $('.max-pay').val();
-//            var totalpay = $('.tol-pay').html();
-//            alert(maxpay);
-//            $('#addhereform li:last').append('<input type="text" style="width:120px; height:30px;" id="sal-name" name="sal-name" value="' + name + '"/><input type="text" style="width:50px; height:30px;" id="max-pay" name="pqty" value="' + maxpay + '"/><input type="text" style="width:50px; height:30px;" id="mtnh-leavs" name="mtnh-leavs" value="' + leaves + '"/><input type="text" style="width:50px; height:30px;" id="tol-pay" name="totalpprice" value="' + totalpay + '"/></li><li>');
-//        });
+     
+     
 
 
 

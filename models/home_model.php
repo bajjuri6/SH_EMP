@@ -18,7 +18,7 @@ class Home_model extends Model {
     public function getLeavesDeatils($em) {
         $date = date("j-n-Y");
 
-        $sth6 = $this->db->prepare("SELECT * FROM leaves ORDER BY id DESC");
+        $sth6 = $this->db->prepare("SELECT * FROM leaves ORDER BY apply_date DESC");
         $sth6->execute(array(
             ':date' => $date));
         // print_r($sth6->errorInfo());
@@ -29,9 +29,7 @@ class Home_model extends Model {
 
     public function getLeavesDeatilsByHr($em) {
         $date = date("j-n-Y");
-
-
-        $sth6 = $this->db->prepare("SELECT * FROM leaves WHERE manager_status = 'Approved' ORDER BY manager_aprve_tme DESC");
+        $sth6 = $this->db->prepare("SELECT * FROM leaves WHERE manager_status = 1 ORDER BY manager_aprve_tme DESC");
         $sth6->execute();
         // print_r($sth6->errorInfo());
         $row = $sth6->rowCount();

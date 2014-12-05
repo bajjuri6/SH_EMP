@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap-responsive.css" />
         <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap-responsive.min.css" />
         <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+        <!--<link rel="stylesheet" href="/public/global/bootstrap/css/jquery-ui.css" />-->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
         <script src="/public/js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="/public/js/jquery.leanModal.min.js"></script>
         <link type="text/css" rel="stylesheet" href="/public/css/style.css" />
