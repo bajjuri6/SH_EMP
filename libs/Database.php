@@ -3,7 +3,7 @@
 class Database extends PDO{
 
     function __construct() {
-                parent::__construct('mysql:host=localhost;dbname=SH_EMP', 'root', 'vivenfarms');
+                parent::__construct('mysql:host=localhost;dbname=emp_mvc', 'root', 'dambo');
         
     }
 

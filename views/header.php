@@ -2,25 +2,24 @@
     <head>
         <title>Saddahaq Employes</title>
         <link rel="icon" type="image/png" href="https://saddahaq.blob.core.windows.net/multimedia/favicon.ico">
-        <link rel="stylesheet" href="<?php echo URL; ?>public/css/view_helper.css" />
-        <link rel="stylesheet" href="<?php echo URL; ?>public/global/saddahaq/css/saddahaq-ie7.css" />
-        <link rel="stylesheet" href="<?php echo URL; ?>public/global/saddahaq/css/saddahaq.css" />
-        <link rel="stylesheet" href="<?php echo URL; ?>public/global/bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" href="<?php echo URL; ?>public/global/bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="<?php echo URL; ?>public/global/bootstrap/css/bootstrap-responsive.css" />
-        <link rel="stylesheet" href="<?php echo URL; ?>public/global/bootstrap/css/bootstrap-responsive.min.css" />
-        <link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
-        <script src="<?php echo URL; ?>public/js/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.leanModal.min.js"></script>
-<!--        <script type="text/javascript" src="<?php echo URL; ?>public/js/popup.js"></script>-->
-        <link type="text/css" rel="stylesheet" href="<?php echo URL; ?>public/css/style.css" />
-        <link rel="stylesheet" href="<?php echo URL; ?>public/global/bootstrap/css/logout.css"/>
-        <script src="<?php echo URL; ?>public/js/logout.js"></script>
-        <script type="text/javascript" src="<?php echo URL; ?>public/global/bootstrap/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="/public/css/view_helper.css" />
+        <link rel="stylesheet" href="/public/global/saddahaq/css/saddahaq-ie7.css" />
+        <link rel="stylesheet" href="/public/global/saddahaq/css/saddahaq.css" />
+        <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap-responsive.css" />
+        <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap-responsive.min.css" />
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+        <script src="/public/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="/public/js/jquery.leanModal.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="/public/css/style.css" />
+        <!--<link rel="stylesheet" href="/public/global/bootstrap/css/logout.css"/>-->
+        <script src="/public/js/logout.js"></script>
+        <script type="text/javascript" src="/public/global/bootstrap/js/bootstrap.js"></script>
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
-        <script type="text/javascript" src="<?php echo URL; ?>public/global/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo URL; ?>public/global/bootstrap/js/jquery-ui.js"></script>
-        <script type="text/javascript" src="<?php echo URL; ?>public/global/bootstrap/js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/public/global/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/public/global/bootstrap/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="/public/global/bootstrap/js/jquery-ui.min.js"></script>
     </head>
     <body>
         <header>
@@ -115,7 +114,7 @@
                         <img src="/images/avtr.jpg" id="profile_image_style"/><input type="file" class="profile-img-change-input" id="p-pic-change"><i class="icon-add-image"></i>
                         <?php }?>
                     </div>
-                    <div class="profile"><h4><img height="60px" width="30px" src="/images/king.png"/>&nbsp;<?php echo $this->user_details[0]['emp_name']; ?></h4>
+                    <div class="profile"><h4><img src="/images/king.png" style="max-width: 20px;"/>&nbsp;<?php echo $this->user_details[0]['emp_name']; ?></h4>
                         <p>Email:<span style="padding-left: 50px"><?php echo $this->user_details[0]['emp_email']; ?></span></p>
                         <p>EmployeeID:<span style="padding-left: 10px" ><?php echo $this->user_details[0]['emp_id']; ?></span></p>
                         <p>Address:<span style="padding-left: 35px" ><?php echo $this->user_details[0]['address']; ?></span>sp</p>
@@ -141,7 +140,7 @@
                             <input name="emp_name" id="emp_name_reg" type="text" style="height: 30px; width: 250px;" placeholder="Name"/>
                             <br>
                             <label>Emp_id</label>
-                            <input name="emp_id"id="emp_id_reg" type="text" style="height: 30px; width: 250px;" placeholder="Emp id"/>
+                            <input name="emp_id" id="emp_id_reg" type="text" style="height: 30px; width: 250px;" placeholder="Emp id"/>
                             <br>
                             <label>Email Address</label>
                             <input name="emp_email" id="emp_email_reg" type="email" style="height: 30px; width: 250px;" placeholder="Email"/>
@@ -164,7 +163,7 @@
                             <input name="emp_phno" id="emp_phno_reg" type="text" style="height: 30px; width: 250px;" placeholder="+9199948983078"/>
                             <br>
                             <label>DOB</label>
-                            <input name="dob" id="dob_reg" type="date" style="height: 30px; width: 250px;" placeholder="date of birth"/>
+                            <input name="dob" id="dob_reg" type="date" style="height: 30px; width: 250px;"/>
                             <br>
                             <label>Age</label>
                             <input name="age" id="age_reg" type="text" style="height: 30px; width: 250px;" placeholder="Age"/>

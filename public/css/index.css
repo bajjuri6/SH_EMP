@@ -1,22 +1,19 @@
 body{
     /*background-image: url("/images/sav.jpg");*/
-    background-size: 1300px, 1500px;
+    background-size: 1380px, 1500px;
 }
 
 #table{
-    padding-top: 40px;
-    /*padding-left: 450px;*/
-    float: right;
     
 }
 
 .main-container{
-/*    float: right;*/
-}
+margin-top: 10%;
+    }
 .box{
-    margin-top: 30%;
+    /*margin-top: 30%;*/
     padding-top: 20px;
-    padding-left: 40px;
+    /*padding-left: 40px;*/
     padding-bottom: 2px;
     width: 300px;
     height: auto;
@@ -26,20 +23,19 @@ body{
     border-radius: 15px;
 }
 
-.login{
+.Login{
     padding-bottom: 0px;
     font-size: 1.6em;
     font-family: 'Roboto',sans-serif;
     font-weight: 300;
-    padding-left: 25px;
-    /*color:#333;*/
     color: #635D5D;
+    padding-bottom: 15px;
 }
 
 .logn-icon i{
+    padding-right: 35px;
 font-size: 2em;
 color: #635D5D;
-padding-left: 80px;
 padding-bottom: 25px;
 background-position: 100px;
 }
@@ -52,10 +48,14 @@ display: block!important;
 margin-bottom: 0x;
 font-weight: normal 1important;
 }
+.main-container label{
+    text-align: left;
+    margin-left: 40px;
+}
 
 .btn-login-indx{
 margin-top: 5px;
-margin-left: 21%;
+/*margin-left: 21%;*/
 color: #ff4141!important ; 
 background-color: white !important;
 border: 1px solid #ff4141!important;

@@ -391,7 +391,7 @@ public function bank_statement(){
                      $folder . $file["name"];
                     
                 
-                $retrnimg = UPLOADS."/$email/profile_pic/Profile_pic.$extension";
+                $retrnimg = "/uploads/$email/profile_pic/Profile_pic.$extension";
                 return $retrnimg;
             }
         } else {

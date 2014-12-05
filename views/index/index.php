@@ -1,45 +1,48 @@
-
+<!DOCTYPE html>    
+<html>
     <title>
       Saddahaq Employee login  
     </title>
-<head> 
+  <head> 
     <link rel="icon" type="image/png" href="https://saddahaq.blob.core.windows.net/multimedia/favicon.ico">
-    <link rel="stylesheet" href="<?php echo URL; ?>public/css/index.css" />
-    <link rel="stylesheet" href="<?php echo URL; ?>public/global/saddahaq/css/saddahaq-ie7.css" />
-        <link rel="stylesheet" href="<?php echo URL; ?>public/global/saddahaq/css/saddahaq.css" />
-    <link rel="stylesheet" href="<?php echo URL; ?>public/global/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="<?php echo URL; ?>public/global/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="<?php echo URL; ?>public/global/bootstrap/css/bootstrap-responsive.css" />
-    <link rel="stylesheet" href="<?php echo URL; ?>public/global/bootstrap/css/bootstrap-responsive.min.css" />
-    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.leanModal.min.js"></script>
-    <script type="text/javascript" src="<?php echo URL; ?>public/js/popup.js"></script>
-    <link type="text/css" rel="stylesheet" href="<?php echo URL; ?>public/css/style.css" />
+    <link rel="stylesheet" href="/public/css/index.css" />
+    <link rel="stylesheet" href="/public/global/saddahaq/css/saddahaq-ie7.css" />
+        <link rel="stylesheet" href="/public/global/saddahaq/css/saddahaq.css" />
+    <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap-responsive.min.css" />
+    <script type="text/javascript" src="/public/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/public/js/jquery.leanModal.min.js"></script>
+    <script type="text/javascript" src="/public/js/popup.js"></script>
+    <link type="text/css" rel="stylesheet" href="/public/css/style.css" />
 <!--    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />-->
-    <script type="text/javascript" src="<?php echo URL; ?>public/global/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="<?php echo URL; ?>public/global/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo URL; ?>public/global/bootstrap/js/jquery-ui.js"></script>
-        <script type="text/javascript" src="<?php echo URL; ?>public/global/bootstrap/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/public/global/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/public/global/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/public/global/bootstrap/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="/public/global/bootstrap/js/jquery-ui.min.js"></script>
 </head>    
-<body> 
+<body>
+    <div class="container">
         <a href="/index" id="logo"></a>
-        <div class="span8 main-container">
+        <div class="main-container" align="center">
                    <div id="table">
                         <div class="box">
                             <div class="logn-icon"><i class="icon-signin"></i></div>
                             <div class="Login">Employee Login</div>
-                            <div id="login">
-                                <p class="login_err" style="color: red; opacity: 0; padding-left: 20px;">errrrrrr</p>
-                            </div>
                             <form name="login">
                                 <label>Email</br><input type="text" name="email" placeholder="Email" class="inpt-logn"></label>
                                 <label>Password</br><input type="password" name="password" class="inpt-logn" placeholder="Password"></label>
                                 <input id="login_btn" type="submit" value="Login" class="btn btn-info btn-small btn-login-indx">
+                            <div id="login">
+                            <p class="login_err" style="color: red; opacity: 0;">errrrrrr</p>
+                            </div>
                             </form>
                             <!--<div>Forget Password? <a href="">Click Here</a></div>-->
                         </div>
                     </div>
 </div>
+        </div>
         <script type="text/javascript">
             $("#modal_trigger").leanModal({top: 100, overlay: 0.2, closeButton: ".modal_close"});
             
@@ -86,3 +89,4 @@
 
         </script>
     </body>
+    </html>

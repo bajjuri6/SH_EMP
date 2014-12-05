@@ -46,8 +46,8 @@
 </script>
 </footer>    
 </div>
-<script type="text/javascript" src="<?php echo URL; ?>public/js/view.js"></script>
-<script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.form.js"></script>
+<script type="text/javascript" src="/public/js/view.js"></script>
+<script type="text/javascript" src="/public/js/jquery.form.js"></script>
 </body>
 
 </html>
