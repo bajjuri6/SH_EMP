@@ -19,11 +19,7 @@ $(".datepicker" ).datepicker({minDate: 0});
         $this.parents("tr").find(".tol-pay").html(total);
     });
      
-     
-
-
-
-
+  
     $("#process").click(function () {
 
         var chkbxs = $('.table').find("tr .checkbox");

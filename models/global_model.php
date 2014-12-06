@@ -25,9 +25,8 @@ class Global_model extends Model {
     }
     
     public function getPaySlips($em){
-        $sth = $this->db->prepare("SELECT * FROM slips WHERE email = :email");
-        $sth->execute(array(
-            ':email' => $em));
+        $sth = $this->db->prepare("SELECT * FROM slips WHERE email = :email ORDER BY id DESC");
+        $sth->execute(array(':email' => $em));
            $row = $sth->rowCount();
         $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         return $res;   

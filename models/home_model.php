@@ -78,9 +78,7 @@ class Home_model extends Model {
     }
 
     public function pdf() {
-
         require 'controllers/phpToPDF.php';
-
         $html = '<HTML><h2>PDF from HTML using phpToPDF</h2></HTML>';
         $folder = "/var/www/emp_mvc/uploads/kkk@gmail.com";
         $pdf_options = array("source_type" => 'html',
@@ -88,34 +86,26 @@ class Home_model extends Model {
             "action" => 'save',
             "save_directory" => $folder,
             "file_name" => 'my_filename1.pdf');
-
         $phptopdf = phptopdf($pdf_options);
-
         if ($phptopdf == true) {
             echo "ok";
         } else {
             echo "errrr";
         }
     }
-
     public function mpdf($em) {
-
         include 'mpdf/mpdf.php';
-
-
         $mpdf = new mPDF();
         $post = $_POST["slctd_emp"];
         //echo sizeof($post);
         for ($i = 0; $i < sizeof($post); $i++) {
-
             $email = $post[$i]['mail'];
             //$email = $_POST['mail'];
             // echo "hai $email"; 
             $file_name = $post[$i]['file_name'];
             $month = $post[$i]['month_slip'];
             $year = $post[$i]['year_slip'];
-
-            $folder = "/var/www/Emp_mvc/uploads/$email";
+            $folder = APP_PATH."/uploads/$email";
             // $file = "/var/www/emp_mvc/uploads/$file_name";
 
             $html = '<html><div style="background-image: url(https://localhost:8811/images/letter_head.png); background-position: center;
@@ -225,7 +215,7 @@ public function bank_statement(){
             // $file_name = $post[$i]['file_name'];
             $month = $post[0]['month_slip'];
             $year = $post[0]['year_slip'];
-            $folder = "/var/www/Emp_mvc/uploads/$email/Bank_statments";
+            $folder = APP_PATH."/uploads/$email/Bank_statments";
             $html_bnk_stmnt = '<html><div style="background-image: url(https://localhost:8811/images/letter_head.png); background-position: center; background-repeat: no-repeat; background-size: 100% 100%;"><div style="padding-top: 1%; padding-bottom: 25%;"></div>'
                     . '<div style="padding-top: 5%; padding-bottom: 25%; padding-left: 12%; font-size: 0.8em;"><p align="right" style="padding-right: 21%;">DT:'.date("d-m-Y").'.</p><p align="left">Ref: VIMPL: SAL: 2014-14:<br><br>'
                     . 'To,<br>HDFC Bank LTD,<br>2-3-34/8 R, Devilal Complex,<br>Main Road, Uppal Kalan,<br>Hyderabad - 500039<br><br>Sub:Payment of salaries<br>Ref:Our account No. 10427630000537 dt: '.date("d-m-Y").'</p><div align="center">&&&&&&</div>'
@@ -265,7 +255,6 @@ public function bank_statement(){
         $month = $_POST['month'];
         $payslip_month_y = strtotime("1 $month $year");
         $d = new DateTime();
-
         $d->setTimestamp($payslip_month_y);
         $d->format('U = Y-m-d H:i:s') . "\n";
         $sth_paid_deatils = $this->db->prepare("SELECT * FROM new_emp WHERE emp_email NOT IN (SELECT email FROM slips WHERE month_of_payslip = :payslip_month_y)");
@@ -321,7 +310,7 @@ public function bank_statement(){
 //          echo $_POST["doctype$i"];
         $email =  $_POST["eml"];
         $extension = end($temp);
-        $folder = "/var/www/Emp_mvc/uploads/$email/docs/";
+        $folder = APP_PATH."/uploads/$email/docs/";
         if ((($file["type"] == "application/pdf") || ($file["type"] == "application/x-pdf") || ($file["type"] == "image/png") || ($file["type"] == "image/jpg") || ($file["type"] == "image/jpeg")|| ($file["type"] == "image/JPG") || ($file["type"] == "image/JPEG")) && ($file["size"] < 40000000) && in_array($extension, $allowedExts)) {
             if ($file["error"] > 0) {
                 $mpty = "Selece max one file" .$file['error'];

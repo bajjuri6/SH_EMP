@@ -34,14 +34,14 @@
             <div class="span5">
             <div id="all_leaves_hr" data-complete = <?php echo "'" . json_encode($this->getLeavesDeatilsByHr) . "'"; ?> >
                 <div id="all_leaves" data-complete = <?php echo "'" . json_encode($this->getLeavesDeatils) . "'"; ?> >
-                    <?php if ($this->user_details[0]['designation'] == HR_MANAGER) { ?>
+                    <?php if ($this->user_details[0]['user_level'] == HR_MANAGER) { ?>
                         <!--            <div class="dashboard"><h4>Register New User <a href="#model_reg" class="modal_trigger6">Here</a></h4>
                                     <h4><a href="/emp_data">All employees area</a></h4>-->
                     <?php } ?>
                 </div>  
             </div>
         
-        <?php if ($this->user_details[0]['designation'] == HR_MANAGER) { ?>
+        <?php if ($this->user_details[0]['user_level'] == HR_MANAGER) { ?>
             <div class="dash_table">
                 <div class="overflow">
                     <div class="tbl-hdr"><h2>Leave Applications</h2></div>
@@ -79,7 +79,7 @@
             </div>
             
 <?php } ?>
-<?php if ($this->user_details[0]['designation'] == PROJECT_MANAGER) { ?>
+<?php if ($this->user_details[0]['user_level'] == PROJECT_MANAGER) { ?>
             <div class="dash_table">
                 <div class="overflow">
                     <div class="tbl-hdr"><h2>Leave Applications</h2></div>

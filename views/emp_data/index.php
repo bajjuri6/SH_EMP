@@ -41,7 +41,7 @@
                             <span class="modal_close"></span>
                         </header>
                         <section class="popupBody6">
-                           <?php $dir = "/var/www/Emp_mvc/uploads/".$row[$i]['emp_email']."/docs";
+                           <?php $dir = APP_PATH."/uploads/".$row[$i]['emp_email']."/docs";
                                    $scan = scandir($dir);
                                    $s = 1;?>
                             <table style="margin: auto;">

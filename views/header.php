@@ -37,7 +37,7 @@
                             <li class="dropdown"><a href="/home" class="current">HOME</a></li>
                             <li class="dropdown"><a href="/leaves">LEAVES</a></li>
                             <li class="dropdown"><a href="/download">DOWNLOADS</a></li>
-                            <?php if($this->user_details[0]['designation'] == HR_MANAGER){ ?>
+                            <?php if($this->user_details[0]['user_level'] == HR_MANAGER){ ?>
                             <li class="dropdown-submenu"><a href="" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#" rel="nofollow">HR</a>
                                 <ul class="dropdown-menu hr-dropdwn pull-right" role="menu" aria-labelledby="dLabel">
                                     <li class="dropdown"><a href="/salaries">SALARIES</a></li>
@@ -67,7 +67,7 @@
                     <li><a href="/home" class="current">HOME</a></li>
                     <li><a href="/leaves">LEAVES</a></li>
                     <li><a href="/download">DOWNLOADS</a></li>
-                    <?php if($this->user_details[0]['designation'] == HR_MANAGER){ ?>
+                    <?php if($this->user_details[0]['user_level'] == HR_MANAGER){ ?>
                     <li class="dropdown"><a href="" id="dLabel" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#" rel="nofollow">HR<span class="caret"></span></a>
                         <ul class="dropdown-menu hr-dropdwn" role="menu" aria-labelledby="dLabel">
                             <li class="dropdown"><a href="/salaries">SALARIES</a></li>
@@ -98,7 +98,7 @@
         </header>
         <div id="model" class="popupContainer1 pop_cont" style="display:none;">
             <header class="popupHeader6">
-                <span class="header_title">Look at your Profile</span>
+                <span class="header_title"><?php echo $this->user_details[0]['emp_name']; ?></span>
                 <span class="modal_close"></span>
                 <!--</header>-->
 
@@ -115,15 +115,13 @@
                         <?php }else{?>
                         <img src="/images/avtr.jpg" id="profile_image_style"/><input type="file" class="profile-img-change-input" id="p-pic-change"><i class="icon-add-image"></i>
                         <?php }?>
+                        <p class="profle-pop-degnatn"><?php echo $this->user_details[0]['designation']; ?></p>
                     </div>
-                    <div class="profile"><h4><img src="/images/king.png" style="max-width: 20px;"/>&nbsp;<?php echo $this->user_details[0]['emp_name']; ?></h4>
-                        <p>Email:<span style="padding-left: 50px"><?php echo $this->user_details[0]['emp_email']; ?></span></p>
-                        <p>EmployeeID:<span style="padding-left: 10px" ><?php echo $this->user_details[0]['emp_id']; ?></span></p>
-                        <p>Address:<span style="padding-left: 35px" ><?php echo $this->user_details[0]['address']; ?></span>sp</p>
-                        <p>Ph no:<span style="padding-left: 50px" ><?php echo $this->user_details[0]['phone_no']; ?></span></p>
-                        <p>Designation:<span style="padding-left: 10px" ><?php echo $this->user_details[0]['designation']; ?></span></p>
-                        <p>Age:<span style="padding-left: 60px" ><?php echo $this->user_details[0]['age']; ?></span></p>
-                        <p>Gender:<span style="padding-left: 39px"><?php echo $this->user_details[0]['gender']; ?></span></p>
+                    <div class="profile">
+                        <p style="margin-left: 5px;">ID:<span style="padding-left: 10px" ><?php echo $this->user_details[0]['emp_id']; ?></span></p>
+                        <p><i class="icon-mail"></i><span><?php echo $this->user_details[0]['emp_email']; ?></span></p>
+                        <p><i class="icon-map-location"></i><span><?php echo $this->user_details[0]['address']; ?></span>sp</p>
+                        <p><i class="icon-call"></i><span   ><?php echo $this->user_details[0]['phone_no']; ?></span></p>
                     </div>
 
                 </section>
