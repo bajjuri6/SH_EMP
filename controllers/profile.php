@@ -17,6 +17,11 @@ class Profile extends Controller {
     }
     
 public function index(){
+    $this->view->user_details = $this->global->getUserDetails($_SESSION['loggedIn']);
+    if($this->view->user_details[0]['user_level'] == 2 || 0){
+        header('location: ../error');
+            return;
+    }
     $this->view->render('profile/index');
 }
 

@@ -11,15 +11,19 @@ class Salaries extends Controller{
             header('location: ../index');
             exit();
         }
-        if($_SESSION['loggedIn'] !== HR){
-            header('location: ../error');
-            return;
-        }
+//        if($_SESSION['loggedIn'] !== HR){
+//            header('location: ../error');
+//            return;
+//        }
     }
     public function index(){
         $this->view->all_user_details = $this->global->getAllUserDetails();
         $this->view->user_details = $this->global->getUserDetails($_SESSION['loggedIn']);
         $this->view->getTakenLeaves = $this->global->getTakenLeaves($_SESSION['loggedIn']);
+        if($this->view->user_details[0]['user_level'] == 2 || 0){
+        header('location: ../error');
+            return;
+    }
         $this->view->render('salaries/index');
     }
 }

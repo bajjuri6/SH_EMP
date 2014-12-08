@@ -11,13 +11,17 @@
             header('location: ../index');
             exit();
         }  
-        if($_SESSION['loggedIn'] !== HR){
-            header('location: ../error');
-            return;
-        }
+//        if($_SESSION['loggedIn'] !== HR){
+//            header('location: ../error');
+//            return;
+//        }
       }
             public function index(){
                 $this->view->user_details = $this->global->getUserDetails($_SESSION['loggedIn']);
+                if($this->view->user_details[0]['user_level'] == 2 || 0){
+                header('location: ../error');
+                return;
+            }
                 $this->view->render('payslips/index');
             }
             public function payslip_upload(){

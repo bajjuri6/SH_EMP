@@ -631,3 +631,58 @@ margin-left: 1px;
 border-bottom-right-radius: 10px;
 border-bottom-left-radius: 10px;
 }
+.news{
+    position: absolute;
+    height: 250px;
+    width: 96%;
+    background-color: white;
+    z-index: 1;
+    margin-top: -107px;
+    display: none;
+    border: 1px solid #333333;
+    border-bottom: 3px solid #2d3540;
+    cursor: pointer;
+}
+.ui-datepicker-trigger{
+    margin-top: -20px;
+    margin-left: 5px;
+}
+
+#user-level input{
+    width: 55%;
+    height: 30px;
+    border-radius: 0 !important;
+}
+#user-level h3{
+line-height: 1.2em !important;
+font-family: 'Open Sans Condensed',sans-serif !important;
+font-size: 2em;
+font-weight: 400 !important;
+letter-spacing: -1px;
+}
+#chnge-pswrd-hr h3{
+line-height: 1.2em !important;
+font-family: 'Open Sans Condensed',sans-serif !important;
+font-size: 2em;
+font-weight: 400 !important;
+letter-spacing: -1px;
+}
+#chnge-pswrd-hr input{
+    width: 55%;
+    height: 30px;
+    border-radius: 0 !important;
+}
+
+.hr-privlages-btn{
+    color: #FF7171 !important;
+    background-color: white !important;
+    border: 1px solid #FF7171 !important;
+}
+.prvlgs-header h3{
+margin-left: 25%;
+line-height: 1.2em !important;
+font-family: 'Open Sans Condensed',sans-serif !important;
+font-size: 2em;
+font-weight: 600 !important;
+letter-spacing: -1px;
+}

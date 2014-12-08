@@ -1,16 +1,17 @@
-<?php
-        require 'views/header.php';
-       // var_dump($this->getLeavesDeatilsByHr);
-        // var_dump($this->getLeavesDeatils);?>
+<?php require 'views/header.php';?>
+           <div class="news">We coudn't find any News!!!</div>
+           <?php if (!$this->user_details[0]['user_level'] == 0){?>
             <div class="alert alert-info alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" 
                         aria-hidden="true">
                     &times;
                 </button>
+           
                 <?php $row = $this->getLeavesDeatilsByHr;?>
-                <b><?php echo $row[0]['emp_name']; ?></b> Applied a leave. On <span><?php echo $row[0]['apply_date']; ?></span>
+                <b><?php echo $row[0]['emp_name']; ?></b> Applied a leave. On <span><?php echo date("j-M-Y" ,$row[0]['apply_date']); ?></span>
                 <span class="alert-desc" style="display: block"><?php echo $row[0]['description']; ?></span>
             </div>
+           <?php }?>
             <div class="span7 left-cntnt">
                 <div id="myCarousel" class="carousel slide">
                     <div class="carousel-inner">
@@ -185,6 +186,17 @@
 <script type="text/javascript">
     $(".modal_trigger6").leanModal({top: 10, overlay: 0.2, closeButton: ".modal_close"});
     $(".modal_trigger_status").leanModal({top: 150, overlay: 0.2, closeButton: ".modal_close"});
+    $('li .menu-news').hover(function(){
+       $('.news').show();
+    });
+    $('.news').mouseleave(function(){
+       $('.news').hide(); 
+    });
+//    $('.menu-news').parents('li').hover(function(){
+//           $('.news').hide();
+//       });
+     
+    
     $(".hr-lev").click(function () {
         var i = $(this).attr("id");
         var data = $("#all_leaves_hr").data('complete');

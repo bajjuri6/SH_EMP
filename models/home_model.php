@@ -108,7 +108,7 @@ class Home_model extends Model {
             $folder = APP_PATH."/uploads/$email";
             // $file = "/var/www/emp_mvc/uploads/$file_name";
 
-            $html = '<html><div style="background-image: url(https://localhost:8811/images/letter_head.png); background-position: center;
+            $html = '<html><div style="background-image: url(/images/letter_head.png); background-position: center;
                      background-repeat: no-repeat;
                     background-size: 100% 100%;">
                      <div style="padding-top: 25%;
@@ -216,7 +216,7 @@ public function bank_statement(){
             $month = $post[0]['month_slip'];
             $year = $post[0]['year_slip'];
             $folder = APP_PATH."/uploads/$email/Bank_statments";
-            $html_bnk_stmnt = '<html><div style="background-image: url(https://localhost:8811/images/letter_head.png); background-position: center; background-repeat: no-repeat; background-size: 100% 100%;"><div style="padding-top: 1%; padding-bottom: 25%;"></div>'
+            $html_bnk_stmnt = '<html><div style="background-image: url(/images/letter_head.png); background-position: center; background-repeat: no-repeat; background-size: 100% 100%;"><div style="padding-top: 1%; padding-bottom: 25%;"></div>'
                     . '<div style="padding-top: 5%; padding-bottom: 25%; padding-left: 12%; font-size: 0.8em;"><p align="right" style="padding-right: 21%;">DT:'.date("d-m-Y").'.</p><p align="left">Ref: VIMPL: SAL: 2014-14:<br><br>'
                     . 'To,<br>HDFC Bank LTD,<br>2-3-34/8 R, Devilal Complex,<br>Main Road, Uppal Kalan,<br>Hyderabad - 500039<br><br>Sub:Payment of salaries<br>Ref:Our account No. 10427630000537 dt: '.date("d-m-Y").'</p><div align="center">&&&&&&</div>'
                     . '<p>Dear sir,<br>We are here with enclosing the Ch No. 000248 dt.'.date("d-m-Y").' for Rs.'.$total.'-00 towards salaries<br> as per the statement give bellow:</p>'
@@ -386,105 +386,46 @@ public function bank_statement(){
                 return $invalid; 
         }
     }
+    
+    public function set_user_lvl() {
+        if ($_POST['eml'] == '') {
+            $res = "User suspended";
+            return $res;
+        }
+        $emilverfy = $this->db->prepare("SELECT * FROM new_emp WHERE emp_email = :email");
+        $emlnot = $emilverfy->execute(array(':email' => $_POST['eml']));
+        if ($emilverfy->rowCount() === 0) {
+            $res = "Sorry this email is not registerd yet!!";
+            return $res;
+        }
+        $user_level = $this->db->prepare("UPDATE new_emp SET user_level = :user_level WHERE emp_email = :email");
+        $user_level->execute(array(':user_level' => $_POST['levl'], ':email' => $_POST['eml']));
+        if ($user_level == true) {
+            $res = "User level added successfully";
+        } else {
+            $res = "User level adding faild";
+        }
+        return $res;
+    }
 
-    //    public function mpdf($em) {
-    //
-    //        include 'mpdf/mpdf.php';
-    //
-    //
-    //        $mpdf = new mPDF();
-    //        
-    //        $email = $_POST["slctd_emp"][0]['mail'];
-    //        //$email = $_POST['mail'];
-    //        $file_name = $_POST['file_name'];
-    //        $date = date("F Y");
-    //        
-    //
-    //        $folder = "/var/www/emp_mvc/uploads/$email";
-    //        // $file = "/var/www/emp_mvc/uploads/$file_name";
-    //
-    //        $html = '<html><div style="background-image: url(https://localhost:8811/images/letter_head.png); background-position: center;
-    //background-repeat: no-repeat;
-    //background-size: 100% 100%;">
-    //    <div style="padding-top: 25%;
-    //padding-bottom: 25%;"><h5 align="center">Payslip for the month of ' . $date . '</h5><h5 align="center">Financial Period 2013-' . $date = date("Y") . '</h5>
-    //<table align="center" border="1">
-    //    <tr><th colspan="4">Associate Information</th></tr>
-    //    <tr><td>Name</td>
-    //        <td>' . ($_POST['emp_name']) . '</td>
-    //        <td>PAN</td>
-    //        <td>' . ($_POST['pan']) . '</td></tr>
-    //    <tr><td>Designation</td>
-    //        <td>' . ($_POST['designation']) . '</td>
-    //        <td>Bank A/C</td>
-    //        <td>' . ($_POST['bank_a/c']) . '</td></tr>
-    //    <tr><td>Gender</td>
-    //        <td>' . ($_POST['gender']) . '</td>
-    //        <td>IFSC Code</td>
-    //        <td>' . ($_POST['ifsc']) . '</td></tr>
-    //    <tr><td>Date Of Joining</td>
-    //        <td>' . ($_POST['doj']) . '</td>
-    //        <td>Available Calender Days</td>
-    //        <td>' . ($_POST['available_days']) . '</td></tr>
-    //    <tr><td>Date Of Birth</td>
-    //        <td>' . ($_POST['dob']) . '</td>
-    //        <td>Paid Days</td>
-    //        <td>' . ($_POST['paid_days']) . '</td></tr>
-    //    <tr><td>PF A/C</td>
-    //        <td>' . ($_POST['pf_a/c']) . '</td>
-    //        <td>Loss Of Days</td>
-    //        <td>' . ($_POST['loss_of_days']) . '</td></tr>
-    //</table><br/>
-    //
-    //<table align="center" border="1" >
-    //    <tr><th>Earnings</th>
-    //        <th>Amount</th>
-    //        <th>Deductions</th>
-    //        <th>Amount</th></tr>
-    //    <tr><td>Basic</td>
-    //        <td>basic</td>
-    //        <td>TDS</td>
-    //        <td>' . ($_POST['tds']) . '</td></tr>
-    //    <tr><td>HRA</td>
-    //        <td>' . ($_POST['hra']) . '</td>
-    //        <td>PF</td>
-    //        <td>' . ($_POST['pf']) . '</td></tr>
-    //    <tr><td>Conveyance Allowance</td>
-    //        <td>' . ($_POST['conveyance_allowance']) . '</td>
-    //        <td>PT</td>
-    //        <td>' . ($_POST['pt']) . '</td></tr>
-    //    <tr><td>Special Allowance</td>
-    //        <td>' . ($_POST['Spcl_allowance']) . '</td>
-    //        <td></td>
-    //        <td></td></tr>
-    //    <tr><td><b>(A) Total Earnings</b></td>
-    //        <td>' . ($_POST['a']) . '</td>
-    //        <td><b>(B) Total Deductions</b></td>
-    //        <td>' . ($_POST['b']) . '</td></tr>
-    //    <tr><td colspan="3" align="right"><b>Net Salary=(A)-(B)</b></td>
-    //        
-    //        <td>' . ($_POST['net']) . '</td></tr>
-    //</table></div></div></html>';
-    //        
-    //        $mpdf->WriteHTML($html);
-    //        
-    //        if(!file_exists($folder)) {
-    //            mkdir($folder, 0777);
-    //            echo "Directory sucs";
-    //                    }else{
-    //                        echo "Directory creation faild";
-    //                    }
-    //        $final = "$folder/$file_name";
-    //        $mpdf->output($final, 'F');
-    //        $sth11 = $this->db->prepare("INSERT INTO slips(email, slip) VALUES (:useremail, :slip_name)");
-    //        $insert = $sth11->execute(array(':slip_name' => $_POST['file_name'],
-    //            ':useremail' => $_POST['mail']));
-    //        if ($insert == true) {
-    //            $status = "Pay slip genrated and its uploded to employee desk";
-    //            return $status;
-    //        } else {
-    //            $status = "Somthing wrong While uploading a pay slip";
-    //            return $status;
-    //        }
-    //    }
+    public function change_pwd() {
+        if ($_POST['eml'] == '') {
+            $res = "User suspended";
+            return $res;
+        }
+        $emilverfy = $this->db->prepare("SELECT * FROM new_emp WHERE emp_email = :email");
+        $emlnot = $emilverfy->execute(array(':email' => $_POST['eml']));
+        if ($emilverfy->rowCount() === 0) {
+            $res = "Sorry this email is not registerd yet!!";
+            return $res;
+        }
+        $user_level = $this->db->prepare("UPDATE new_emp SET password = :pwd WHERE emp_email = :email");
+        $user_level->execute(array(':pwd' => trim(md5($_POST['pwd'])), ':email' => $_POST['eml']));
+        if ($user_level == true) {
+            $res = "Password changed successfully";
+        } else {
+            $res = "Password changing faild";
+        }
+        return $res;
+    }
 }

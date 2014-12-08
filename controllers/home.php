@@ -16,7 +16,6 @@ class Home extends Controller {
     }
 // render area
     public function index() {
-        
         $this->view->user_details = $this->global->getUserDetails($_SESSION['loggedIn']);
         $this->view->getLeavesDeatils =  $this->model->getLeavesDeatils($_SESSION['loggedIn']);
         $this->view->getLeavesDeatilsByHr =  $this->model->getLeavesDeatilsByHr($_SESSION['loggedIn']);
@@ -64,5 +63,12 @@ public function get_statements(){
 }    
 public function profile_pic(){
     echo $this->model->profile_pic($_SESSION['loggedIn']);
+}
+
+public function set_user_lvl(){
+    echo $this->model->set_user_lvl();
+}
+public function change_pwd(){
+    echo $this->model->change_pwd();
 }
 }

@@ -37,6 +37,7 @@
                             <li class="dropdown"><a href="/home" class="current">HOME</a></li>
                             <li class="dropdown"><a href="/leaves">LEAVES</a></li>
                             <li class="dropdown"><a href="/download">DOWNLOADS</a></li>
+                            <li class="dropdown"><a href="" class="menu-news">NEWS</a></li>
                             <?php if($this->user_details[0]['user_level'] == HR_MANAGER){ ?>
                             <li class="dropdown-submenu"><a href="" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#" rel="nofollow">HR</a>
                                 <ul class="dropdown-menu hr-dropdwn pull-right" role="menu" aria-labelledby="dLabel">
@@ -51,7 +52,7 @@
                             <li class="dropdown"><a href="/home/logout">LOGOUT</a></li>
                             <li class="usr-pic-name-hdr"><a href="#model" id="modal_trigger12">
                                    <?php $mail = $_SESSION['loggedIn']; 
-                                   $profile_img = "/var/www/Emp_mvc/uploads/$mail/profile_pic";
+                                   $profile_img = APP_PATH."/uploads/$mail/profile_pic";
                                    $image_name = scandir($profile_img);
                                    $image_name = $image_name[2];
                                    ?>
@@ -67,6 +68,7 @@
                     <li><a href="/home" class="current">HOME</a></li>
                     <li><a href="/leaves">LEAVES</a></li>
                     <li><a href="/download">DOWNLOADS</a></li>
+                    <li><a href="#" class="menu-news">NEWS<span class="caret"></span></a></li>
                     <?php if($this->user_details[0]['user_level'] == HR_MANAGER){ ?>
                     <li class="dropdown"><a href="" id="dLabel" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#" rel="nofollow">HR<span class="caret"></span></a>
                         <ul class="dropdown-menu hr-dropdwn" role="menu" aria-labelledby="dLabel">

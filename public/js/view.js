@@ -702,5 +702,37 @@ $(".datepicker" ).datepicker({minDate: 0});
             }
         });
      });
+     
+     
+     $('#user-lvl-submit').click(function(){
+        var eml = $('#user-lvl-eml').val();
+        var levl = $('#lvl-num').val();
+        $.ajax({
+           url: '/home/set_user_lvl',
+           method: 'post',
+           data:{eml: eml, levl: levl},
+           success: function(d){
+               document.getElementById("userlvl-frm").reset();
+                $("#resp-popup").find(".popupBody").html(d);
+               $("#btn-trgr").trigger('click');
+               
+           }
+        });
+     });
+     
+     $('#pswrd-chng-submit').click(function(){
+        var eml = $('#pswrd-chnge-eml').val();
+        var pwd = $('#nwpwd').val();
+        $.ajax({
+           url: '/home/change_pwd',
+           method: 'post',
+           data:{eml: eml, pwd: pwd},
+           success: function(d){
+               document.getElementById("pwd-chng-frm").reset();
+               $("#resp-popup").find(".popupBody").html(d);
+               $("#btn-trgr").trigger('click');
+           }
+        });
+     });
 });
 
