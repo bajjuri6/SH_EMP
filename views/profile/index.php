@@ -28,6 +28,11 @@
 
             <section class="popupBody"></section>
         </div>
+        
+        
+        
+        
+        
         <!--success pop up area close-->
         <script>
         $(".modal_trigger6").leanModal({top: 10, overlay: 0.2, closeButton: ".modal_close"});

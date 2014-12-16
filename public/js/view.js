@@ -1,11 +1,11 @@
 
 $(function () {
 $(".datepicker" ).datepicker({minDate: 0});
+$(".datepicker-dob" ).datepicker({changeMonth: true, changeYear: true, yearRange: '1970:+0', showButtonPanel: true,});
     var avlble_days;
     $(document).on('keyup', '.mtnh-leavs', function () {
         // $('#textarea_hidden').val($('#mtnh-leavs').val());
         function getDaysInMonth(month, year) {
-
             return new Date(year, month, 0).getDate();
         }
         var $this = $(this);
@@ -18,24 +18,20 @@ $(".datepicker" ).datepicker({minDate: 0});
         var total = maxpay - cut;
         $this.parents("tr").find(".tol-pay").html(total);
     });
-     
-  
     $("#process").click(function () {
-
         var chkbxs = $('.table').find("tr .checkbox");
         var slctd_emp = [], obj;
-
+        if($(chkbxs).prop('checked') == 0){
+                $('.ajax-loading').hide();
+                $("#resp-popup").find(".popupBody").html("Please select max one employe to genrate Payslips");
+                $("#btn-trgr").trigger('click');
+                return false;
+        }
         chkbxs.each(function () {
             if ($(this).prop('checked') == true) {
-//                if($(this).parents("tr").find('.mtnh-leavs').val() == '')
-//                $(this).addClass('.month-leavs_err');              
-//                $("#resp-popup").find(".popupBody").html("Employe leaves mandatory to genarate Payslip");
-//                $("#btn-trgr").trigger('click');
-//                return false;
                 var avl_days = $(this).parents("tr").find(".avilble_days").val();
                 var loss_of_days = $(this).parents("tr").find(".mtnh-leavs").val();
                 var paid_days = avl_days - loss_of_days;
-
                 obj = {
                     "emp_name": $(this).parents("tr").find('.sal-name').text(),
                     "mail": $(this).parents("tr").find(".pay_email").val(),
@@ -66,11 +62,8 @@ $(".datepicker" ).datepicker({minDate: 0});
                 };
                 slctd_emp.push(obj);
                 // alert($(".payslip-name").val());
-
             }
-
         });
-
 
         $.ajax({
             url: "/home/pdf",
@@ -97,9 +90,9 @@ $(".datepicker" ).datepicker({minDate: 0});
             success: function (res) {
                 var stmnt = JSON.parse(res);
                 $(".td-apndg-bnk-stmnt").html("<td align='center'>"+stmnt.filename+"</td><td align='center' class='dwnld'><a href='/download/down_staments/"+stmnt.filename+"'><i class='icon-download'></i></a></td>");
-                setTimeout(function () {
-                    window.location.reload();
-               }, 1000);
+//                setTimeout(function () {
+//                    window.location.reload();
+//               }, 1000);
             }
         });
     });
@@ -535,12 +528,14 @@ $(".datepicker" ).datepicker({minDate: 0});
                     "pf_acc": regform.elements['pf_acc'].value,
                     "pan": regform.elements['pan'].value,
                     "ifsc": regform.elements['ifsc'].value,
-                    "basic_sal": regform.elements['basic_salrie'].value
+                    "basic_sal": regform.elements['basic_salrie'].value,
+                    "doj": regform.elements['doj'].value
                 },
                 success: function (res) {
                     $("#model_reg").css("display", "none");
                     $("#resp-popup").find(".popupBody").html(res);
                     $("#btn-trgr").trigger('click');
+                    document.getElementById('resetform').reset();
                 }
             });
         }
@@ -617,7 +612,7 @@ $(".datepicker" ).datepicker({minDate: 0});
     
      
      
-     $('#upload-docs-butn').click(function(e){
+    $('#upload-docs-butn').click(function(e){
          e.preventDefault();
          var email = document.getElementById('emp-doc-emial').value;
          var elements = $('#docs-form').find("input[type='file']");
@@ -734,5 +729,45 @@ $(".datepicker" ).datepicker({minDate: 0});
            }
         });
      });
+     
+     $.ajax({
+        url: 'home/get_bdys',
+        method: 'post',
+        success:function(d){
+            var d = JSON.parse(d);
+            var arry_length = d.length;
+            for(i=0; i<arry_length; i++){
+                var now = new Date();
+                now = now.getMonth() + 1 + "/" + now.getDate();
+                var bdy = new Date(d[i].dob*1000);
+                var bdycmpr = bdy.getMonth() + 1 + "/" + bdy.getDate();
+                if(bdycmpr == now){
+                $('#tdy-bdy').append("<div class='alert alert-success alert-dismissable bdy-ribbn'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><b>Today Birthday</b><br/>"+d[i]['emp_name']+"<span></span><span class='alert-desc' style='display: block'></span><img src='/images/hpybdy.png' class='hpybdy'></div>");
+               } 
+//              <img src='/uploads/"+d[i]['emp_email']+"/profile_pic/Profile_pic.jpg' class='bdy-prfl-pic'>
+                var month = bdy.getMonth() + 1;
+                var bdyfrtbl = bdy.getDate() + "-" + month + "-" + bdy.getFullYear();
+                var exststcpmr = new Date(d[i].dob*1000);
+                exststcpmr = exststcpmr.getDate();
+                var tdy = new Date();    
+                var tdy = tdy.getDate();
+                if(exststcpmr >= tdy){
+                $('.bdy-rmindr').append("<tr><td>"+d[i].emp_name+"</td><td>"+bdyfrtbl+"</td></tr>");
+            }
+            }
+    }
+     });
+     
+     $( "#autocomplete" ).autocomplete({
+    source: function( req, resp ) {
+        $.post( "/echo/json/", {
+            json: '["1", "2", "3", "4", "5"]',
+            delay: 1
+        }, function(data) {
+            resp( data );
+        }, "JSON" );
+    }
+});
+
 });
 

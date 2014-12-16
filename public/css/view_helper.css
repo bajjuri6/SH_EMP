@@ -637,7 +637,7 @@ border-bottom-left-radius: 10px;
     width: 96%;
     background-color: white;
     z-index: 1;
-    margin-top: -107px;
+    margin-top: -16px;
     display: none;
     border: 1px solid #333333;
     border-bottom: 3px solid #2d3540;
@@ -685,4 +685,28 @@ font-family: 'Open Sans Condensed',sans-serif !important;
 font-size: 2em;
 font-weight: 600 !important;
 letter-spacing: -1px;
+}
+.bdy-ribbn{
+    background-image: url("/images/balloons.png") !important;
+    background-color: #86AF72 !important;
+    border: #86AF72 !important;
+    color: white !important;
+}
+
+.hpybdy{
+    position: absolute;
+    width: 40%;
+    margin-top: -93px;
+    margin-left: 141px;
+}
+.bdy-prfl-pic{
+    width: 50px;
+    border-radius: 50%;
+}
+.dropdown-menu > li > a:hover{
+background-image: -moz-linear-gradient(top, #171A24, #636363) !important;
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#171A24), to(#636363)) !important;
+background-image: -webkit-linear-gradient(top, #171A24, #636363) !important;
+background-image: -o-linear-gradient(top, #171A24, #636363) !important;
+background-image: linear-gradient(to bottom, #171A24, #636363) !important;
 }

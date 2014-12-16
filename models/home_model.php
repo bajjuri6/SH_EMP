@@ -38,17 +38,33 @@ class Home_model extends Model {
     }
 
     public function register() {
+        if(trim($_POST['emp_email']) == ''){
+            $err = "Sorry email requried!!";
+            return $err;        
+        }
+        $emailvrfy = $this->db->prepare("SELECT * FROM new_emp WHERE emp_email = :email");
+        $emailvrfy->execute(array(':email'=>$_POST['emp_email']));
+        if ($emailvrfy->rowCount() > 0) {
+            $res = "Sorry this email already registerd!!";
+            return $res;
+        }
+        $dob = strtotime($_POST['dob']);
+        $dob = date("Y-m-d" ,$dob);
+        $dob = strtotime($dob);
+        $doj = strtotime($_POST['doj']);
+        $doj = date("Y-m-d" ,$doj);
+        $doj = strtotime($doj);
         $sth8 = $this->db->prepare("INSERT INTO new_emp(emp_name, emp_id, emp_email, password, phone_no, dob, fathername, mothername, age, bloodgroup, address, "
-                . "            gender, spousename, emr_name, emr_relation, emr_phone, emr_email, designation, department, bank_account, pf_account, pan, ifsc_code, basic_salarie) "
+                . "            gender, spousename, emr_name, emr_relation, emr_phone, emr_email, designation, department, bank_account, pf_account, pan, ifsc_code, basic_salarie, date_of_joining) "
                 . "                VALUE(:emp_name, :emp_id, :emp_email, :password, :phone_no, :dob, :fathername, :mothername,"
                 . "                      :age, :bloodgroup, :address, :gender, :spousename, :emr_name, :emr_relation, :emr_phone,"
-                . "                      :emr_email, :designation, :department, :bank_acc, :pf_acc, :pan, :ifsc, :basic_sal)");
+                . "                      :emr_email, :designation, :department, :bank_acc, :pf_acc, :pan, :ifsc, :basic_sal, :date_of_joining)");
         $insert = $sth8->execute(array(':emp_name' => $_POST['emp_name'],
             ':emp_id' => $_POST['emp_id'],
             ':emp_email' => $_POST['emp_email'],
             ':password' => trim(md5($_POST['password'])),
             ':phone_no' => $_POST['emp_phno'],
-            ':dob' => $_POST['dob'],
+            ':dob' => $dob,
             ':fathername' => $_POST['fathername'],
             ':mothername' => $_POST['mothername'],
             ':age' => $_POST['age'],
@@ -66,13 +82,14 @@ class Home_model extends Model {
             ':pf_acc' => $_POST['pf_acc'],
             ':pan' => $_POST['pan'],
             ':ifsc' => $_POST['ifsc'],
-            ':basic_sal' => $_POST['basic_sal']
+            ':basic_sal' => $_POST['basic_sal'],
+            ':date_of_joining'=>$doj
         ));
         if ($insert == true) {
             $status = "Registerd sucessfully";
         } else {
-            $status = "Somthiong wrong EMP adding failed";
-            print_r($sth8->errorInfo());
+            $status = "Somthiong wrong while adding Employee";
+//            print_r($sth8->errorInfo());
         }
         return $status;
     }
@@ -428,4 +445,13 @@ public function bank_statement(){
         }
         return $res;
     }
+    
+    public function get_bdys(){
+        $this_mnth = date("mY");
+        $bdys = $this->db->prepare("SELECT emp_name, department, emp_email, dob FROM new_emp WHERE FROM_UNIXTIME(dob, '%m%Y') = $this_mnth");
+        $bdys->execute();
+        $deatils = $bdys->fetchAll(PDO::FETCH_ASSOC);
+        return $deatils;
+        }
+    
 }

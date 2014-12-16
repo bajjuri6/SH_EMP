@@ -165,7 +165,7 @@
                             <input name="emp_phno" id="emp_phno_reg" type="text" style="height: 30px; width: 250px;" placeholder="+9199948983078"/>
                             <br>
                             <label>DOB</label>
-                            <input name="dob" id="dob_reg" type="date" style="height: 30px; width: 250px;"/>
+                            <input name="dob" id="dob_reg" class="datepicker-dob" type="text" style="height: 30px; width: 250px;" placeholder="Date of birth"/>
                             <br>
                             <label>Age</label>
                             <input name="age" id="age_reg" type="text" style="height: 30px; width: 250px;" placeholder="Age"/>
@@ -209,22 +209,22 @@
                         <div class="emr_details">
                             <h5>Salaries details</h5>
                             <label>Bank Acc no</label>
-                            <input name="bank_acc" id="bank_acc_reg" type="number" style="height: 30px; width: 250px;" placeholder="Bank Acc no"/>
+                            <input name="bank_acc" id="bank_acc_reg" type="text" style="height: 30px; width: 250px;" placeholder="Bank Acc no"/>
                             <br>
                             <label>PF ACC no</label>
-                            <input name="pf_acc" id="pf_acc_reg" type="number" style="height: 30px; width: 250px;" placeholder="PF ACC no"/>
+                            <input name="pf_acc" id="pf_acc_reg" type="text" style="height: 30px; width: 250px;" placeholder="PF ACC no"/>
                             <br>
                             <label>PAN</label>
-                            <input name="pan" type="number" id="pan_reg" style="height: 30px; width: 250px;" placeholder="PAN"/>
+                            <input name="pan" type="text" id="pan_reg" style="height: 30px; width: 250px;" placeholder="PAN"/>
                             <br>
                             <label>Bank IFSC code</label>
                             <input name="ifsc" type="text" id="ifsc_reg" style="height: 30px; width: 250px;" placeholder="Bank IFSC code"/>
                             <br>
                             <label>Basic Salarie</label>
-                            <input name="basic_salrie" id="basic_salrie_reg" type="number" style="height: 30px; width: 250px;" placeholder="Basic Salari"/>
+                            <input name="basic_salrie" id="basic_salrie_reg" type="text" style="height: 30px; width: 250px;" placeholder="Basic Salari"/>
                             <br>
                             <label>Date of joining</label>
-                            <input name="doj"  id="doj_reg" type="date" style="height: 30px; width: 250px;" placeholder="Date of joining"/>
+                            <input name="doj"  id="doj_reg" class="datepicker-dob" type="text" style="height: 30px; width: 250px;" placeholder="Date of joining"/>
                             <br>
                             <!--                <label>Documents uploads</label>
                                          <input name="doc" type="file" style="height: 30px; width: 250px;" placeholder="doc"/>
@@ -250,7 +250,8 @@
             <section class="popupBody">
                 <div><form id="docs-form" enctype="multipart/form-data">
                         <p id="upload-doc-err"></p>
-                        <label>Employee Email:<br><input type="email" name="emp_doc_email" id="emp-doc-emial" class="emp-doc-emial" placeholder="Mail id of employe" style="height: 30px; width: 250px;"></label>
+                        <label>Employee Email:<br><input type="text" name="emp_doc_email" id="emp-doc-emial" class="emp-doc-emial" placeholder="Mail id of employe" style="height: 30px; width: 250px;"></label>
+                        <!--<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;"></ul>-->
                         <label>Select Document:<br><input type="file" name = "empdoc" id="docs-file1" style="display: inline-block;">
                                     <select class="slct-month">
                                         <option value='0' selected>--Select Doc type--</option>
@@ -272,8 +273,9 @@
         <div id="main">
         <div class="container all-content">
         <div class="main-content">
-            <div id="notifc">
-            </div>
+        <div class="news">We coudn't find any News!!!</div>
+        <div id="notifc"></div>
+        <div id="tdy-bdy"></div>
         <script type="text/javascript">
             $(".modal_trigger6").leanModal({top: 10, overlay: 0.2, closeButton: ".modal_close"});
             $("#modal_trigger1").leanModal({top: 120, overlay: 0.2, closeButton: ".modal_close"});

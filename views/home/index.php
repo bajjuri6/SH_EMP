@@ -1,12 +1,10 @@
 <?php require 'views/header.php';?>
-           <div class="news">We coudn't find any News!!!</div>
            <?php if (!$this->user_details[0]['user_level'] == 0){?>
             <div class="alert alert-info alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" 
                         aria-hidden="true">
                     &times;
                 </button>
-           
                 <?php $row = $this->getLeavesDeatilsByHr;?>
                 <b><?php echo $row[0]['emp_name']; ?></b> Applied a leave. On <span><?php echo date("j-M-Y" ,$row[0]['apply_date']); ?></span>
                 <span class="alert-desc" style="display: block"><?php echo $row[0]['description']; ?></span>
@@ -41,13 +39,12 @@
                     <?php } ?>
                 </div>  
             </div>
-        
         <?php if ($this->user_details[0]['user_level'] == HR_MANAGER) { ?>
             <div class="dash_table">
                 <div class="overflow">
                     <div class="tbl-hdr"><h2>Leave Applications</h2></div>
                     <table class="table table-hover table-condensed table-bordered">
-                        <tr >
+                        <tr>
                             <th>Name</th>
                             <th>Date</th>
                             <th>Manager Status</th>
@@ -114,6 +111,16 @@
             </div>
 <?php } ?>
         </div>
+           <?php if ($this->user_details[0]['user_level'] == 0) { ?>
+           <div class="span3"><div class="dash_table">
+                    <div class="tbl-hdr"><h2>This month Birthdays</h2></div>
+                    <table class="table table-hover table-condensed table-bordered bdy-rmindr">
+                        <tr>
+                            <th>Name</th>
+                            <th>Birthday</th>
+                        </tr>
+                    </table></div></div>
+           <?php }?>
         </div>
     </div>
         <!--success pop up's area-->

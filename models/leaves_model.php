@@ -24,10 +24,18 @@ class Leaves_model extends Model {
         if ($insert == true) {
             $status = "Leave applied successfully";
         } else {
-            $status = "Somthing wrong while applying a Leave";
+            $status = "Somthing went wrong while applying a Leave";
         }
-        mail("radhasatish143@gmail.com","leave mail", "new leave", "mukkojusatish@gmail.com");
-        return $status;
+          $to = 'mukkojusatish@gmail.com';       
+          $from = "mukkojusatish@gmail.com";
+          $emp_nme = $_POST['emp_name'];
+          $subject = "New leave request from $emp_nme";
+          $mail = '<html><body><table cellspacing = "0" cellpadding = "0" style = "padding:10px 10px;background:#eee;width:100%;font-family:arial"><tbody><tr><td><table align = "center" cellspacing = "0" style = "max-width:650px;min-width:320px"><tbody><tr><td style = "text-align:left;padding-bottom:14px"><img align = "left" style = "width: 200px;" alt = "Saddahaq" src = "https://tt.saddahaq.com/public/global/Images/lp_logo.png" class = "CToWUd"></td></tr><tr><td align = "center" style = "background:#fff;border:1px solid #e4e4e4;padding:50px 30px"><table align = "center"><tbody><tr><td style = "color:#666;text-align:left"><table align = "center" style = "margin:auto"><tbody><tr><td style = "text-align:center;padding-bottom:5px"><img align = "center" alt = "New leave mail" src = "https://ci5.googleusercontent.com/proxy/VVbSmOpDyK2G_1ro5Yo_ZippKVU6T5LnCRNiBl2O0aOdn9PU2kfBvSPvLTrGH3SEUn08vdL3jikojyfvV8-I22nClPkzHiN1nQXMCT_0FLlg1szAUKPTSsXVWgDa3lV5WuyedbRuF38=s0-d-e1-ft#http://d2nt7j7ljjsiah.cloudfront.net/assets/v2_emails/new_conversation_message.png" class = "CToWUd"></td></tr><tr><td style = "color:#005f84; font-size:16px;font-weight:bold;text-align:center;font-family:arial">NEW LEAVE</td></tr></tbody></table><p style = "font-size:16px;margin-bottom:0">Dear sir, </p><p style = "font-size:16px;margin-top:5px">Leave request:</p><table align = "center" style = "margin:auto;width:100%"><tbody><tr><td style = "color:#666;font-size:16px;padding-bottom:30px;text-align:left;font-family:arial"><div style = "font-style:italic;padding-bottom:15px;font-family:arial;line-height:20px;text-align:left"></div></td></tr></tbody></table><table align = "center" style = "margin:auto"><tbody><tr><td style = "background-color:white;border:1px solid #028a25;border-radius:3px;text-align:center"><a href = "www.saddahaq.com" style = "padding:16px 20px;display:block;text-decoration:none;color:#333;font-size:16px;text-align:center;font-family:arial;font-weight:bold" target = "_blank">VIEW AND APPROVE</a></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td></td></tr></tbody></table></body></html>';
+          //$mail = $mail. $_POST["dec"];         
+          $headers  = "From: $from\r\n"; 
+          $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n"; 
+          mail($to, $subject, $mail, $headers);
+          return $status;
     }
     public function approve() {
         if ($_POST['hr_status'] == "Approved") {
