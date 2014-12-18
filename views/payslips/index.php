@@ -15,4 +15,22 @@
 <input type="submit" class="btn-info btn-small" name="submit"/>
 </form>
 
+<div class="top" style="background: aqua;">
+    <img id="img1" src="/images/board.png" style="display: none;">
+    <img id="img2" src="/images/board.png" style="display: none;">
+
+</div>
+
+<script>
+    setInterval(function () {
+     $('#img1').animate( {height: "show" }, 2000);
+     $('#img1').delay( 2000 );
+     $('#img1').animate( {height: "hide" }, 2000);
+    }, 2500);
+    setInterval(function () {
+     $('#img2').animate( {height: "show" }, 2000);     
+     $('#img2').delay( 2000 );
+     $('#img2').animate( {height: "hide" }, 2000);
+    }, 4000);
+    </script>
     <?php require 'views/footer.php'; ?>

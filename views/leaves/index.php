@@ -3,7 +3,7 @@
             <div class="apply_form" id="aply">
                 <h2 class="apply">Apply leave Here</h2><br>
                 <p class="val_err"></p>
-                <form name="leave_apply_form">
+                <form name="leave_apply_form" id="leaveform">
                     <label class="form_txt">Subject:</br><textarea name="sub" style="width: 90%" placeholder="Ex: Request for leave" id="leve-subjct"></textarea></label>
                     <div style="float: left; padding-right: 15%; "><label>From:<br/><input type="text" id="datepicker-frm" name="from" class="datepicker" placeholder="From date" style="height: 30px; width: 250px;"></label></div>
                     <div style="float: left;"><label>To:<br/><input type="text" class="datepicker" name="to" placeholder="To date" style="height: 30px; width: 250px;" id="datepicker-to"/></label></div>
@@ -90,7 +90,7 @@
             todate = new Date(todate).getTime() / 1000;
             if(todate<= fromdate){
                 $('#datepicker-to').addClass('month-leavs_err');
-              $("#aply").find(".val_err").text("To date Should be greter than From date");
+                $("#aply").find(".val_err").text("To date Should be greter than From date");
                 return false;  
             }
             var to_date = "";
@@ -127,9 +127,10 @@
                  }else{
                     $("#resp-popup").find(".popupBody").html(res);
                     $("#btn-trgr").trigger('click');
-//                    setTimeout(function () {
-//                    window.location.reload();
-//                }, 2000);
+                    document.getElementById('leaveform').reset();
+                    setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
                 }
                 }
             });

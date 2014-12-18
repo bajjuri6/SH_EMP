@@ -1,7 +1,7 @@
 
 $(function () {
-$(".datepicker" ).datepicker({minDate: 0});
-$(".datepicker-dob" ).datepicker({changeMonth: true, changeYear: true, yearRange: '1970:+0', showButtonPanel: true,});
+$(".datepicker" ).datepicker({dateFormat: 'dd-mm-yy', minDate: 0});
+$(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, yearRange: '1970:+0', showButtonPanel: true,});
     var avlble_days;
     $(document).on('keyup', '.mtnh-leavs', function () {
         // $('#textarea_hidden').val($('#mtnh-leavs').val());
@@ -77,9 +77,9 @@ $(".datepicker-dob" ).datepicker({changeMonth: true, changeYear: true, yearRange
                 $('.ajax-loading').hide();
                 $("#resp-popup").find(".popupBody").html(res);
                 $("#btn-trgr").trigger('click');
-//                setTimeout(function () {
-//                    window.location.reload();
-//                }, 2000);
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
             }
         });
         
@@ -541,6 +541,11 @@ $(".datepicker-dob" ).datepicker({changeMonth: true, changeYear: true, yearRange
         }
     });
     $('#post-butn').click(function(){
+        var data = $.trim($('#post-txt').val()); 
+        if( data === ''){
+        $('#posterr').text('Nothig is there to post!!');  
+        return;    
+        }
       $.ajax({
          url: "home/postupdate",
          method: "post",

@@ -1,6 +1,8 @@
 <?php require 'views/header.php'; ?>
     <div class="post-uodate">
+        
                 <h2 class="apply">Post new Update</h2><br>
+                <p class="val_err" id="posterr"></p>
                 <textarea style="width: 50%;" placeholder="Notice:" id="post-txt"></textarea>
                 <button class="btn btn-info" value="POST" id="post-butn" type="button" style="color: #FF7171;">Post</button>
             </div>      
@@ -26,7 +28,7 @@
                 <td align="center"><?php echo $row[$i]['emp_id']; ?></td>
                 <td align="center"><?php echo $row[$i]['emp_email']; ?></td>
                 <td align="center"><?php echo $row[$i]['phone_no']; ?></td>
-                <td align="center"><?php echo $row[$i]['dob']; ?></td>
+                <td align="center"><?php echo $bdy = date("j-M-Y", $row[$i]['dob']); ?></td>
                 <td align="center"><?php echo $row[$i]['age']; ?></td>
                 <td align="center"><?php echo $row[$i]['designation']; ?></td>
                 <td align="center"><?php echo $row[$i]['department']; ?></td>
