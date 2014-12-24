@@ -16,11 +16,11 @@
             <th>Email</th>
             <th>Phone no</th>
             <th>DOB</th>
-            <th>Designation</th>
             <th>Department</th>
 <!--            <th>View full details</th>-->
             <th>Documents zip</th>
             <th>Edit</th>
+            <th>View Full details</th>
         </tr>
         <tr>
             <?php $row = $this->all_user_details; ?>
@@ -30,11 +30,11 @@
                 <td align="center"><?php echo $row[$i]['emp_email']; ?></td>
                 <td align="center"><?php echo $row[$i]['phone_no']; ?></td>
                 <td align="center"><?php echo $bdy = date("j-M-Y", $row[$i]['dob']); ?></td>
-                <td align="center"><?php echo $row[$i]['designation']; ?></td>
                 <td align="center"><?php echo $row[$i]['department']; ?></td>
                 <!-- <td align="center"><a href="#<?php echo $i; ?>" class="modal_trigger7">View full</a></td>-->
                 <td align="center" class="dwnld"><a href="#<?php echo $i; ?>" class="modal_trigger7"><i class="icon-download"></i></a></td>
                 <td align="center" class="dwnld"><a href="#<?php echo $i; ?>-edit" class="modal_trigger7"><i class="icon-pencil"></i></a></td>
+                <td align="center" class="dwnld"><a href="#<?php echo $i; ?>-view" class="modal_trigger7"><i class="icon-watch"></i></a></td>
             </tr>
             <tr>
                 <td>
@@ -91,6 +91,47 @@
                         </section>
                     </div>
                     <!--close Edit popup-->
+                    
+                    <!--view full details popup-->
+                    <div id="<?php echo $i;  ?>-view" class="popupContainer_all pop_cont" style="display:none;">
+                        <header class="popupHeader6">
+                            <span class="header_title"><?php echo $row[$i]['emp_name']?></span>
+                            <span class="modal_close"></span>
+                        </header>
+                        <section class="popupBody6">
+                            <div class="edit_emp_div">
+                            <p class="view-emp">ID: <span><?php echo $row[$i]['emp_id']?></span></p>
+                            <p class="view-emp">Name: <span><?php echo $row[$i]['emp_name']?></span></p>
+                            <p class="view-emp">Email: <span><?php echo $row[$i]['emp_email']?></span></p>
+                            <p class="view-emp">Father name: <span><?php echo $row[$i]['fathername']?></span></p>
+                            <p class="view-emp">Mother name: <span><?php echo $row[$i]['mothername']?></span></p>
+                            <p class="view-emp">phone number: <span><?php echo $row[$i]['phone_no']?></span></p>
+                            <p class="view-emp">Date of birth: <span><?php echo $row[$i]['dob']?></span></p>
+                            <p class="view-emp">Age: <span><?php echo $row[$i]['age']?></span></p>
+                            <p class="view-emp">Blood group: <span><?php echo $row[$i]['bloodgroup']?></span></p>
+                            </div>
+                            <div class="edit_emp_div">
+                            <p class="view-emp">Address: <span><?php echo $row[$i]['address']?></span></p>
+                            <p class="view-emp">Gender: <span><?php echo $row[$i]['gender']?></span></p>
+                            <p class="view-emp">Spouse name: <span><?php echo $row[$i]['spousename']?></span></p>
+                            <p class="view-emp">Designation: <span><?php echo $row[$i]['designation']?></span></p>
+                            <p class="view-emp">Department: <span><?php echo $row[$i]['department']?></span></p>
+                            <p class="view-emp">Emergency contact name: <span><?php echo $row[$i]['emr_name']?></span></p>
+                            <p class="view-emp">Emergency contact relation: <span><?php echo $row[$i]['emr_relation']?></span></p>
+                            <p class="view-emp">Emergency contact Phone: <span><?php echo $row[$i]['emr_phone']?></span></p>
+                            <p class="view-emp">Emergency contact email: <span><?php echo $row[$i]['emr_email']?></span></p>
+                            </div>
+                            <div class="edit_emp_div">
+                            <p class="view-emp">Bank account: <span><?php echo $row[$i]['bank_account']?></span></p>
+                            <p class="view-emp">PF acc: <span><?php echo $row[$i]['pf_account']?></span></p>
+                            <p class="view-emp">PAN: <span><?php echo $row[$i]['pan']?></span></p>
+                            <p class="view-emp">IFSC: <span><?php echo $row[$i]['ifsc_code']?></span></p>
+                            <p class="view-emp">Basic salarie: <span><?php echo $row[$i]['basic_salarie']?></span></p>
+                            <p class="view-emp">Date of joining: <span><?php echo $row[$i]['date_of_joining']?></span></p>
+                            </div>
+                        </section>
+                    </div>
+                    <!--close view full details popup-->
                 </td>
             </tr>
         <?php } ?>

@@ -740,6 +740,7 @@ background-image: linear-gradient(to bottom, #171A24, #636363) !important;
     width: auto;
     margin-left: 10px;
     text-align: left;
+    float: left;
 }
 .edit_emp_div p{
     height: 30px;
