@@ -36,14 +36,14 @@
                             <li class="dropdown"><a href="/home" class="current">HOME</a></li>
                             <li class="dropdown"><a href="/leaves">LEAVES</a></li>
                             <li class="dropdown"><a href="/download">DOWNLOADS</a></li>
-                            <li class="dropdown"><a href="" class="menu-news">NEWS</a></li>
+                            <!--<li class="dropdown"><a href="" class="menu-news">NEWS</a></li>-->
                             <?php if($this->user_details[0]['user_level'] == HR_MANAGER){ ?>
                             <li class="dropdown-submenu"><a href="" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#" rel="nofollow">HR</a>
                                 <ul class="dropdown-menu hr-dropdwn pull-right" role="menu" aria-labelledby="dLabel">
                                     <li class="dropdown"><a href="/salaries">SALARIES</a></li>
                                     <li class="dropdown"><a href="#model_reg" class="modal_trigger6">NEW EMP</a></li>
                                     <li class="dropdown"><a href="#model_doc" class="modal_trigger6">EMP DOCS</a></li>
-                                    <li class="dropdown"><a href="#">EXIT SETTILEMENT</a></li>
+                                    <!--<li class="dropdown"><a href="#">EXIT SETTILEMENT</a></li>-->
                                     <li class="dropdown"><a href="/emp_data">ALL EMP</a></li>
                                 </ul>
                             </li>
@@ -67,14 +67,14 @@
                     <li><a href="/home" class="current">HOME</a></li>
                     <li><a href="/leaves">LEAVES</a></li>
                     <li><a href="/download">DOWNLOADS</a></li>
-                    <li><a href="#" class="menu-news">NEWS<span class="caret"></span></a></li>
+                    <!--<li><a href="#" class="menu-news">NEWS<span class="caret"></span></a></li>-->
                     <?php if($this->user_details[0]['user_level'] == HR_MANAGER){ ?>
                     <li class="dropdown"><a href="" id="dLabel" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#" rel="nofollow">HR<span class="caret"></span></a>
                         <ul class="dropdown-menu hr-dropdwn" role="menu" aria-labelledby="dLabel">
                             <li class="dropdown"><a href="/salaries">SALARIES</a></li>
                             <li class="dropdown"><a href="#model_reg" class="modal_trigger6">NEW EMP</a></li>
                             <li class="dropdown"><a href="#model_doc" class="modal_trigger6">EMP DOCS</a></li>
-                            <li class="dropdown"><a href="#">EXIT SETTILEMENT</a></li>
+                            <!--<li class="dropdown"><a href="#">EXIT SETTILEMENT</a></li>-->
                             <li class="dropdown"><a href="/emp_data">ALL EMP</a></li>
                         </ul>
                     </li>

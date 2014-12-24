@@ -10,8 +10,9 @@
     <div id="all_emp" data-complete = <?php echo "'".json_encode($this->all_user_details)."'"; ?> >
     <div class="overflow">
         <table class="table table-hover table-condensed table-bordered">
-        <tr><th>Name</th>
+            <tr>
             <th>Emp Id</th>
+            <th>Name</th>
             <th>Email</th>
             <th>Phone no</th>
             <th>DOB</th>
@@ -24,8 +25,8 @@
         <tr>
             <?php $row = $this->all_user_details; ?>
             <?php for ($i = 0; $i < sizeof($row); $i++) { ?>
-                <td align="center"><?php echo $row[$i]['emp_name']; ?></td>
                 <td align="center"><?php echo $row[$i]['emp_id']; ?></td>
+                <td align="center"><?php echo $row[$i]['emp_name']; ?></td>
                 <td align="center"><?php echo $row[$i]['emp_email']; ?></td>
                 <td align="center"><?php echo $row[$i]['phone_no']; ?></td>
                 <td align="center"><?php echo $bdy = date("j-M-Y", $row[$i]['dob']); ?></td>
