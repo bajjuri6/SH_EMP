@@ -124,7 +124,7 @@ class Home_model extends Model {
             $year = $post[$i]['year_slip'];
             $folder = APP_PATH."/uploads/$email";
             // $file = "/var/www/emp_mvc/uploads/$file_name";
-
+            $total_ernings = $post[$i]['basic']+$post[$i]['hra']+$post[$i]['conveyance_allowance']+$post[$i]['Spcl_allowance'];
             $html = '<html><div style="background-image: url(/images/letter_head.png); background-position: center;
                      background-repeat: no-repeat;
                     background-size: 100% 100%;">
@@ -164,7 +164,7 @@ class Home_model extends Model {
                     <th>Deductions</th>
                     <th>Amount</th></tr>
                 <tr><td>Basic</td>
-                    <td>basic</td>
+                    <td>'. $post[$i]['basic']. '</td>
                     <td>TDS</td>
                     <td>' . ($post[$i]['tds']) . '</td></tr>
                 <tr><td>HRA</td>
@@ -180,9 +180,9 @@ class Home_model extends Model {
                     <td></td>
                     <td></td></tr>
                 <tr><td><b>(A) Total Earnings</b></td>
-                    <td>' . ($post[$i]['a']) . '</td>
+                    <td>' . $total_ernings . '</td>
                     <td><b>(B) Total Deductions</b></td>
-                    <td>' . ($post[$i]['b']) . '</td></tr>
+                    <td>' . ($total_ernings-$post[$i]['net']) . '</td></tr>
                 <tr><td colspan="3" align="right"><b>Net Salary=(A)-(B)</b></td>
                     <td>' . ($post[$i]['net']) . '</td></tr>
             </table></div></div></html>';
@@ -452,6 +452,39 @@ public function bank_statement(){
         $bdys->execute();
         $deatils = $bdys->fetchAll(PDO::FETCH_ASSOC);
         return $deatils;
+        }
+        public function edit_emp(){
+            $emp_email = trim($_POST['emp_email']);
+            $name = trim($_POST['edit_name']);
+            $phno  = trim($_POST['edit_phone']);
+            $addrs = trim($_POST['edit_address']);
+            $desg = trim($_POST['edit_designation']);
+            $ban_acc = trim($_POST['edit_bank_account']);
+            $pf_acc = trim($_POST['edit_pf_account']);
+            $pan = trim($_POST['edit_pan']);
+            $ifsc = trim($_POST['edit_ifsc']);
+            $salre = trim($_POST['edit_basic_salarie']);
+            if($emp_email == ''|| $name == '' || $phno == '' ||$addrs  == ''|| $desg == ''
+                  || $ban_acc == '' || $pf_acc == '' || $pan == '' || $ifsc == '' || $salre == ''){
+                $status  =  "Somthiong wrong while updating details";
+                return $status;
+            }
+            $edit_emp = $this->db->prepare('UPDATE new_emp SET emp_name = :name, phone_no = :ph_no, address = :addres, designation = :desg, bank_account = :bank_ac, pf_account = :pf_ac, pan = :pan, ifsc_code = :ifsc, basic_salarie  = :salarie  WHERE emp_email =  :emp_email');
+            $edit_emp->execute(array(':emp_email'=> $emp_email, ':name'=>$_POST['edit_name'],
+                                                               ':ph_no'=>$_POST['edit_phone'],
+                                                               ':addres'=>$_POST['edit_address'],
+                                                               ':desg'=>$_POST['edit_designation'],
+                                                               ':bank_ac'=>$_POST['edit_bank_account'],
+                                                               ':pf_ac'=>$_POST['edit_pf_account'],
+                                                               ':pan'=>$_POST['edit_pan'],
+                                                               ':ifsc'=>$_POST['edit_ifsc'],
+                                                               ':salarie'=>$_POST['edit_basic_salarie']));
+            if($edit_emp = true){
+                $status = 'Updated successfully!!';
+            }else{
+                $status = 'Updating faild';
+            }
+            return $status;
         }
     
 }
