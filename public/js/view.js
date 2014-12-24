@@ -77,9 +77,9 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 $('.ajax-loading').hide();
                 $("#resp-popup").find(".popupBody").html(res);
                 $("#btn-trgr").trigger('click');
-//                setTimeout(function () {
-//                    window.location.reload();
-//                }, 2000);
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
             }
         });
         
@@ -514,7 +514,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                     "gender": regform.elements['gender'].value,
                     "emp_phno": regform.elements['emp_phno'].value,
                     "dob": regform.elements['dob'].value,
-                    "age": regform.elements['gender'].value,
+                    "age": regform.elements['age'].value,
                     "bloodgroup": regform.elements['bloodgroup'].value,
                     "address": regform.elements['address'].value,
                     "spousename": regform.elements['spousename'].value,

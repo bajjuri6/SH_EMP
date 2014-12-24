@@ -103,7 +103,10 @@ public function down_docs($file, $name, $mime_type=''){
  $known_mime_types=array(
     "pdf" => "application/pdf",
     "png" => "image/png",
-    "jpeg"=> "image/jpg"
+    "jpeg"=> "image/jpeg",
+    "jpg"=> "image/jpg",
+    "JPG"=> "image/JPG",
+    "JPEG"=> "image/JPEG",
  );
  
  if($mime_type==''){
