@@ -62,6 +62,7 @@
                                 }           ?></td>
                                 <td align="center"><a id="<?php echo $i; ?>" href="#payslip-popup" class="modal_trigger6 hr-lev prsnl-levs-list"><i class="icon-eye-open"></i>
                                             <?php
+                                            
                                             if ($row[$i]['status'] == '') {
                                                 echo "Pending";
                                             } elseif ($row[$i]['status'] == 1) {
@@ -69,6 +70,7 @@
                                             } elseif ($row[$i]['status'] == 0) {
                                                 echo "Rejected";
                                             }
+                                            
                                             ?></a></td>
                                </tr>
                                             <?php } ?>

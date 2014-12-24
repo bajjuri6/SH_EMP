@@ -37,7 +37,6 @@ class Global_model extends Model {
         $sth7->execute(array(':email' => $em));
         $result = $sth7->fetchAll(PDO::FETCH_ASSOC);
         return $result;
-        
     }
     
    

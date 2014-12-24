@@ -35,6 +35,9 @@
                                 <td><?php echo $row[$i]['subject']; ?></td>
                                 <td><a href="#<?php echo $i; ?>" class="modal_trigger5 prsnl-levs-list"><i class="icon-eye-open"></i>
                                         <?php
+                                        if($row[$i]['manager_status'] != '' && $row[$i]['manager_status'] == 0){
+                                                echo "Rejected"; 
+                                            }else{
                                         if ($row[$i]['status'] == '') {
                                             echo "Pending";
                                         } elseif ($row[$i]['status'] == 1) {
@@ -42,6 +45,7 @@
                                         } elseif ($row[$i]['status'] == 0) {
                                             echo "Rejected";
                                         }
+                                            }
                                         ?>
                                     </a></td>
                                 <div id="<?php echo $i; ?>" class="popupContainer6 pop_cont" style="display:none;">
@@ -56,6 +60,12 @@
                                     <p><i>Dear Sir,</i></p>
                                     <p><i><?php echo $row[$i]['description']; ?>......</i></p><br/>
                                     <p><i>Sincerely,<br/><?php echo $row[$i]['emp_name']; ?>.</i></p>
+                                    <?php if($row[$i]['manager_status'] != '' && $row[$i]['manager_status'] == 0) {
+                                        ?><p style="color:#e3000f">Rejected by manager..<?php
+                                    }?>
+                                    <?php if($row[$i]['status'] != '' && $row[$i]['status'] == 0) {
+                                        ?><p style="color:#e3000f">Rejected by HR manager..<?php
+                                    }?>  
                                     <div>
                                     </div>
                                 </section>
