@@ -155,6 +155,7 @@
                         <p id="hrlev-desc"></p>
                         Sincerely.,
                         <b><p id="hrlev-emp-name"></p></b>
+                        <b class="hidden"><p id="hrlev-emp-email"></p></b>
                     </i></div>
                 <button name="hr_status" value="Rejected" class="btn btn-info lev-rejct-btn hr_status">Reject</button>
                 <button name="hr_status" value="Approved" class="btn btn-info lev-aprv-btn hr_status">Approve</button>
@@ -183,6 +184,7 @@
                         <p id="mngrlev-desc"></p>
                         Sincerely.,
                         <p id="mngrlev-emp-name"> </p>
+                        <p class="hidden" id="mngrlev-emp-email"> </p>
                     </i></div>
                 <button name="mngr_status" value="0" class="btn btn-info lev-rejct-btn mngr_status">Reject</button>
                 <button name="mngr_status" value="1" class="btn btn-info lev-aprv-btn mngr_status">Approve</button>
@@ -218,6 +220,7 @@
         $("#payslip-popup").find("#hrlev-sub").text(data['subject'].split("\\sq").join("'"));
         $("#payslip-popup").find("#hrlev-desc").text(data['description'].split("\\sq").join("'"));
         $("#payslip-popup").find("#hrlev-emp-name").text(data['emp_name']);
+        $("#payslip-popup").find("#hrlev-emp-email").text(data['email']);
     });
 
     $(".maneger-lev").click(function () {
@@ -229,16 +232,21 @@
         $("#leave_manager").find("#mngrlev-sub").text(data['subject'].split("\\sq").join("'"));
         $("#leave_manager").find("#mngrlev-desc").text(data['description'].split("\\sq").join("'"));
         $("#leave_manager").find("#mngrlev-emp-name").text(data['emp_name']);
+        $("#leave_manager").find("#mngrlev-emp-email").text(data['email']);
     });
 
 
     $(".hr_status").click(function (e) {
         e.preventDefault();
+        
         $.ajax({
             url: "/leaves/hr_approve",
             method: 'post',
             data: {
                 "id": $(this).parents("#payslip-popup").data("lid"),
+                "emp_name": $('#payslip-popup').find('#hrlev-emp-name').html(),
+                "dec": $('#payslip-popup').find('#hrlev-desc').html(),
+                "email": $('#payslip-popup').find('#hrlev-emp-email').html(),
                 "hr_status": $(this).attr("value")
                  // "reject":regform.elements['reject'].value,
             },
@@ -260,6 +268,9 @@
             method: 'post',
             data: {
                 "id": $(this).parents("#leave_manager").data("lid"),
+                "emp_name": $('#leave_manager').find('#mngrlev-emp-name').html(),
+                "dec": $('#leave_manager').find('#mngrlev-desc').html(),
+                "email": $('#leave_manager').find('#mngrlev-emp-email').html(),
                 "mngr_status": $(this).attr("value")
                         // "reject":regform.elements['reject'].value,
             },

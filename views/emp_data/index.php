@@ -1,6 +1,5 @@
 <?php require 'views/header.php'; ?>
     <div class="post-uodate">
-        
                 <h2 class="apply">Post new Update</h2><br>
                 <p class="val_err" id="posterr"></p>
                 <textarea style="width: 50%;" placeholder="Notice:" id="post-txt"></textarea>
