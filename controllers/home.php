@@ -67,4 +67,7 @@ public function change_pwd(){
 public function get_bdys(){
     echo json_encode($this->model->get_bdys());
 }
+public function edit_emp(){
+    echo $this->model->edit_emp();
+}
 }

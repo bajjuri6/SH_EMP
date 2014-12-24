@@ -29,7 +29,6 @@
             <a href="/home" id="logo"></a>
 
             <nav>
-                <a href="#" id="menu-icon"></a>
                 <!--          Hidden desktop menu-->
                 <ul class="hidden-desktop" style="float: right;">
                     <li class="dropdown hidn-dsktp-mnu pull-right"><a href="" id="dLabel" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#" rel="nofollow"><i class="icon-navicon"></i></a>

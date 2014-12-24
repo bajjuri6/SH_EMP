@@ -299,7 +299,6 @@ nav {
 }
 
 #menu-icon {
-
 	display: hidden;
 	width: 40px;
 	height: 40px;
@@ -533,6 +532,18 @@ footer > span > a {color : #E31E24; font-size: 0.857em;}
     color: black;
 }
 
+.edit-emp i{
+    color: #FF4141;
+    font-size: 1.2em;
+    background-position: 20px;
+    cursor: pointer;
+    opacity: 0;
+}
+.edit-emp i:hover{
+    color: black;
+    
+}
+
 table th{
     text-align: center !important;
 }
@@ -709,4 +720,32 @@ background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#171A24), to(#63636
 background-image: -webkit-linear-gradient(top, #171A24, #636363) !important;
 background-image: -o-linear-gradient(top, #171A24, #636363) !important;
 background-image: linear-gradient(to bottom, #171A24, #636363) !important;
+}
+.edit-emp{
+    display: block important;
+}
+#edit_emp_cancl{
+    color: #FF7171;
+    background-color: white;
+    border: 1px solid #FF7171;
+    
+}
+#edit_emp_save{
+    color: #1d733a;
+    background-color: white;
+    border: 1px solid #1d733a;
+    
+}
+.edit_emp_div{
+    width: auto;
+    margin-left: 10px;
+    text-align: left;
+}
+.edit_emp_div p{
+    height: 30px;
+}
+.edit_emp_div p span{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }

@@ -15,11 +15,11 @@
             <th>Email</th>
             <th>Phone no</th>
             <th>DOB</th>
-            <th>Age</th>
             <th>Designation</th>
             <th>Department</th>
 <!--            <th>View full details</th>-->
             <th>Documents zip</th>
+            <th>Edit</th>
         </tr>
         <tr>
             <?php $row = $this->all_user_details; ?>
@@ -29,11 +29,11 @@
                 <td align="center"><?php echo $row[$i]['emp_email']; ?></td>
                 <td align="center"><?php echo $row[$i]['phone_no']; ?></td>
                 <td align="center"><?php echo $bdy = date("j-M-Y", $row[$i]['dob']); ?></td>
-                <td align="center"><?php echo $row[$i]['age']; ?></td>
                 <td align="center"><?php echo $row[$i]['designation']; ?></td>
                 <td align="center"><?php echo $row[$i]['department']; ?></td>
-<!--                <td align="center"><a href="#<?php echo $i; ?>" class="modal_trigger7">View full</a></td>-->
+                <!-- <td align="center"><a href="#<?php echo $i; ?>" class="modal_trigger7">View full</a></td>-->
                 <td align="center" class="dwnld"><a href="#<?php echo $i; ?>" class="modal_trigger7"><i class="icon-download"></i></a></td>
+                <td align="center" class="dwnld"><a href="#<?php echo $i; ?>-edit" class="modal_trigger7"><i class="icon-pencil"></i></a></td>
             </tr>
             <tr>
                 <td>
@@ -65,103 +65,31 @@
                             <?php }?>
                         </section>
                     </div>
-                    <!--        // hidden for while-->
-
-
-
-                    <div id="payslip-popup" class="popupContainer" style="display:none;">
+                    
+                    <!--Edit popup-->
+                    <div id="<?php echo $i;  ?>-edit" class="popupContainer_all pop_cont" style="display:none;">
                         <header class="popupHeader6">
-                            <span class="header_title">Upload Payslip</span>
+                            <span class="header_title">Edit</span>
                             <span class="modal_close"></span>
                         </header>
-
-                        <section class="popupBody">
-
-                            <form name="upload_form" id="upload_form">
-                                <div class="user_details">
-                                    <label>Name</label>
-                                    <input name="emp_name" value="<?php echo $row[$i]['emp_name']; ?>"type="text" style="height: 30px; width: 250px;"/>
-                                    <input hidden name="mail" value="<?php echo $row[$i]['emp_email']; ?>"/>
-                                    <input hidden name="file_name" value="Payslip-<?php echo $date = date("F-Y"); ?>.pdf"/>
-                                    <br>
-                                    <label>Designation</label>
-                                    <input name="designation" value="<?php echo $row[$i]['designation']; ?>" type="text" style="height: 30px; width: 250px;"/>
-                                    <br>
-                                    <label>Gender</label>
-                                    <input name="gender" value="<?php echo $row[$i]['gender']; ?>" type="text" style="height: 30px; width: 250px;"/>
-                                    <br>
-                                    <label>Date of joining</label>
-                                    <input name="doj" type="text" value="10-08-2013" style="height: 30px; width: 250px;"/>
-                                    <br>
-                                    <label>Date of Birth</label>
-                                    <input name="dob" value="<?php echo $row[$i]['dob']; ?>" type="text" style="height: 30px; width: 250px;"/>
-                                    <br>
-                                    <label>PF A/c</label>
-                                    <input name="pf_a/c" type="text" style="height: 30px; width: 250px;" value="N64676998425654"/>
-                                    <br>
-                                </div>
-                                <div class="emr_details">
-                                    <label>PAN</label>
-                                    <input name="pan" value="79642316493654" type="text" style="height: 30px; width: 200px;" placeholder="Firstname"/>
-                                    <br>
-                                    <label>Bank A/c</label>
-                                    <input name="bank_a/c" value="32355541824" type="text" style="height: 30px; width: 200px;"/>
-                                    <br>
-                                    <label>IFSC code</label>
-                                    <input name="ifsc" type="text" value="HDFC55656C" style="height: 30px; width: 200px;"/>
-                                    <br>
-                                    <label>Available Calender Days</label>
-                                    <input name="available_days" type="text" style="height: 30px; width: 200px;"/>
-                                    <br>
-                                    <label>Paid days</label>
-                                    <input name="paid_days" type="text" style="height: 30px; width: 200px;"/>
-                                    <br>
-                                    <label>Loss Of Days</label>
-                                    <input name="loss_of_days" type="text" style="height: 30px; width: 200px;"/>
-                                    <br>
-                                </div>
-                                <div class="emr_details">
-                                    <h4>Earnings</h4>
-
-                                    <label>Basic</label>
-                                    <input name="basic" type="text" style="height: 30px; width: 150px;"/>
-                                    <br>
-                                    <label>HRA</label>
-                                    <input name="hra" type="text" style="height: 30px; width: 150px;"/>
-                                    <br>
-                                    <label>Conveyance Allowance</label>
-                                    <input name="conveyance_allowance" type="text" style="height: 30px; width: 150px;"/>
-                                    <br>
-                                    <label>Special Allowance</label>
-                                    <input name="Spcl_allowance" type="text" style="height: 30px; width: 150px;"/>
-                                    <br>  
-                                    <label><b>(A) Total Earnings</b></label>
-                                    <input name="a" type="text" style="height: 30px; width: 150px;"/>
-                                    <br>
-                                </div><div class="emr_details">
-                                    <h4>Deductions</h4>
-                                    <label>TDS</label>
-                                    <input name="tds" type="text" style="height: 30px; width: 150px;"/>
-                                    <br>
-                                    <label>PF</label>
-                                    <input name="pf" type="text" style="height: 30px; width: 150px;"/>
-                                    <br>
-                                    <label>PT</label>
-                                    <input name="pt" type="text" style="height: 30px; width: 150px;"/>
-                                    <br>
-                                    <label><b>(B) Total Deductions</b></label>
-                                    <input name="b" type="text" style="height: 30px; width: 150px;"/>
-                                    <br>
-                                    <label><b>Net Salary=(A)-(B)</b></label>
-                                    <input name="net" type="text" style="height: 30px; width: 150px;"/>
-                                    <br>  
-                                </div>
-                                <div class="action_btns">
-                                </div>
-                                <div class="one_half last"><button id="upload_btn" class="btn btn_red">Upload</button></div>
-                            </form>   
+                        <section class="popupBody6">
+                            <div class="edit_emp_div">
+                            <p class="edit-emp edit_name">Name: <span contenteditable="true"><?php echo $row[$i]['emp_name']?></span><i class="icon-pencil"></i></p>
+                            <p class="edit-emp edit_phone">Phone no: <span contenteditable="true"><?php echo $row[$i]['phone_no']?></span><i class="icon-pencil"></i></p>
+                            <p class="edit-emp edit_address">Address: <span contenteditable="true"><?php echo $row[$i]['address']?></span><i class="icon-pencil"></i></p>
+                            <p class="edit-emp edit_designation">Designation: <span contenteditable="true"><?php echo $row[$i]['designation']?></span><i class="icon-pencil"></i></p>
+                            <p class="edit-emp edit_bank_account">Bank acc: <span contenteditable="true"><?php echo $row[$i]['bank_account']?></span><i class="icon-pencil"></i></p>
+                            <p class="edit-emp edit_pf_account">PF acc: <span contenteditable="true"><?php echo $row[$i]['pf_account']?></span><i class="icon-pencil"></i></p>
+                            <p class="edit-emp edit_pan">PAN: <span contenteditable="true"><?php echo $row[$i]['pan']?></span><i class="icon-pencil"></i></p>
+                            <p class="edit-emp edit_ifsc">IFSC: <span contenteditable="true"><?php echo $row[$i]['ifsc_code']?></span><i class="icon-pencil"></i></p>
+                            <p class="edit-emp edit_basic_salarie">Basic salarie: <span contenteditable="true"><?php echo $row[$i]['basic_salarie']?></span><i class="icon-pencil"></i></p>
+                            <p class="edit-emp edit_emil hidden">Email: <span contenteditable="true"><?php echo $row[$i]['emp_email']?></span><i class="icon-pencil"></i></p>
+                            </div>
+                            <button class="btn btn-info edit_emp_save" value="POST" id="edit_emp_save" type="button" style="color: #1d733a;">Save</button>
+                            <button class="btn btn-info edit_emp_cancl" value="POST" id="edit_emp_cancl" type="button" style="color: #FF7171;">Cancel</button>
                         </section>
                     </div>
+                    <!--close Edit popup-->
                 </td>
             </tr>
         <?php } ?>
@@ -254,8 +182,5 @@
        }); 
     });
    
-</script>
-
-
-                
+</script>  
 <?php require 'views/footer.php'; ?>

@@ -774,5 +774,64 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
     }
 });
 
+$('.popupContainer_all').on('click', '.edit_emp_save', function(e){
+         e.preventDefault();
+         var id = $(this).parents('.popupContainer_all').attr('id');
+         var name = $('#'+id).find('.edit_name span').html();
+         var phone = $('#'+id).find('.edit_phone span').html();
+         var addrs = $('#'+id).find('.edit_address span').html();
+         var desg = $('#'+id).find('.edit_designation span').html();
+         var bank_acc = $('#'+id).find('.edit_bank_account span').html();
+         var pf_acc = $('#'+id).find('.edit_pf_account span').html();
+         var pan = $('#'+id).find('.edit_pan span').html();
+         var ifsc = $('#'+id).find('.edit_ifsc span').html();
+         var basic_sal = $('#'+id).find('.edit_basic_salarie span').html();
+         var email = $('#'+id).find('.edit_emil span').html();
+         $.ajax({
+            url: "home/edit_emp",
+            method:'post',
+            data: {     edit_name: name,
+                        edit_phone: phone,
+                        edit_address: addrs,
+                        edit_designation: desg,
+                        edit_bank_account: bank_acc,
+                        edit_pf_account: pf_acc,
+                        edit_pan: pan,
+                        edit_ifsc: ifsc,
+                        edit_basic_salarie: basic_sal,
+                        emp_email: email
+                   },
+                   success: function(d){
+                     $('.popupContainer_all').remove();
+                     $("#resp-popup").find(".popupBody").html(d);
+                     $("#btn-trgr").trigger('click');
+                     setTimeout(function () {
+                    window.location.reload();
+               }, 1000);
+                   }
+         });
+     });
+     
+     $('.popupContainer_all').on('click', '.edit_emp_cancl', function(e){
+         e.preventDefault();
+          var id = $(this).parents('.popupContainer_all').attr('id');
+         $('.popupContainer_all').remove();
+         setTimeout(function () {
+                    window.location.reload();
+               }, 1000);
+     });
+     
+     $('.edit-emp').mouseover(function(){
+         $(this).find('i').css("opacity", '1');
+     });
+     
+     $('.edit-emp i').click(function(){
+     $(this).siblings('.edit-emp span').focus();
+        });
+     
+     $('.edit-emp').mouseleave(function(){
+     $(this).find('i').css("opacity", '0');
+     });
+
 });
 
