@@ -127,7 +127,7 @@
                             <p class="view-emp">PAN: <span><?php echo $row[$i]['pan']?></span></p>
                             <p class="view-emp">IFSC: <span><?php echo $row[$i]['ifsc_code']?></span></p>
                             <p class="view-emp">Basic salarie: <span><?php echo $row[$i]['basic_salarie']?></span></p>
-                            <p class="view-emp">Date of joining: <span><?php echo $row[$i]['date_of_joining']?></span></p>
+                            <p class="view-emp">Date of joining: <span><?php echo date('j-M-Y', $row[$i]['date_of_joining'])?></span></p>
                             </div>
                         </section>
                     </div>

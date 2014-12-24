@@ -81,7 +81,7 @@
                     <?php }?>
                     <li class="usr-pic-name-hdr hidden-phone"><a href="#model" id="modal_trigger1">
                             <?php $mail = $_SESSION['loggedIn']; 
-                        $profile_img = "/var/www/Emp_mvc/uploads/$email/profile_pic";
+                        $profile_img = APP_PATH."/uploads/$mail/profile_pic";
                         if(file_exists($profile_img)){
                          $image_name = scandir($profile_img);
                         }
