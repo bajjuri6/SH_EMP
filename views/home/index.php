@@ -1,6 +1,7 @@
 <?php require 'views/header.php';?>
            <?php if (!$this->user_details[0]['user_level'] == 0){?>
-            <div class="alert alert-info alert-dismissable">
+           <?php if ($this->user_details[0]['leaves_alert'] == 1){?>
+            <div class="alert alert-info alert-dismissable alert-leaves">
                 <button type="button" class="close" data-dismiss="alert" 
                         aria-hidden="true">
                     &times;
@@ -9,6 +10,7 @@
                 <b><?php echo $row[0]['emp_name']; ?></b> Applied a leave. On <span><?php echo date("j-M-Y" ,$row[0]['apply_date']); ?></span>
                 <span class="alert-desc" style="display: block"><?php echo $row[0]['description']; ?></span>
             </div>
+           <?php }?>
            <?php }?>
             <div class="span7 left-cntnt">
                 <div id="myCarousel" class="carousel slide">

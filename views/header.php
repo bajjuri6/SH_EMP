@@ -23,7 +23,7 @@
         <script type="text/javascript" src="/public/global/bootstrap/js/jquery-ui.js"></script>
         <script type="text/javascript" src="/public/global/bootstrap/js/jquery-ui.min.js"></script>
     </head>
-    <body>
+    <body data-email=<?php echo $this->user_details[0]['emp_email'];?>>
         <header>
 
             <a href="/home" id="logo"></a>
@@ -273,8 +273,12 @@
         <div class="container all-content">
         <div class="main-content">
         <div class="news">We coudn't find any News!!!</div>
+        <?php if($this->user_details[0]['notice_alert'] == 1){?>
         <div id="notifc"></div>
+        <?php }?>
+        <?php if($this->user_details[0]['bdy_alert'] == 1){?>
         <div id="tdy-bdy"></div>
+        <?php }?>
         <script type="text/javascript">
             $(".modal_trigger6").leanModal({top: 10, overlay: 0.2, closeButton: ".modal_close"});
             $("#modal_trigger1").leanModal({top: 120, overlay: 0.2, closeButton: ".modal_close"});

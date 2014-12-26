@@ -44,7 +44,11 @@ class Leaves_model extends Model {
                 $headers = "Content-Type: text/html; charset=ISO-8859-1\r\n";
                 mail($to, $subject, $mail, $headers);
             }
-        } else {
+            
+            $status_on = $this->db->prepare("UPDATE new_emp SET leaves_alert = 1");
+            $status_on->execute();
+            
+                } else {
             $status = "Somthing went wrong while applying a Leave";
         }
 

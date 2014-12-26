@@ -290,6 +290,8 @@ public function bank_statement(){
         $post_new_updates = $this->db->prepare("INSERT INTO new_updates(new_update, time) VALUES(:update, :time)");
         $insert = $post_new_updates->execute(array(':update'=> $_POST['post'], ':time'=> time()));
         if($insert == true){
+            $status_on = $this->db->prepare("UPDATE new_emp SET notice_alert = 1");
+            $status_on->execute();
             $status = "New Update Posted Successfilly";
             return $status;
         }else{
@@ -451,8 +453,10 @@ public function bank_statement(){
         $bdys = $this->db->prepare("SELECT emp_name, department, emp_email, dob FROM new_emp WHERE FROM_UNIXTIME(dob, '%m%Y') = $this_mnth");
         $bdys->execute();
         $deatils = $bdys->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($deatils);
         return $deatils;
         }
+        
         public function edit_emp(){
             $emp_email = trim($_POST['emp_email']);
             $name = trim($_POST['edit_name']);
@@ -485,6 +489,21 @@ public function bank_statement(){
                 $status = 'Updating faild';
             }
             return $status;
+        }
+        
+        public function updtae_close(){
+            $status_off = $this->db->prepare("UPDATE new_emp SET notice_alert = 0 WHERE emp_email = :email");
+            $status_off->execute(array(':email'=>$_POST['email']));
+        }
+        
+        public function leaves_alert_close(){
+            $status_off = $this->db->prepare("UPDATE new_emp SET leaves_alert = 0 WHERE emp_email = :email");
+            $status_off->execute(array(':email'=>$_POST['email']));
+        }
+        
+        public function bdy_alert_close(){
+            $status_off = $this->db->prepare("UPDATE new_emp SET bdy_alert = 0 WHERE emp_email = :email");
+            $status_off->execute(array(':email'=>$_POST['email']));
         }
     
 }

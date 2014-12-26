@@ -19,7 +19,7 @@
         public function index(){
             $this->view->user_details = $this->global->getUserDetails($_SESSION['loggedIn']);
             $this->view->all_user_details = $this->global->getAllUserDetails();
-            if($this->view->user_details[0]['user_level'] == 2 || 0){
+            if($this->view->user_details[0]['user_level'] == 2 || $this->view->user_details[0]['user_level'] == 0){
             header('location: ../error');
             return;
     }

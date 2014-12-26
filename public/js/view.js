@@ -832,6 +832,32 @@ $('.popupContainer_all').on('click', '.edit_emp_save', function(e){
      $('.edit-emp').mouseleave(function(){
      $(this).find('i').css("opacity", '0');
      });
-
+     
+     $('#notifc').on('click', '.close', function(){
+        $.ajax({
+           url: "home/updtae_close",
+           method: "post",
+           data: {email: $('body').data('email'),
+                  satatus: 0}
+        });
+     });
+     $('.alert-leaves').on('click', '.close', function(){
+        $.ajax({
+           url: "home/leaves_alert_close",
+           method: "post",
+           data: {email: $('body').data('email'),
+                  satatus: 0}
+        });
+     });
+//     $('#tdy-bdy').on('click', '.close', function(){
+//        alert();
+//         $.ajax({
+//           url: "home/bdy_alert_close",
+//           method: "post",
+//           data: {email: $('body').data('email'),
+//                  satatus: 0}
+//        });
+//     });
+     
 });
 

@@ -70,4 +70,13 @@ public function get_bdys(){
 public function edit_emp(){
     echo $this->model->edit_emp();
 }
+public function updtae_close() {
+    echo  $this->model->updtae_close();
+}
+public function leaves_alert_close() {
+    echo  $this->model->leaves_alert_close();
+}
+public function bdy_alert_close() {
+    echo  $this->model->bdy_alert_close();
+}
 }
