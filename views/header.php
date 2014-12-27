@@ -121,7 +121,7 @@
                     <div class="profile">
                         <p style="margin-left: 5px;">ID:<span style="padding-left: 10px" ><?php echo $this->user_details[0]['emp_id']; ?></span></p>
                         <p><i class="icon-mail"></i><span><?php echo $this->user_details[0]['emp_email']; ?></span></p>
-                        <p><i class="icon-map-location"></i><span><?php echo $this->user_details[0]['address']; ?></span>sp</p>
+                        <p><i class="icon-map-location"></i><span><?php echo $this->user_details[0]['address']; ?></span></p>
                         <p><i class="icon-call"></i><span   ><?php echo $this->user_details[0]['phone_no']; ?></span></p>
                     </div>
 

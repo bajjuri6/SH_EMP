@@ -96,13 +96,16 @@
             var regform = document.forms['leave_apply_form'];
             var fromdate = regform.elements['from'].value;
             var todate = regform.elements['to'].value;
-            fromdate = new Date(fromdate).getTime() / 1000;
-            todate = new Date(todate).getTime() / 1000;
-            if(todate<= fromdate){
-                $('#datepicker-to').addClass('month-leavs_err');
-                $("#aply").find(".val_err").text("To date Should be greter than From date");
-                return false;  
-            }
+            todate = todate.split('-');
+            todate = +todate[2]+'-'+todate[1]+'-'+todate[0];
+            fromdate = fromdate.split('-');
+            fromdate = +fromdate[2]+'-'+fromdate[1]+'-'+fromdate[0];
+            
+//            fromdate = new Date(fromdate).getTime() / 1000;
+//            todate = new Date(todate).getTime() / 1000;
+//            alert(new Date().getTime() / 1000);
+            
+            
             var to_date = "";
             if (regform.elements['sub'].value == "") {
                 $("#leve-subjct").addClass('month-leavs_err').val('').focus();
@@ -112,6 +115,11 @@
             if (regform.elements['from'].value == "") {
                 $("#datepicker-frm").addClass('month-leavs_err');
                 $("#aply").find(".val_err").text("*From date must be requried");
+                return false;
+            }
+            if(todate<= fromdate){
+                $('#datepicker-to').addClass('month-leavs_err');
+                $("#aply").find(".val_err").text("To date Should be greter than From date");
                 return false;
             }
             if (regform.elements['dec'].value == "") {
@@ -134,7 +142,10 @@
                     if(res == -1){
                     $("#aply").find(".val_err").text("From date To date requried");
                      return;  
-                 }else{
+                 }else if(res == -2){
+                    $("#aply").find(".val_err").text("To date Should be greter than From date");
+                     return; 
+                  }else{
                     $("#resp-popup").find(".popupBody").html(res);
                     $("#btn-trgr").trigger('click');
                     document.getElementById('leaveform').reset();

@@ -21,12 +21,9 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
     $("#process").click(function () {
         var chkbxs = $('.table').find("tr .checkbox");
         var slctd_emp = [], obj;
-        if($(chkbxs).prop('checked') == 0){
-                $('.ajax-loading').hide();
-                $("#resp-popup").find(".popupBody").html("Please select max one employe to genrate Payslips");
-                $("#btn-trgr").trigger('click');
-                return false;
-        }
+        
+        
+       
         chkbxs.each(function () {
             if ($(this).prop('checked') == true) {
                 var avl_days = $(this).parents("tr").find(".avilble_days").val();
@@ -64,7 +61,11 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 // alert($(".payslip-name").val());
             }
         });
-
+        if($(chkbxs).prop('checked') == 0){
+                $('.ajax-loading').hide();
+                $("#resp-popup").find(".popupBody").html("Please select max one employe to genrate Payslips");
+                $("#btn-trgr").trigger('click');
+        }else{
         $.ajax({
             url: "/home/pdf",
             method: 'post',
@@ -95,6 +96,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
 //               }, 1000);
             }
         });
+    }
     });
    
 //    if (location.href == '/salaries') {
