@@ -295,8 +295,8 @@
 //                                          var_dump($h_dyas);
                                           $temp = $hldys[$i]["h_id"];
                                           $index = array_search($temp, $h_dyas);
-                                          if($index !== false){ 
-                                              ?>
+                                          if($index >= 0 && $index !== false){
+                                                  ?>
                             <input type="checkbox" class="hldys_chkbx" checked>
                                           <?php }else{?>
                             <input type="checkbox" class="hldys_chkbx">
