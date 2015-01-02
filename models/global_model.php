@@ -38,7 +38,11 @@ class Global_model extends Model {
         $result = $sth7->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    
-   
+    public function get_hldys(){
+            $get_hldys = $this->db->prepare("SELECT * FROM holidays_list");
+            $get_hldys->execute();
+            $deatils = $get_hldys->fetchAll(PDO::FETCH_ASSOC);
+            return $deatils;
+        }
 }
 

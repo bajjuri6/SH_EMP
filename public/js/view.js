@@ -416,7 +416,8 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                     if ($.trim($(this).val()) !== '') {
                         error = 'Invalid email format';
                         reg = /^[a-z0-9_\+-]+(\.[a-z0-9_\+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*\.([a-z]{2,4})$/;
-                    } else {
+                    }
+                     else {
                         error = 'Email field cannot be empty';
                         reg = /^[a-zA-Z0-9 ]+$/;
                     }
@@ -742,6 +743,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
         method: 'post',
         success:function(d){
             var d = JSON.parse(d);
+            
             var arry_length = d.length;
             for(i=0; i<arry_length; i++){
                 var now = new Date();
@@ -861,5 +863,33 @@ $('.popupContainer_all').on('click', '.edit_emp_save', function(e){
 //        });
 //     });
      
+    $('#hldy-btn').click(function () {
+        var chkbxs = $('.year_hldys').find(".holidays_li .hldys_chkbx");
+        var slctd_hldys = [], obj;
+        chkbxs.each(function () {
+            if ($(this).prop('checked') == true) {
+            var data = $(this).parents("li").find('.h_id').text();
+            var obj = [data];            
+            slctd_hldys.push(obj);
+        };
+        });
+        var data = slctd_hldys.join(',');
+        $.ajax({
+            url: "/home/selctd_hldys",
+            method: 'post',
+            data: {"slctd_hldys": data,
+                   "email": $('body').data('email')
+                  },
+            success: function (res) {
+                $('#model_holiday').empty();
+                $("#resp-popup").find(".popupBody").html(res);
+                $("#btn-trgr").trigger('click');
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
+            }
+        });
+    });
+
 });
 

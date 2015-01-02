@@ -87,10 +87,35 @@ a.btn_red {color: #FFF;}
 .popupHeader {background:#FF5252; position:relative; padding:10px 20px; border-bottom:1px solid #DDD; font-weight:bold;}
 .popupHeader6 {background:#FF5252; position:relative; padding:10px 20px; border-bottom:1px solid #DDD; font-weight:bold; border-radius: 2px;}
 .popupHeader7 {background:#FF5252; position:relative; padding:10px 20px; border-bottom:1px solid #DDD; font-weight:bold; border-radius: 2px;}
+.popupHeader_holiday {background:#0c0404; 
+                     position:relative; 
+                     padding:10px 20px; 
+                     border-bottom:1px solid #DDD; 
+                     font-weight:bold; 
+                     border-radius: 2px;
+                     height: 40px;
+}
+.popupfooter_holiday{
+ background:#0c0404; 
+                     position:relative; 
+                     padding:10px 20px; 
+                     border-bottom:0px solid #DDD; 
+                     font-weight:bold; 
+                     border-radius: 2px;
+                     border-bottom-left-radius: 5px;
+                     border-bottom-right-radius: 5px;
+                     height: 40px;
+                     top: 2px;
+                     /*width: 782px;*/
+                     margin-top: 0px !important;
+
+}
 
 .popupHeader .modal_close {position: absolute; right: 0; top:0; padding:17px; background:#E4E4E2; background-image: url(/images/close.png"); height: 5px; width: 1px;  cursor: pointer; color:#aaa; font-size:16px;}
 .popupHeader6 .modal_close {position: absolute; right: 0; top:5px; padding:17px;  background-image: url("/images/close34.png"); height: 2px; width: 2px;  cursor: pointer; color:#aaa; font-size:16px;}
+.popupHeader_holiday .modal_close {position: absolute; right: 0; top:5px; padding:17px;  background-image: url("/images/close34.png"); height: 2px; width: 2px;  cursor: pointer; color:white; font-size:20px;}
 .popupHeader7 .modal_close {position: absolute; right: 0; top:-3px; padding:17px;  background-image: url("/images/close34.png"); height: 2px; width: 2px;  cursor: pointer; color:#aaa; font-size:16px;}
+
 
 .popupBody {padding:20px;
 padding-right: 00px;

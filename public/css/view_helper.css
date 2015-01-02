@@ -750,3 +750,71 @@ background-image: linear-gradient(to bottom, #171A24, #636363) !important;
     padding-bottom: 10px;
     padding-right: 10px;
 }
+.holiday_section{
+    overflow-y: auto;
+    height: 500px;
+    padding: 0px !important;
+}
+.holidays_li{
+    border-bottom: 1px solid #bbb;
+    margin-bottom: 5px;
+}
+.holiday_img{
+    float: left;
+}
+.holiday_date{
+    float: left;
+    display: block;
+    margin-left: 8px;
+    margin-top: -7px;
+    width: 53px;
+    }
+.holiday_date i{
+    display: block;
+    background: url('https://saddahaq.blob.core.windows.net/multimedia/cal-bg.png');
+}
+.holiday_desc{
+    float: left;
+    margin-left: 86px;
+    width: 450px;
+}
+.holiday_desc h5{
+    /*font-family: 'Roboto Slab', serif;*/
+    font-family: Bitter, Serif;
+    font-size: 1.2em;
+    color: #d60000;
+}
+.holiday_desc p{
+    color: #666666;
+    font-size: 0.9em;
+        
+}
+.h_day{
+padding: 5px 0 0 0;
+font-weight: bold;
+font-size: 14px;
+clear: both;
+float: left;
+color: #333;
+}
+.hldys{
+    color: white;
+}
+.footer_title{
+    font-size: 0.7em;
+   top: -4px;
+   right: 18px;
+}
+.note_hldy{
+    color: white;
+}
+#hldy-btn{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    color: white;
+    background: none;
+    border: 1px solid white;  
+}
+.select_hldy{
+    float: left;
+}

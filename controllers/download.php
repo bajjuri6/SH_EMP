@@ -18,6 +18,7 @@
     public function index(){
         $this->view->user_details = $this->global->getUserDetails($_SESSION['loggedIn']);
         $this->view->get_slips = $this->global->getPaySlips($_SESSION['loggedIn']);
+        $this->view->get_hldys = $this->global->get_hldys();
         $this->view->render('download/index');
     }
     

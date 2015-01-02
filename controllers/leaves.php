@@ -19,6 +19,7 @@ class Leaves extends Controller {
     public function index(){
         $this->view->user_details = $this->global->getUserDetails($_SESSION['loggedIn']);
         $this->view->getTakenLeaves = $this->global->getTakenLeaves($_SESSION['loggedIn']);
+        $this->view->get_hldys = $this->global->get_hldys();
         $this->view->render('leaves/index');
     }
     

@@ -18,6 +18,7 @@ class Home extends Controller {
         $this->view->getLeavesDeatils =  $this->model->getLeavesDeatils($_SESSION['loggedIn']);
         $this->view->getLeavesDeatilsByHr =  $this->model->getLeavesDeatilsByHr($_SESSION['loggedIn']);
         $this->view->all_user_details = $this->global->getAllUserDetails();
+        $this->view->get_hldys = $this->global->get_hldys();
         $this->view->render('home/index');
     }
 public function logout(){
@@ -79,4 +80,7 @@ public function leaves_alert_close() {
 public function bdy_alert_close() {
     echo  $this->model->bdy_alert_close();
 }
+public function selctd_hldys(){
+        echo  $this->model->selctd_hldys();
+    }
 }

@@ -18,7 +18,7 @@ margin-top: 10%;
     width: 300px;
     height: auto;
     box-sizing: border-box;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.75);
     box-shadow: 10px 10px 10px #red;
     border-radius: 15px;
 }

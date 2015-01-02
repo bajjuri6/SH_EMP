@@ -505,5 +505,25 @@ public function bank_statement(){
             $status_off = $this->db->prepare("UPDATE new_emp SET bdy_alert = 0 WHERE emp_email = :email");
             $status_off->execute(array(':email'=>$_POST['email']));
         }
+    public function selctd_hldys(){
+        $ids = $_POST['slctd_hldys'];
+        $length = explode(',', $ids);
+        $length = sizeof($length);
+        if($length > 10){
+            $status = "You are not able to chose more then 10 holidays";
+            return $status;
+        }
+        $selcted_hldys = $this->db->prepare("UPDATE new_emp SET hldys_list = :ids WHERE emp_email = :email");
+        $status = $selcted_hldys->execute(array(':email'=>$_POST['email'], ':ids'=>$ids));
+        
+         
+        if($status == true){
+            $status = "You have Chosen $length optional holidays!!!";
+        }else{
+            $status = "Somthing went wrong while chosing holidays";
+        }
+        return $status;
+    }
+        
     
 }
