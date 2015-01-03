@@ -223,6 +223,7 @@ class Home_model extends Model {
 public function bank_statement(){
     include 'mpdf/mpdf.php';
         $mpdf = new mPDF();
+        $chq_no = $_POST['chq_no'];
         $post = $_POST["slctd_emp"];
         $total = 0;
            for ($i = 0; $i < sizeof($post); $i++) {
@@ -236,7 +237,7 @@ public function bank_statement(){
             $html_bnk_stmnt = '<html><div style="background-image: url(/images/letter_head.png); background-position: center; background-repeat: no-repeat; background-size: 100% 100%;"><div style="padding-top: 1%; padding-bottom: 25%;"></div>'
                     . '<div style="padding-top: 5%; padding-bottom: 25%; padding-left: 12%; font-size: 0.8em;"><p align="right" style="padding-right: 21%;">DT:'.date("d-m-Y").'.</p><p align="left">Ref: VIMPL: SAL: 2014-14:<br><br>'
                     . 'To,<br>HDFC Bank LTD,<br>2-3-34/8 R, Devilal Complex,<br>Main Road, Uppal Kalan,<br>Hyderabad - 500039<br><br>Sub:Payment of salaries<br>Ref:Our account No. 10427630000537 dt: '.date("d-m-Y").'</p><div align="center">&&&&&&</div>'
-                    . '<p>Dear sir,<br>We are here with enclosing the Ch No. 000248 dt.'.date("d-m-Y").' for Rs.'.$total.'-00 towards salaries<br> as per the statement give bellow:</p>'
+                    . '<p>Dear sir,<br>We are here with enclosing the Ch No. '.($chq_no).' dt.'.date("d-m-Y").' for Rs.'.$total.'-00 towards salaries<br> as per the statement give bellow:</p>'
                     . '<div align="left" style="padding-left: 10%;"><table border="1" >
                       <tr><th>S NO</th>
                       <th>Name of the Employee</th>

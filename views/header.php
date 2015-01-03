@@ -307,7 +307,6 @@
                     </ul>
             </section>
             <footer class="popupfooter_holiday"><p class="note_hldy">Note: Choose before JAN 7th 2015</p>
-                
                 <span class="footer_title hldys"><button class="btn btn-info"  id="hldy-btn" value="Save" type="button" style="color: white;">Save</button></span></footer>
         </div>
         <!--body starting here-->

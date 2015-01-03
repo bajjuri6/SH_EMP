@@ -19,13 +19,25 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
         $this.parents("tr").find(".tol-pay").html(total);
     });
     $("#process").click(function () {
+        var chq_no = $.trim($('#cq-no').val());
+        if(chq_no == ''){
+            $('.err-sal').css("opacity", "1").text("* Cheque no cannot be empty");
+            $('#cq-no').addClass('month-leavs_err');
+            return;
+        }
         var chkbxs = $('.table').find("tr .checkbox");
         var slctd_emp = [], obj;
-        
+        var chq_no =  $('#cq-no').val();
         
        
         chkbxs.each(function () {
+            
             if ($(this).prop('checked') == true) {
+//                if($(this).parents("tr").find(".mtnh-leavs").val() == ''){
+//                    $("#resp-popup").find(".popupBody").html("Leaves is mandatory");
+//                    $("#btn-trgr").trigger('click');
+//                    return false;
+//                }
                 var avl_days = $(this).parents("tr").find(".avilble_days").val();
                 var loss_of_days = $(this).parents("tr").find(".mtnh-leavs").val();
                 var paid_days = avl_days - loss_of_days;
@@ -61,7 +73,8 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 // alert($(".payslip-name").val());
             }
         });
-        if($(chkbxs).prop('checked') == 0){
+        
+        if(slctd_emp.length == 0){
                 $('.ajax-loading').hide();
                 $("#resp-popup").find(".popupBody").html("Please select max one employe to genrate Payslips");
                 $("#btn-trgr").trigger('click');
@@ -69,7 +82,8 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
         $.ajax({
             url: "/home/pdf",
             method: 'post',
-            data: {"slctd_emp": slctd_emp},
+            data: {"slctd_emp": slctd_emp
+                   },
             beforeSend: function () {
                 $('body').leanModal({overlay: 0.2});
                 $('.ajax-loading').css({"position": "fixed", "top": "35%", "left": "45%"}).html('<img src ="/images/loading.gif" style="max-width: 50px;">');
@@ -87,7 +101,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
         $.ajax({
             url: "/home/bank_statement",
             method: 'post',
-            data: {"slctd_emp": slctd_emp},
+            data: {"slctd_emp": slctd_emp, "chq_no": chq_no},
             success: function (res) {
                 var stmnt = JSON.parse(res);
                 $(".td-apndg-bnk-stmnt").html("<td align='center'>"+stmnt.filename+"</td><td align='center' class='dwnld'><a href='/download/down_staments/"+stmnt.filename+"'><i class='icon-download'></i></a></td>");
@@ -125,15 +139,21 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 
                 if (d.length == 0) {
                     $('#table1').hide();
-                    $('#process').hide();
+                    $('.salrie-submit').hide();
+//                    $('#process').hide();
+//                    $('.procss-btn').hide();
+//                    $('#cq-no').hide();
                     $('#empty').css("display", "visible").html("No employes found for this month");
                     return;
                 }
 
                 $('#empty').css("display", "none");
                 $('#table1').show();
-                $('#process').show();
-
+                $('.salrie-submit').show();
+                
+//                $('#process').show();
+//                $('#cq-no').show();
+//                $('.procss-btn').show();
                 function getDaysInMonth(month, year) {
                     return new Date(year, month, 0).getDate();
                 }

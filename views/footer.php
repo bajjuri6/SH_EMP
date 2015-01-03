@@ -6,11 +6,11 @@
         <a href="https://www.saddahaq.com/" target="_blank">&copy;Saddahaq.com</a>
     </span>
     <ul class="footer_social">
-        <li><a href="https://facebook.com/SaddahaqMedia" target="_blank"><i class="icon-facebook"></i></a>
+        <li><a href="https://facebook.com/SaddahaqMedia" target="_blank" style="vertical-align: super"><i class="icon-facebook"></i></a>
             <a href="https://facebook.com/SaddahaqMedia" target="_blank">SaddahaqMedia</a>
         </li>
         <li>
-            <a href="https://twitter.com/SaddaHaqMedia" target="_blank"><i class="icon-twitter"></i></a>
+            <a href="https://twitter.com/SaddaHaqMedia" target="_blank" style="vertical-align: super"><i class="icon-twitter"></i></a>
             <a href="https://twitter.com/SaddaHaqMedia" target="_blank">SaddaHaqMedia</a>
         </li>
     </ul>
