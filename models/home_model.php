@@ -273,7 +273,6 @@ public function bank_statement(){
                     // echo date('j M, Y h:i a', $statement);
                     $check_stamnt = $this->db->prepare("SELECT * FROM _user_statements_ WHERE _email_ = :email and  _statement_ = :_statement_");
                     $check_stamnt->execute(array(':email'=> $post[$i]['mail'], ":_statement_"=>$statement));
-                    echo $check_stamnt->rowCount();
                    if($check_stamnt->rowCount() > 0){
                    $chng_status = $this->db->prepare("UPDATE _user_statements_ SET _status_ = 1, _maxpay_ = :maxpay, _leaves_ = :leaves WHERE _email_ = :email and _statement_ = :_statement_");
                    $chng_status->execute(array(':email'=> $post[$i]['mail'], ":_statement_"=>$statement,
@@ -287,7 +286,7 @@ public function bank_statement(){
                     }
                     $stmenttodb = $this->db->prepare("INSERT INTO bank_statement(statement_name, time) VALUES(:statement_name, :time)");
                     $stmenttodb->execute(array(':statement_name' => $filename, ':time'=>time()));
-                    $status = [path=> "$final_bank", filename=>"$filename"];
+                    $status = [path=> "$final_bank", filename=>"$filename", sts=>"Staments genarted sucessfully!!!"];
                     return $status;
 }
 

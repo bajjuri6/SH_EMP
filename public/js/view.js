@@ -79,24 +79,24 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 $("#resp-popup").find(".popupBody").html("Please select max one employe to genrate Payslips");
                 $("#btn-trgr").trigger('click');
         }else{
-        $.ajax({
-            url: "/home/pdf",
-            method: 'post',
-            data: {"slctd_emp": slctd_emp
-                   },
-            beforeSend: function () {
-                $('body').leanModal({overlay: 0.2});
-                $('.ajax-loading').css({"position": "fixed", "top": "35%", "left": "45%"}).html('<img src ="/images/loading.gif" style="max-width: 50px;">');
-            },
-            success: function (res) {
-                $('.ajax-loading').hide();
-                $("#resp-popup").find(".popupBody").html(res);
-                $("#btn-trgr").trigger('click');
-//                setTimeout(function () {
-//                    window.location.reload();
-//                }, 2000);
-            }
-        });
+//        $.ajax({
+//            url: "/home/pdf",
+//            method: 'post',
+//            data: {"slctd_emp": slctd_emp
+//                   },
+//            beforeSend: function () {
+//                $('body').leanModal({overlay: 0.2});
+//                $('.ajax-loading').css({"position": "fixed", "top": "35%", "left": "45%"}).html('<img src ="/images/loading.gif" style="max-width: 50px;">');
+//            },
+//            success: function (res) {
+//                $('.ajax-loading').hide();
+//                $("#resp-popup").find(".popupBody").html(res);
+//                $("#btn-trgr").trigger('click');
+////                setTimeout(function () {
+////                    window.location.reload();
+////                }, 2000);
+//            }
+//        });
         
         $.ajax({
             url: "/home/bank_statement",
@@ -104,10 +104,12 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
             data: {"slctd_emp": slctd_emp, "chq_no": chq_no},
             success: function (res) {
                 var stmnt = JSON.parse(res);
+                $("#resp-popup").find(".popupBody").html(stmnt.sts);
+                $("#btn-trgr").trigger('click');
                 $(".td-apndg-bnk-stmnt").html("<td align='center'>"+stmnt.filename+"</td><td align='center' class='dwnld'><a href='/download/down_staments/"+stmnt.filename+"'><i class='icon-download'></i></a></td>");
-//                setTimeout(function () {
-//                    window.location.reload();
-//               }, 1000);
+                setTimeout(function () {
+                    window.location.reload();
+               }, 1000);
             }
         });
     }

@@ -39,29 +39,27 @@ class Global_model extends Model {
         return $result;
     }
     public function get_hldys(){
-        $itm = $this->db->prepare("SELECT * FROM  new_emp");
-        $itm->execute();
-        $tm = $itm->fetchAll(PDO::FETCH_ASSOC);
-        $full_data = [];
-        var_dump(sizeof($tm));
-        foreach ($tm as $row){
-        $email = $row['emp_email'];
-        $item2 = $this->db->prepare("SELECT _email_, _statement_, _time_, _status_ FROM _user_statements_ WHERE _email_ = :email and _status_ = 1");
-        $item2->execute(array(':email'=>$email));
-        $data = $item2->fetchAll(PDO::FETCH_ASSOC);
-//        var_dump($data);
-        if(empty($data[0])){
-            array_push($full_data, $row);
-        }else{
-         $d = array_merge($row, $data[0]);
-         array_push($full_data, $d);
-        }
-      
-        }
-//        var_dump($full_data);
-        //var_dump($full_data[0]);
-
-        
+//        $itm = $this->db->prepare("SELECT * FROM  new_emp");
+//        $itm->execute();
+//        $tm = $itm->fetchAll(PDO::FETCH_ASSOC);
+//        $full_data = [];
+//        var_dump(sizeof($tm));
+//        foreach ($tm as $row){
+//        $email = $row['emp_email'];
+//        $item2 = $this->db->prepare("SELECT _email_, _statement_, _time_, _status_ FROM _user_statements_ WHERE _email_ = :email and _status_ = 1");
+//        $item2->execute(array(':email'=>$email));
+//        $data = $item2->fetchAll(PDO::FETCH_ASSOC);
+////        var_dump($data);
+//        if(empty($data[0])){
+//            array_push($full_data, $row);
+//        }else{
+//         $d = array_merge($row, $data[0]);
+//         array_push($full_data, $d);
+//        }
+//      
+//        }
+////        var_dump($full_data);
+//        //var_dump($full_data[0]);
         
             $get_hldys = $this->db->prepare("SELECT * FROM holidays_list");
             $get_hldys->execute();
