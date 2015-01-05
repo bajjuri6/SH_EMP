@@ -207,14 +207,19 @@ class Home_model extends Model {
                 ':useremail' => $email,
                 ':payslip_month_year' => "$month_slip$year_slip",
                 ':time' => strtotime("now")));
-        }
-        
+            
+            
+            $chng_sts = $this->db->prepare("UPDATE _user_statements_ SET _status_ = 2 WHERE _email_ = :email and _statement_ = :_statement_");
+            $chng_sts->execute(array(':email'=> $post[$i]['_email_'], ":_statement_"=>$post[$i]['_statement_']));
+            
+            
+            }
                     
         if ($insert == true) {
             $status = "Pay slip(s) genrated and its uploded to employee(s) desk";
             return $status;
         } else {
-            $status = "Please select max one employe to genrate payslip";
+            $status = "Please select max one employe to genrate payslip ";
             return $status;
         }
     }
@@ -262,32 +267,100 @@ public function bank_statement(){
                     $filename = "$rand-Bank-statement-$month-$year.pdf";
                     $final_bank = "$folder/$filename";
                     $mpdf->output($final_bank, 'F');
+                    for ($i = 0; $i < sizeof($post); $i++) {
+                    $statement = strtotime($month. $year);
+                    // echo $month;
+                    // echo date('j M, Y h:i a', $statement);
+                    $check_stamnt = $this->db->prepare("SELECT * FROM _user_statements_ WHERE _email_ = :email and  _statement_ = :_statement_");
+                    $check_stamnt->execute(array(':email'=> $post[$i]['mail'], ":_statement_"=>$statement));
+                    echo $check_stamnt->rowCount();
+                   if($check_stamnt->rowCount() > 0){
+                   $chng_status = $this->db->prepare("UPDATE _user_statements_ SET _status_ = 1, _maxpay_ = :maxpay, _leaves_ = :leaves WHERE _email_ = :email and _statement_ = :_statement_");
+                   $chng_status->execute(array(':email'=> $post[$i]['mail'], ":_statement_"=>$statement,
+                                                ':maxpay'=>$post[$i]['net'], ':leaves'=>$post[$i]['loss_of_days']));
+                   }else{
+                    $user_statement = $this->db->prepare("INSERT INTO _user_statements_(_email_, _statement_, _status_, _time_, _maxpay_, _leaves_) VALUES(:email, :statement, :status, :time, :maxpay, :leaves)");
+                    $user_statement->execute(array(':email'=>$post[$i]['mail'], ':statement'=>$statement, ':status'=>1, ':time'=>time(), 
+                                                   ':maxpay'=>$post[$i]['net'], ':leaves'=>$post[$i]['loss_of_days']));
+//                    print_r($user_statement->errorInfo());
+                   }
+                    }
                     $stmenttodb = $this->db->prepare("INSERT INTO bank_statement(statement_name, time) VALUES(:statement_name, :time)");
                     $stmenttodb->execute(array(':statement_name' => $filename, ':time'=>time()));
                     $status = [path=> "$final_bank", filename=>"$filename"];
                     return $status;
 }
 
-    public function paid_deatils($em) {
+//    public function paid_deatils($em) {
+//        
+//        $year = $_POST['year'];
+//        $month = $_POST['month'];
+//        $payslip_month_y = strtotime("1 $month $year");
+//        $d = new DateTime();
+//        $d->setTimestamp($payslip_month_y);
+//        $d->format('U = Y-m-d H:i:s') . "\n";
+//        $sth_paid_deatils = $this->db->prepare("SELECT * FROM new_emp WHERE emp_email NOT IN (SELECT email FROM slips WHERE month_of_payslip = :payslip_month_y)");
+//        $insert = $sth_paid_deatils->execute(array(':payslip_month_y' => "$month$year"));
+//        $res = $sth_paid_deatils->fetchAll(PDO::FETCH_ASSOC);
+//        
+////        $itm = $this->db->prepare("SELECT * FROM  new_emp");
+////        $itm->execute();
+////        $tm = $itm->fetchAll(PDO::FETCH_ASSOC);
+////        $full_data = [];
+////        var_dump(sizeof($tm));
+////        foreach ($tm as $row){
+////        $email = $row['emp_email'];
+////        $item2 = $this->db->prepare("SELECT _email_, _statement_, _time_, _status_ FROM _user_statements_ WHERE _email_ = :email and _status_ = 1");
+////        $item2->execute(array(':email'=>$email));
+////        $data = $item2->fetchAll(PDO::FETCH_ASSOC);
+//////        var_dump($data);
+////        if(empty($data[0])){
+////            array_push($full_data, $row);
+////        }else{
+////         $d = array_merge($row, $data[0]);
+////         array_push($full_data, $d);
+////        }
+////        }
+////        $res = $full_data;
+//        //$result = print_r($res);
+//        // return $payslip_month_y;
+//        return $res;
+//
+//        // array('payslip_date:'=> $_POST['month'].$_POST['year'])
+//    }
+
+ public function paid_deatils($em){
         $year = $_POST['year'];
         $month = $_POST['month'];
-        $payslip_month_y = strtotime("1 $month $year");
-        $d = new DateTime();
-        $d->setTimestamp($payslip_month_y);
-        $d->format('U = Y-m-d H:i:s') . "\n";
-        $sth_paid_deatils = $this->db->prepare("SELECT * FROM new_emp WHERE emp_email NOT IN (SELECT email FROM slips WHERE month_of_payslip = :payslip_month_y)");
-        $insert = $sth_paid_deatils->execute(array(':payslip_month_y' => "$month$year"));
-        $res = $sth_paid_deatils->fetchAll(PDO::FETCH_ASSOC);
-    
+        $itm = $this->db->prepare("SELECT * FROM  new_emp");
+        $itm->execute();
+        $tm = $itm->fetchAll(PDO::FETCH_ASSOC);
+        $full_data = [];
+         $statement = strtotime($month. $year);
+//         echo $month;
+//         echo date('j M, Y h:i a', $statement);
+        foreach ($tm as $row){
+        $email = $row['emp_email'];
+        $item2 = $this->db->prepare("SELECT _email_, _statement_, _time_, _status_, _maxpay_, _leaves_ FROM _user_statements_ WHERE _email_ = :email and _statement_ = :statement");
+        $item2->execute(array(':email'=>$email, ':statement'=>1420070400));
+//        1420070400
+        $data = $item2->fetchAll(PDO::FETCH_ASSOC);
+        if(empty($data[0])){
+            array_push($full_data, $row);
+        }else{
+         $d = array_merge($row, $data[0]);
+         array_push($full_data, $d);
+        }
+        }
+        
+        $res = $full_data;
+        // echo $res;
+        return $full_data;
+     
+ }
 
-        //$result = print_r($res);
-        // return $payslip_month_y;
-        return $res;
 
-        // array('payslip_date:'=> $_POST['month'].$_POST['year'])
-    }
-    
-    public function updates(){
+ public function updates(){
         $post_new_updates = $this->db->prepare("INSERT INTO new_updates(new_update, time) VALUES(:update, :time)");
         $insert = $post_new_updates->execute(array(':update'=> $_POST['post'], ':time'=> time()));
         if($insert == true){
@@ -517,6 +590,7 @@ public function bank_statement(){
         $selcted_hldys = $this->db->prepare("UPDATE new_emp SET hldys_list = :ids WHERE emp_email = :email");
         $status = $selcted_hldys->execute(array(':email'=>$_POST['email'], ':ids'=>$ids));
         
+        
          
         if($status == true){
             $status = "You have Chosen $length optional holidays!!!";
@@ -525,6 +599,34 @@ public function bank_statement(){
         }
         return $status;
     }
-        
     
+    public function get_directory_list(){
+        if($_POST['dprtmt'] == 'All'){
+            $details = $this->db->prepare("SELECT emp_name, emp_email, phone_no, department FROM new_emp");
+            $details->execute(array(':departmnt'=>$_POST['dprtmt']));
+            $res = $details->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+        $details = $this->db->prepare("SELECT emp_name, emp_email, phone_no, department FROM new_emp WHERE department = :departmnt");
+        $details->execute(array(':departmnt'=>$_POST['dprtmt']));
+        $res = $details->fetchAll(PDO::FETCH_ASSOC);
+    }
+    return $res;
+    }
+    public function cancel_payslip_model(){
+        $update = $this->db->prepare("UPDATE _user_statements_ SET _status_ = 0 WHERE _email_ = :email");
+        $update->execute(array(':email'=> $_POST['email']));
+        if($update){
+            $sts = "Succesfully discarded!!";
+        }
+        return $sts;
+    }
+    
+    public function revert_back(){
+        $update = $this->db->prepare("UPDATE _user_statements_ SET _status_ = 0 WHERE _email_ = :email and _statement_ = :statement");
+        $update->execute(array(':email'=>$_POST['_email_'], ':statement'=>$_POST['_statement_']));
+        if($update == true){
+            $sts = "reverted successfully";
+        }
+        return $sts;
+    }
 }

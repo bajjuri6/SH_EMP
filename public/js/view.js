@@ -92,9 +92,9 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 $('.ajax-loading').hide();
                 $("#resp-popup").find(".popupBody").html(res);
                 $("#btn-trgr").trigger('click');
-                setTimeout(function () {
-                    window.location.reload();
-                }, 2000);
+//                setTimeout(function () {
+//                    window.location.reload();
+//                }, 2000);
             }
         });
         
@@ -125,7 +125,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
     var end = new Date().getFullYear();
     $("#slct-year").val(end);
 
-    $('#slct-month').change(function () {
+    $('#slct-month, #slct-year').change(function () {
         // $('#data-tr').remove();
         $.ajax({
             url: "/home/due_deatils",
@@ -135,6 +135,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 "month": $('#slct-month option:selected').text(),
             },
             success: function (d) {
+                
                 d = JSON.parse(d);
                 
                 if (d.length == 0) {
@@ -161,14 +162,37 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 var month = $('#slct-month').val();
                 var month_txt = $('#slct-month option:selected').text();
                 var avlble_days = getDaysInMonth(month, year);
-                $("#table1").html("<tr><th>Select</th><th>Name</th><th>Max-payable</th><th>#Leaves</th><th>Net-payable</th></tr>");
+                $("#table1").html("<tr><th>Select</th><th>Name</th><th>Max-payable</th><th>#Leaves</th><th>Net-payable</th><th>Status</th></tr>");
                 var arry_length = d.length;
 
                 for (var i = 0; i < arry_length; i++) {
-
-                    $("#table1").append("<tr id='data-tr'><td>" + "<input type='checkbox' name='checkbox' value='1' class='checkbox'>" + "</td><td  class='sal-name'>" + d[i]['emp_name'] + "</td><td id=''>" + "<input type='text'  class='max-pay' value=" + d[i]['basic_salarie'] + " style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;' readonly>" + "</td><td id=''>" + "<input type='text'  class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;'>" + "</td><td contenteditable='true'  class='tol-pay'>" + d[i]['basic_salarie'] + "</td><td hidden>" +
-                            "<input type='hidden' name='' value=" + d[i]['emp_email'] + " class='pay_email'><input type='hidden' name='' value='Payslip-" + month_txt + "-" + year + ".pdf' class='payslip-name'><input type='hidden' name='' value=" + d[i]['designation'] + " class='desigination'><input type='hidden' name='' value=" + d[i]['gender'] + " class='gender'><input type='hidden' name='' value=" + d[i]['date_of_joining'] + " class='doj'><input type='hidden' name='' value=" + d[i]['dob'] + " class='dob'><input type='hidden' name='' value=" + d[i]['pf_account'] + " class='pf_ac'><input type='hidden' name='' value=" + d[i]['pan'] + " class='pan'><input type='hidden' name='' value=" + d[i]['bank_account'] + " class='bank'><input type='hidden' name='' value=" + d[i]['ifsc_code'] + " class='ifsc'><input type='hidden' name='' value=" + avlble_days + " class='avilble_days'><input type='hidden' name='' value='paid days' class='paid_days'><input type='hidden' name='' value='loss of days' class='loss-days'><input type='hidden' name='' value=" + d[i]['basic_salarie'] + " class='basic'><input type='hidden' name='hra' value='0' class='hra'><input type='hidden' name='conveyance_allowance' value='0' class='conveyance'><input type='hidden' name='Spcl_allowance' value='0' class='Spcl_allowance'><input type='hidden' name='' value='0' class='a'><input type='hidden' name='TDS' value='N/A' class='tds'><input type='hidden' name='' value='N/A' class='pf'><input type='hidden' name='' value='N/A' class='pt'><input type='hidden' name='' value='0' class='b'><input type='hidden' name='' value=" + month_txt + " class='month_slip'><input type='hidden' name='' value=" + year + " class='year_slip'>" + "</td></tr>");
-                    // console.log(d[i]['emp_email']);
+                    var str = "<tr id='data-tr'><td>";
+                    if (d[i]['_status_'] == 1 || d[i]['_status_'] == 2)
+                        str += "";
+                    else
+                        str += "<input type='checkbox' name='checkbox' value='1' class='checkbox'>";
+                    str += "</td><td  class='sal-name'>" + d[i]['emp_name'] + "</td>";
+                    str += "<td id=''>" + "<input type='text'  class='max-pay' value=" + d[i]['basic_salarie'] + " style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;' readonly>" +
+                            "</td><td id=''>";
+                    if (d[i]['_status_'] == 1)
+                        str += "<input type='text'  value=" + d[i]['_leaves_'] + " class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;'>";
+                    else if (d[i]['_status_'] == 2)
+                        str += "<input type='text'   class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;' readonly>";
+                    else
+                        str += "<input type='text'  class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;'>";
+                    if (d[i]['_status_'] == 1)
+                        str += "</td><td contenteditable='true'  class='tol-pay'>" + d[i]['_maxpay_'] + "</td>";
+                    else
+                        str += "</td><td contenteditable='true'  class='tol-pay'>" + d[i]['basic_salarie'] + "</td>";
+                    if (d[i]['_status_'] == 1)
+                        str += "<td><button class='btn btn-info pay_cnfrm' id='pay_cnfrm' value='Done' type='button'>Done</button><button class='btn btn-info pay_cncl' id='pay_cncl' value='Cancel' type='button' style='color: #FF7171;'>Cancel</button></td>";
+                    else if (d[i]['_status_'] == 2)
+                        str += "<td class='paid-img'><img src='/images/paid.png' style='max-width: 50px;'><div class='revrt'>Revert</div></td>";
+                    else
+                        str += "<td><button class='btn btn-info pay_due' id='pay_due' value='DUE' type='button' style='color: #FF7171;'>DUE</button></td>";
+                    str += "<td hidden><input type='hidden' name='' value=" + d[i]['_email_'] + " class='pay_statmnt_email'><input type='hidden' name='' value=" + d[i]['_statement_'] + " class='pay_statement'><input type='hidden' name='' value=" + d[i]['_status_'] + " class='pay_statement_status'><input type='hidden' name='' value=" + d[i]['_time_'] + " class='pay_statement_time'><input type='hidden' name='' value=" + d[i]['emp_email'] + " class='pay_email'><input type='hidden' name='' value='Payslip-" + month_txt + "-" + year + ".pdf' class='payslip-name'><input type='hidden' name='' value=" + d[i]['designation'] + " class='desigination'><input type='hidden' name='' value=" + d[i]['gender'] + " class='gender'><input type='hidden' name='' value='date of joing' class='doj'><input type='hidden' name='' value=" + d[i]['dob'] + "' class='dob'><input type='hidden' name='' value='pf account no not in db' class='pf_ac'><input type='hidden' name='' value='PAN not in DB' class='pan'><input type='hidden' name='' value='BANK ac' class='bank'><input type='hidden' name='' value='ifsc code' class='ifsc'><input type='hidden' name='' value=" + avlble_days + " class='avilble_days'><input type='hidden' name='' value='paid days' class='paid_days'><input type='hidden' name='' value='loss of days' class='loss-days'><input type='hidden' name='' value=" + d[i]['basic_salarie'] + " class='basic'><input type='hidden' name='' value='hra' class='hra'><input type='hidden' name='' value='conveyance_allowance' class='conveyance'><input type='hidden' name='' value='Spcl_allowance' class='Spcl_allowance'><input type='hidden' name='' value='(A) Total Earnings' class='a'><input type='hidden' name='' value='TDS' class='tds'><input type='hidden' name='' value='PF' class='pf'><input type='hidden' name='' value='PT' class='pt'><input type='hidden' name='' value='0 class='b'><input type='hidden' name='' value=" + month_txt + " class='month_slip'><input type='hidden' name='' value=" + year + " class='year_slip'></td>" +
+                            "</tr>";
+                    $("#table1").append(str);
                 }
             }
         });
@@ -542,7 +566,8 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                     "address": regform.elements['address'].value,
                     "spousename": regform.elements['spousename'].value,
                     "designation": regform.elements['designation'].value,
-                    "department": regform.elements['department'].value,
+//                    "department": regform.elements['department'].value,
+                    "department": $('#department_reg option:selected').text(),
                     "emr_name": regform.elements['emr_name'].value,
                     "emr_relation": regform.elements['emr_relation'].value,
                     "emr_phone": regform.elements['emr_phone'].value,
@@ -762,7 +787,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
         url: 'home/get_bdys',
         method: 'post',
         success:function(d){
-            var d = JSON.parse(d);
+            // var d = JSON.parse(d);
             
             var arry_length = d.length;
             for(i=0; i<arry_length; i++){
@@ -910,6 +935,112 @@ $('.popupContainer_all').on('click', '.edit_emp_save', function(e){
             }
         });
     });
+    $('#department_dir').change(function(){
+     $.ajax({
+       url: "home/get_directory_list",
+       method: 'post',
+       data:{'dprtmt': $('#department_dir option:selected').text()},
+       success: function (res) {
+           var d = JSON.parse(res);
+           $('#dir_tbl').html('<tr><th>Name</th><th>Email</th><th>Ph no</th><th>Department</th></tr>');
+           for(var i=0; i<d.length; i++){
+           $('#dir_tbl').append('<tr><td>'+d[i]['emp_name']+'</td><td>'+d[i]['emp_email']+'</td><td>'+d[i]['phone_no']+'</td><td>'+d[i]['department']+'</td></tr>');
+       }
+       }
+     });    
+    });
+    
+    $('#table1').on('click', '.pay_cncl', function(){
+        $.ajax({
+           url: "home/cancel_payslip",
+           method: "post",
+           data:{"email": $(this).parents("tr").find('.pay_statmnt_email').val()},
+           success: function(res){
+               alert(res);
+           }
+        });
+        
+    });
+    $('#table1').on('click', '.pay_cnfrm', function(){
+        
+               var slctd_emp = [], obj;
+                var avl_days = $(this).parents("tr").find(".avilble_days").val();
+                var loss_of_days = $(this).parents("tr").find(".mtnh-leavs").val();
+                var paid_days = avl_days - loss_of_days;
+        obj = {
+                    "emp_name": $(this).parents("tr").find('.sal-name').text(),
+                    "mail": $(this).parents("tr").find(".pay_email").val(),
+                    "file_name": $(this).parents("tr").find(".payslip-name").val(),
+                    "designation": $(this).parents("tr").find(".desigination").val(),
+                    "gender": $(this).parents("tr").find(".gender").val(),
+                    "doj": $(this).parents("tr").find(".doj").val(),
+                    "dob": $(this).parents("tr").find(".dob").val(),
+                    "month_slip": $('#slct-month option:selected').text(),
+                    "year_slip": $(this).parents("tr").find(".year_slip").val(),
+                    "pf_a/c": $(this).parents("tr").find(".pf_ac").val(),
+                    "pan": $(this).parents("tr").find(".pan").val(),
+                    "bank_a/c": $(this).parents("tr").find(".bank").val(),
+                    "ifsc": $(this).parents("tr").find(".ifsc").val(),
+                    "available_days": $(this).parents("tr").find(".avilble_days").val(),
+                    "paid_days": paid_days,
+                    "loss_of_days": $(this).parents("tr").find(".mtnh-leavs").val(),
+                    "basic": $(this).parents("tr").find(".basic").val(),
+                    "hra": $(this).parents("tr").find(".hra").val(),
+                    "conveyance_allowance": $(this).parents("tr").find(".conveyance").val(),
+                    "Spcl_allowance": $(this).parents("tr").find(".Spcl_allowance").val(),
+                    "a": $(this).parents("tr").find(".a").val(),
+                    "tds": $(this).parents("tr").find(".tds").val(),
+                    "pf": $(this).parents("tr").find(".pf").val(),
+                    "pt": $(this).parents("tr").find(".pt").val(),
+                    "b": $(this).parents("tr").find(".b").val(),
+                    "net": $(this).parents("tr").find(".tol-pay").html(),
+                    "_email_": $(this).parents("tr").find('.pay_statmnt_email').val(),
+                    "_status_": $(this).parents("tr").find('.pay_statement_status').val(),
+                    "_statement_": $(this).parents("tr").find('.pay_statement').val()
+                };
+                slctd_emp.push(obj);
+                $.ajax({
+            url: "/home/pdf",
+            method: 'post',
+            data: {"slctd_emp": slctd_emp
+                   },
+            beforeSend: function () {
+                $('body').leanModal({overlay: 0.2});
+                $('.ajax-loading').css({"position": "fixed", "top": "35%", "left": "45%"}).html('<img src ="/images/loading.gif" style="max-width: 50px;">');
+            },
+            success: function (res) {
+                $('.ajax-loading').hide();
+                $("#resp-popup").find(".popupBody").html(res);
+                $("#btn-trgr").trigger('click');
+//                setTimeout(function () {
+//                    window.location.reload();
+//                }, 2000);
+            }
+        });
+                
+        
+    });
+    $('#table1').on('mouseenter', '.paid-img', function(){
+    $(this).find('.revrt').animate({
+            height: 'toggle',
+            }, 290, function() {
+        });
+    });
+    $('#table1').on('click', '.paid-img .revrt', function(){
+       $.ajax({
+          url: 'home/revert',
+          method: 'post',
+          data:{'_email_':$(this).parents("tr").find('.pay_statmnt_email').val(),
+                '_statement_': $(this).parents("tr").find('.pay_statement').val()
+          },
+          success: function(res){
+              alert(res);
+          }
+          
+       });
+    });
+    
+    
 
 });
 

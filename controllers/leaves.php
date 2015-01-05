@@ -13,7 +13,6 @@ class Leaves extends Controller {
             header('location: ../index');
             exit();
         }
-        
     }
   
     public function index(){

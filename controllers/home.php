@@ -1,4 +1,5 @@
 <?php
+
 class Home extends Controller {
 
     function __construct() {
@@ -83,4 +84,13 @@ public function bdy_alert_close() {
 public function selctd_hldys(){
         echo  $this->model->selctd_hldys();
     }
+public function get_directory_list(){
+        echo  json_encode($this->model->get_directory_list());
+}
+public function cancel_payslip(){
+    echo $this->model->cancel_payslip_model();
+}
+public function revert(){
+    echo $this->model->revert_back();
+}
 }

@@ -70,6 +70,7 @@
                     <li><a href="/home" class="current">HOME</a></li>
                     <li><a href="/leaves">LEAVES</a></li>
                     <li><a href="/download">DOWNLOADS</a></li>
+                    <li><a href="#model_directory" class="modal_trigger6">DIRECTORY</a></li>
                     <li><a href="#model_holiday" class="modal_trigger6">HOLIDAY CAL</a></li>
                     <!--<li><a href="#" class="menu-news">NEWS<span class="caret"></span></a></li>-->
                     <?php if($this->user_details[0]['user_level'] == HR_MANAGER){ ?>
@@ -194,7 +195,16 @@
                             <input name="designation" id="designation_reg" type="text" style="height: 30px; width: 250px;" placeholder="Role"/>
                             <br>
                             <label>Department</label>
-                            <input name="department" id="department_reg" type="text" style="height: 30px; width: 250px;" placeholder="Department"/>
+                            <select id="department_reg" name="department">
+                                <option>Content</option>   
+                                <option>Tech</option>   
+                                <option>Marketing</option>   
+                                <option>Communications</option>   
+                                <option>HR</option>
+                                <option>Operations</option>   
+                                <option>Management</option>
+                            </select>
+                            <!--<input name="department" id="department_reg" type="text" style="height: 30px; width: 250px;" placeholder="Department"/>-->
                             <br>
                             <h5>Emergency contact details</h5>
                             <label>Name</label>
@@ -309,6 +319,43 @@
             <footer class="popupfooter_holiday"><p class="note_hldy">Note: Choose before JAN 7th 2015</p>
                 <span class="footer_title hldys"><button class="btn btn-info"  id="hldy-btn" value="Save" type="button" style="color: white;">Save</button></span></footer>
         </div>
+        
+        <div id="model_directory" class="popupContainer model_directory" style="display:none; ">
+            <header class="popupHeader6">
+                <span class="header_title">Directory</span>
+                <span class="modal_close"></span>
+            </header>
+            <section class="popupBody">
+                <select id="department_dir" name="department">
+                                <option>Select Department</option>   
+                                <option>Content</option>   
+                                <option>Tech</option>   
+                                <option>Marketing</option>   
+                                <option>Communications</option>   
+                                <option>HR</option>
+                                <option>Operations</option>   
+                                <option>Management</option>
+                                <option>All</option>
+                            </select>
+                <table class="table table-hover table-condensed table-bordered" id="dir_tbl">
+                    <tbody><tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Ph no</th>
+                            <th>Department</th>
+                        </tr>
+<!--                        <tr>
+                            <td align="center">Jeswanth reddy</td>
+                            <td align="center">hr@saddahhaq.com</td>
+                            <td align="center">9948983078</td>
+                            <td align="center">HR</td>
+                        </tr>-->
+
+                    </tbody>
+                    </table>
+            </section>
+        </div>
+        
         <!--body starting here-->
         <div id="main">
         <div class="container all-content">
