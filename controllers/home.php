@@ -51,7 +51,7 @@ public function empdocs(){
          echo $this->model->empdocs();
      }
 public function bank_statement(){
-    echo json_encode($this->model->bank_statement());
+    echo json_encode($this->model->bank_statement_model());
 }
 public function get_statements(){
     echo json_encode($this->model->get_statements());
