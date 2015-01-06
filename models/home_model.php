@@ -226,7 +226,7 @@ class Home_model extends Model {
     }
     
     
-public function bank_statement(){
+public function bank_statement_model(){
     include 'mpdf/mpdf.php';
         $mpdf = new mPDF();
         $chq_no = $_POST['chq_no'];
@@ -269,7 +269,7 @@ public function bank_statement(){
                     $final_bank = "$folder/$filename";
                     $mpdf->output($final_bank, 'F');
                     for ($i = 0; $i < sizeof($post); $i++) {
-                    $statement = strtotime($month. $year);
+                    $statement = strtotime("$month $year");
                     // echo $month;
                     // echo date('j M, Y h:i a', $statement);
                     $check_stamnt = $this->db->prepare("SELECT * FROM _user_statements_ WHERE _email_ = :email and  _statement_ = :_statement_");
@@ -336,9 +336,9 @@ public function bank_statement(){
         $itm->execute();
         $tm = $itm->fetchAll(PDO::FETCH_ASSOC);
         $full_data = [];
-         $statement = strtotime($month. $year);
+        echo $statement = strtotime("$month $year");
 //         echo $month;
-//         echo date('j M, Y h:i a', $statement);
+        echo date('j M, Y h:i a', $statement);
         foreach ($tm as $row){
         $email = $row['emp_email'];
         $item2 = $this->db->prepare("SELECT _email_, _statement_, _time_, _status_, _maxpay_, _leaves_ FROM _user_statements_ WHERE _email_ = :email and _statement_ = :statement");
