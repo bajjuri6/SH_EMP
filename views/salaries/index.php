@@ -32,6 +32,7 @@
     <input type="text" id="cq-no" class="chq-no" placeholder="Cheque no">
     <i class="icon-cog procss-btn"></i>
     <input type="button" id="process" class="btn btn-info" value="Process" name="textarea_hidden" style="color: black;">
+    <a href="/home/export"><button type="button" id="exprt" class="btn btn-info exprt" value="Export" name="textarea_hidden" style="color: black;">Export<i class="icon-xlsx"></i></button></a>
     <p class="err-sal" style="opacity: 0; line-height: 0.5%; color: red;">ERRR</p>
     </div>
 </div>

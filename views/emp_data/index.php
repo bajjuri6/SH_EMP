@@ -115,12 +115,14 @@
                             <p class="view-emp">Spouse name: <span><?php echo $row[$i]['spousename']?></span></p>
                             <p class="view-emp">Designation: <span><?php echo $row[$i]['designation']?></span></p>
                             <p class="view-emp">Department: <span><?php echo $row[$i]['department']?></span></p>
+                            <p class="view-emp">Employee type: <span><?php echo $row[$i]['emp_type']?></span></p>
                             <p class="view-emp">Emergency contact name: <span><?php echo $row[$i]['emr_name']?></span></p>
                             <p class="view-emp">Emergency contact relation: <span><?php echo $row[$i]['emr_relation']?></span></p>
                             <p class="view-emp">Emergency contact Phone: <span><?php echo $row[$i]['emr_phone']?></span></p>
-                            <p class="view-emp">Emergency contact email: <span><?php echo $row[$i]['emr_email']?></span></p>
+                            
                             </div>
                             <div class="edit_emp_div">
+                            <p class="view-emp">Emergency contact email: <span><?php echo $row[$i]['emr_email']?></span></p>    
                             <p class="view-emp">Bank account: <span><?php echo $row[$i]['bank_account']?></span></p>
                             <p class="view-emp">PF acc: <span><?php echo $row[$i]['pf_account']?></span></p>
                             <p class="view-emp">PAN: <span><?php echo $row[$i]['pan']?></span></p>

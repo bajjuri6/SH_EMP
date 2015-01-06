@@ -904,3 +904,14 @@ display: none;
 .revrt:hover{
     color: wheat;
 }
+#exprt{
+border: 1px solid #FF7171;
+background: white;
+}
+#exprt i{
+color: #08a526;
+font-size: 1.5em;
+background-position: 20px;
+vertical-align: sub;
+bo
+}

@@ -93,4 +93,7 @@ public function cancel_payslip(){
 public function revert(){
     echo $this->model->revert_back();
 }
+public function export(){
+    echo $this->model->export_xl();
+}
 }

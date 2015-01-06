@@ -178,11 +178,18 @@
                             <input name="bloodgroup" id="bloodgroup_reg" type="text" style="height: 30px; width: 250px;" placeholder="Blood group"/>
                             <br>
                             <label>Address</label>
-                            <textarea  name="address" id="address_reg" cols="5" rows="3" style=" height: 90px; width: 250px;"></textarea>
+                            <textarea  name="address" id="address_reg" cols="5" rows="3" style=" height: 50px; width: 250px;"></textarea>
                             <br>
                             <label>Spouse</label>
                             <input name="spousename" id="spousename_reg" type="text" style="height: 30px; width: 250px;" placeholder="If not married type unmarried"/>
                             <br>
+                            <select id="emptype_reg" name="department" style="width: 251px;">
+                                <option>Employee type</option>
+                                <option>Full time</option>   
+                                <option>Content</option>   
+                                <option>Internship</option>   
+                                <option>Part time</option>   
+                            </select>
                         </div>
                         <div class="action_btns">
                             <div class="one_half last">

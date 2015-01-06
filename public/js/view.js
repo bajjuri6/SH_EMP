@@ -570,6 +570,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                     "designation": regform.elements['designation'].value,
 //                    "department": regform.elements['department'].value,
                     "department": $('#department_reg option:selected').text(),
+                    "emptype": $('#emptype_reg option:selected').text(),
                     "emr_name": regform.elements['emr_name'].value,
                     "emr_relation": regform.elements['emr_relation'].value,
                     "emr_phone": regform.elements['emr_phone'].value,

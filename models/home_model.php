@@ -55,10 +55,10 @@ class Home_model extends Model {
         $doj = date("Y-m-d" ,$doj);
         $doj = strtotime($doj);
         $sth8 = $this->db->prepare("INSERT INTO new_emp(emp_name, emp_id, emp_email, password, phone_no, dob, fathername, mothername, age, bloodgroup, address, "
-                . "            gender, spousename, emr_name, emr_relation, emr_phone, emr_email, designation, department, bank_account, pf_account, pan, ifsc_code, basic_salarie, date_of_joining) "
+                . "            gender, spousename, emr_name, emr_relation, emr_phone, emr_email, emp_type, designation, department, bank_account, pf_account, pan, ifsc_code, basic_salarie, date_of_joining) "
                 . "                VALUE(:emp_name, :emp_id, :emp_email, :password, :phone_no, :dob, :fathername, :mothername,"
                 . "                      :age, :bloodgroup, :address, :gender, :spousename, :emr_name, :emr_relation, :emr_phone,"
-                . "                      :emr_email, :designation, :department, :bank_acc, :pf_acc, :pan, :ifsc, :basic_sal, :date_of_joining)");
+                . "                      :emr_email, :emr_type, :designation, :department, :bank_acc, :pf_acc, :pan, :ifsc, :basic_sal, :date_of_joining)");
         $insert = $sth8->execute(array(':emp_name' => $_POST['emp_name'],
             ':emp_id' => $_POST['emp_id'],
             ':emp_email' => $_POST['emp_email'],
@@ -76,6 +76,7 @@ class Home_model extends Model {
             ':emr_relation' => $_POST['emr_relation'],
             ':emr_phone' => $_POST['emr_phone'],
             ':emr_email' => $_POST['emr_email'],
+            ':emr_type' => $_POST['emptype'],
             ':designation' => $_POST['designation'],
             ':department' => $_POST['department'],
             ':bank_acc' => $_POST['bank_acc'],
@@ -627,5 +628,19 @@ public function bank_statement(){
             $sts = "reverted successfully";
         }
         return $sts;
+    }
+    public function export_xl(){
+        //Enter the headings of the excel columns
+            $contents="id,day name,Date,urls,titles,status\n";
+            $contents.="1,";
+            $contents.="sunday ,";
+            $contents.="today,";
+            $contents.="title,";
+            $contents.="1";
+            // remove html and php tags etc.
+            $contents = strip_tags($contents);
+            //header to make force download the file
+            header("Content-Disposition: attachment; filename=xl".date('d-m-Y').".csv");
+            print $contents;
     }
 }
