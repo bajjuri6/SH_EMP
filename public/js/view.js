@@ -179,11 +179,13 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                     if (d[i]['_status_'] == 1)
                         str += "<input type='text'  value=" + d[i]['_leaves_'] + " class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;'>";
                     else if (d[i]['_status_'] == 2)
-                        str += "<input type='text'   class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;' readonly>";
+                        str += "<input type='text'   value=" + d[i]['_leaves_'] + " class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;' readonly>";
                     else
                         str += "<input type='text'  class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;'>";
                     if (d[i]['_status_'] == 1)
                         str += "</td><td contenteditable='true'  class='tol-pay'>" + d[i]['_maxpay_'] + "</td>";
+                    else if (d[i]['_status_'] == 2)
+                        str += "</td><td contenteditable='false'  class='tol-pay'>" + d[i]['_maxpay_'] + "</td>";
                     else
                         str += "</td><td contenteditable='true'  class='tol-pay'>" + d[i]['basic_salarie'] + "</td>";
                     if (d[i]['_status_'] == 1)
@@ -1015,9 +1017,9 @@ $('.popupContainer_all').on('click', '.edit_emp_save', function(e){
                 $('.ajax-loading').hide();
                 $("#resp-popup").find(".popupBody").html(res);
                 $("#btn-trgr").trigger('click');
-//                setTimeout(function () {
-//                    window.location.reload();
-//                }, 2000);
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
             }
         });
                 
@@ -1038,6 +1040,9 @@ $('.popupContainer_all').on('click', '.edit_emp_save', function(e){
           },
           success: function(res){
               alert(res);
+               setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
           }
           
        });

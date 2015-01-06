@@ -269,19 +269,19 @@ public function bank_statement_model(){
                     $final_bank = "$folder/$filename";
                     $mpdf->output($final_bank, 'F');
                     for ($i = 0; $i < sizeof($post); $i++) {
-                    echo $statement = strtotime("$month $year");
+                     $statement = strtotime("$month $year");
                     // echo $month;
-                    echo date('j M, Y h:i a', $statement);
-                    $check_stamnt = $this->db->prepare("SELECT * FROM _user_statements_ WHERE _email_ = :email and  _statement_ = :_statement_");
-                    $check_stamnt->execute(array(':email'=> $post[$i]['mail'], ":_statement_"=>$statement));
+                    date('j M, Y h:i a', $statement);
+                    $check_stamnt = $this->db->prepare("SELECT * FROM _user_statements_ WHERE _email_ = :email and  _staement_mnthyer_ = :_staement_mnthyer_");
+                    $check_stamnt->execute(array(':email'=> $post[$i]['mail'], ":_statement_"=>$statement, ':_staement_mnthyer_'=>"$month$year",));
                    if($check_stamnt->rowCount() > 0){
                    $chng_status = $this->db->prepare("UPDATE _user_statements_ SET _status_ = 1, _maxpay_ = :maxpay, _leaves_ = :leaves WHERE _email_ = :email and _statement_ = :_statement_");
                    $chng_status->execute(array(':email'=> $post[$i]['mail'], ":_statement_"=>$statement,
                                                 ':maxpay'=>$post[$i]['net'], ':leaves'=>$post[$i]['loss_of_days']));
                    }else{
-                    $user_statement = $this->db->prepare("INSERT INTO _user_statements_(_email_, _statement_, _status_, _time_, _maxpay_, _leaves_) VALUES(:email, :statement, :status, :time, :maxpay, :leaves)");
+                    $user_statement = $this->db->prepare("INSERT INTO _user_statements_(_email_, _statement_, _status_, _time_, _maxpay_, _leaves_, _staement_mnthyer_) VALUES(:email, :statement, :status, :time, :maxpay, :leaves, :_staement_mnthyer_)");
                     $user_statement->execute(array(':email'=>$post[$i]['mail'], ':statement'=>$statement, ':status'=>1, ':time'=>time(), 
-                                                   ':maxpay'=>$post[$i]['net'], ':leaves'=>$post[$i]['loss_of_days']));
+                                                   '_staement_mnthyer_'=>"$month$year", ':maxpay'=>$post[$i]['net'], ':leaves'=>$post[$i]['loss_of_days']));
 //                    print_r($user_statement->errorInfo());
                    }
                     }
@@ -341,8 +341,8 @@ public function bank_statement_model(){
         date('j M, Y h:i a', $statement);
         foreach ($tm as $row){
         $email = $row['emp_email'];
-        $item2 = $this->db->prepare("SELECT _email_, _statement_, _time_, _status_, _maxpay_, _leaves_ FROM _user_statements_ WHERE _email_ = :email and _statement_ = :statement");
-        $item2->execute(array(':email'=>$email, ':statement'=>$statement));
+        $item2 = $this->db->prepare("SELECT _email_, _statement_, _time_, _status_, _maxpay_, _leaves_ FROM _user_statements_ WHERE _email_ = :email and _staement_mnthyer_ = :_staement_mnthyer_");
+        $item2->execute(array(':email'=>$email, ':_staement_mnthyer_'=>"$month$year"));
 //        1420070400
         $data = $item2->fetchAll(PDO::FETCH_ASSOC);
         if(empty($data[0])){
