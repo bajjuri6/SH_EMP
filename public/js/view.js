@@ -107,9 +107,9 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 $("#resp-popup").find(".popupBody").html(stmnt.sts);
                 $("#btn-trgr").trigger('click');
                 $(".td-apndg-bnk-stmnt").html("<td align='center'>"+stmnt.filename+"</td><td align='center' class='dwnld'><a href='/download/down_staments/"+stmnt.filename+"'><i class='icon-download'></i></a></td>");
-//                setTimeout(function () {
-//                    window.location.reload();
-//               }, 1000);
+                setTimeout(function () {
+                    window.location.reload();
+               }, 1000);
             }
         });
     }

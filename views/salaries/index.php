@@ -109,33 +109,36 @@ var start = 2012;
                     var arry_length = d.length;
                     for (var i = 0; i < arry_length; i++) {
 //                        if(d[i]['_status_'] == 1){
-                     var str = "<tr id='data-tr'><td>";
-                         if(d[i]['_status_'] == 1 || d[i]['_status_'] == 2)
-                            str +="";
-                            else
-                                str += "<input type='checkbox' name='checkbox' value='1' class='checkbox'>";
-                                str +="</td><td  class='sal-name'>" + d[i]['emp_name']+"</td>";
-                                str +="<td id=''>" + "<input type='text'  class='max-pay' value="+ d[i]['basic_salarie'] +" style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;' readonly>"+
-                                "</td><td id=''>";
-                            if(d[i]['_status_'] == 1)
-                                str +="<input type='text'  value="+ d[i]['_leaves_'] +" class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;'>";
-                            else if(d[i]['_status_'] == 2)
-                            str +="<input type='text'   class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;' readonly>";
-                              else
-                                str +="<input type='text'  class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;'>";
-                                if(d[i]['_status_'] == 1)
-                                str +="</td><td contenteditable='true'  class='tol-pay'>" + d[i]['_maxpay_']+"</td>";
-                              else
-                               str +="</td><td contenteditable='true'  class='tol-pay'>" + d[i]['basic_salarie']+"</td>";   
-                        if(d[i]['_status_'] == 1)
-                         str +="<td><button class='btn btn-info pay_cnfrm' id='pay_cnfrm' value='Done' type='button'>Done</button><button class='btn btn-info pay_cncl' id='pay_cncl' value='Cancel' type='button' style='color: #FF7171;'>Cancel</button></td>";
-                        else if(d[i]['_status_'] == 2)
-                                str +="<td class='paid-img'><img src='/images/paid.png' style='max-width: 50px;'><div class='revrt'>Revert</div></td>";
-                        else 
-                         str += "<td><button class='btn btn-info pay_due' id='pay_due' value='DUE' type='button' style='color: #FF7171;'>DUE</button></td>";
-                        str +="<td hidden><input type='hidden' name='' value=" + d[i]['_email_'] + " class='pay_statmnt_email'><input type='hidden' name='' value=" + d[i]['_statement_'] + " class='pay_statement'><input type='hidden' name='' value=" + d[i]['_status_'] + " class='pay_statement_status'><input type='hidden' name='' value=" + d[i]['_time_'] + " class='pay_statement_time'><input type='hidden' name='' value=" + d[i]['emp_email'] + " class='pay_email'><input type='hidden' name='' value='Payslip-" + month_txt + "-" + year + ".pdf' class='payslip-name'><input type='hidden' name='' value=" + d[i]['designation'] + " class='desigination'><input type='hidden' name='' value=" + d[i]['gender'] + " class='gender'><input type='hidden' name='' value='date of joing' class='doj'><input type='hidden' name='' value=" + d[i]['dob'] + "' class='dob'><input type='hidden' name='' value='pf account no not in db' class='pf_ac'><input type='hidden' name='' value='PAN not in DB' class='pan'><input type='hidden' name='' value='BANK ac' class='bank'><input type='hidden' name='' value='ifsc code' class='ifsc'><input type='hidden' name='' value=" + avlble_days + " class='avilble_days'><input type='hidden' name='' value='paid days' class='paid_days'><input type='hidden' name='' value='loss of days' class='loss-days'><input type='hidden' name='' value=" + d[i]['basic_salarie'] + " class='basic'><input type='hidden' name='' value='hra' class='hra'><input type='hidden' name='' value='conveyance_allowance' class='conveyance'><input type='hidden' name='' value='Spcl_allowance' class='Spcl_allowance'><input type='hidden' name='' value='(A) Total Earnings' class='a'><input type='hidden' name='' value='TDS' class='tds'><input type='hidden' name='' value='PF' class='pf'><input type='hidden' name='' value='PT' class='pt'><input type='hidden' name='' value='0 class='b'><input type='hidden' name='' value=" + month_txt + " class='month_slip'><input type='hidden' name='' value=" + year + " class='year_slip'></td>" +
+                    for (var i = 0; i < arry_length; i++) {
+                  var str = "<tr id='data-tr'><td>";
+                    if (d[i]['_status_'] == 1 || d[i]['_status_'] == 2)
+                        str += "";
+                    else
+                        str += "<input type='checkbox' name='checkbox' value='1' class='checkbox'>";
+                    str += "</td><td  class='sal-name'>" + d[i]['emp_name'] + "</td>";
+                    str += "<td id=''>" + "<input type='text'  class='max-pay' value=" + d[i]['basic_salarie'] + " style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;' readonly>" +
+                            "</td><td id=''>";
+                    if (d[i]['_status_'] == 1)
+                        str += "<input type='text'  value=" + d[i]['_leaves_'] + " class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;'>";
+                    else if (d[i]['_status_'] == 2)
+                        str += "<input type='text'   value=" + d[i]['_leaves_'] + " class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;' readonly>";
+                    else
+                        str += "<input type='text'  class='mtnh-leavs' style='border: none; height: 50px; width: 95px; margin-top: 0px; outline: none;'>";
+                    if (d[i]['_status_'] == 1)
+                        str += "</td><td contenteditable='true'  class='tol-pay'>" + d[i]['_maxpay_'] + "</td>";
+                    else if (d[i]['_status_'] == 2)
+                        str += "</td><td contenteditable='false'  class='tol-pay'>" + d[i]['_maxpay_'] + "</td>";
+                    else
+                        str += "</td><td contenteditable='true'  class='tol-pay'>" + d[i]['basic_salarie'] + "</td>";
+                    if (d[i]['_status_'] == 1)
+                        str += "<td><button class='btn btn-info pay_cnfrm' id='pay_cnfrm' value='Done' type='button'>Done</button><button class='btn btn-info pay_cncl' id='pay_cncl' value='Cancel' type='button' style='color: #FF7171;'>Cancel</button></td>";
+                    else if (d[i]['_status_'] == 2)
+                        str += "<td class='paid-img'><img src='/images/paid.png' style='max-width: 50px;'><div class='revrt'>Revert</div></td>";
+                    else
+                        str += "<td><button class='btn btn-info pay_due' id='pay_due' value='DUE' type='button' style='color: #FF7171;'>DUE</button></td>";
+                    str += "<td hidden><input type='hidden' name='' value=" + d[i]['_email_'] + " class='pay_statmnt_email'><input type='hidden' name='' value=" + d[i]['_statement_'] + " class='pay_statement'><input type='hidden' name='' value=" + d[i]['_status_'] + " class='pay_statement_status'><input type='hidden' name='' value=" + d[i]['_time_'] + " class='pay_statement_time'><input type='hidden' name='' value=" + d[i]['emp_email'] + " class='pay_email'><input type='hidden' name='' value='Payslip-" + month_txt + "-" + year + ".pdf' class='payslip-name'><input type='hidden' name='' value=" + d[i]['designation'] + " class='desigination'><input type='hidden' name='' value=" + d[i]['gender'] + " class='gender'><input type='hidden' name='' value='date of joing' class='doj'><input type='hidden' name='' value=" + d[i]['dob'] + "' class='dob'><input type='hidden' name='' value='pf account no not in db' class='pf_ac'><input type='hidden' name='' value='PAN not in DB' class='pan'><input type='hidden' name='' value='BANK ac' class='bank'><input type='hidden' name='' value='ifsc code' class='ifsc'><input type='hidden' name='' value=" + avlble_days + " class='avilble_days'><input type='hidden' name='' value='paid days' class='paid_days'><input type='hidden' name='' value='loss of days' class='loss-days'><input type='hidden' name='' value=" + d[i]['basic_salarie'] + " class='basic'><input type='hidden' name='' value='hra' class='hra'><input type='hidden' name='' value='conveyance_allowance' class='conveyance'><input type='hidden' name='' value='Spcl_allowance' class='Spcl_allowance'><input type='hidden' name='' value='(A) Total Earnings' class='a'><input type='hidden' name='' value='TDS' class='tds'><input type='hidden' name='' value='PF' class='pf'><input type='hidden' name='' value='PT' class='pt'><input type='hidden' name='' value='0 class='b'><input type='hidden' name='' value=" + month_txt + " class='month_slip'><input type='hidden' name='' value=" + year + " class='year_slip'></td>" +
                             "</tr>";
-                     $("#table1").append(str);
+                    $("#table1").append(str);
 //            }
                         // console.log(d[i]['emp_email']);
                     }

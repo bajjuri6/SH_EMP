@@ -287,7 +287,7 @@ public function bank_statement_model(){
                     }
                     $stmenttodb = $this->db->prepare("INSERT INTO bank_statement(statement_name, time) VALUES(:statement_name, :time)");
                     $stmenttodb->execute(array(':statement_name' => $filename, ':time'=>time()));
-                    $status = [path=> "$final_bank", filename=>"$filename", sts=>"Staments genarted sucessfully!!!"];
+                    $status = [path=> "$final_bank", filename=>"$filename", sts=>"Statements genarted sucessfully!!!"];
                     return $status;
 }
 
