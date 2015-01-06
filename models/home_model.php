@@ -342,7 +342,7 @@ public function bank_statement(){
         foreach ($tm as $row){
         $email = $row['emp_email'];
         $item2 = $this->db->prepare("SELECT _email_, _statement_, _time_, _status_, _maxpay_, _leaves_ FROM _user_statements_ WHERE _email_ = :email and _statement_ = :statement");
-        $item2->execute(array(':email'=>$email, ':statement'=>1420070400));
+        $item2->execute(array(':email'=>$email, ':statement'=>$statement));
 //        1420070400
         $data = $item2->fetchAll(PDO::FETCH_ASSOC);
         if(empty($data[0])){

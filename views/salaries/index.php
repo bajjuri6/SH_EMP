@@ -25,7 +25,6 @@
             <th>#Leaves</th>
             <th>Net-payable</th>
         </tr>
-        
 </table>
     <div class="salrie-submit">
     <p style="position: relative; top: 18px;">Cheque no:</p>
