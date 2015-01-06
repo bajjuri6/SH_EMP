@@ -130,7 +130,7 @@ class Home_model extends Model {
                      background-repeat: no-repeat;
                     background-size: 100% 100%;">
                      <div style="padding-top: 25%;
-                    padding-bottom: 25%;"><h5 align="center">Payslip for the month of ' . $month . ' ' . $year . '</h5><h5 align="center">Financial Period 2013-' . $date = date("Y") . '</h5>
+                    padding-bottom: 25%;"><h5 align="center">Payslip for the month of ' . $month . ' ' . $year . '</h5><h5 align="center">Financial Period '. $date = date("Y")-1 .'-' . $date = date("Y") . '</h5>
             <table align="center" border="1">
                     <tr><th colspan="4">Associate Information</th></tr>
                     <tr><td>Name</td>
@@ -146,11 +146,11 @@ class Home_model extends Model {
                     <td>IFSC Code</td>
                     <td>' . ($post[$i]['ifsc']) . '</td></tr>
                 <tr><td>Date Of Joining</td>
-                    <td>' . ($post[$i]['doj']) . '</td>
+                    <td>' . (date("j-M-Y", $post[$i]['doj'])) . '</td>
                     <td>Available Calender Days</td>
                     <td>' . ($post[$i]['available_days']) . '</td></tr>
                 <tr><td>Date Of Birth</td>
-                    <td>' . ($post[$i]['dob']) . '</td>
+                    <td>' . (date("j-M_Y", $post[$i]['dob'])) . '</td>
                     <td>Paid Days</td>
                     <td>' . ($post[$i]['paid_days']) . '</td></tr>
                 <tr><td>PF A/C</td>
@@ -273,7 +273,7 @@ public function bank_statement_model(){
                     // echo $month;
                     date('j M, Y h:i a', $statement);
                     $check_stamnt = $this->db->prepare("SELECT * FROM _user_statements_ WHERE _email_ = :email and  _staement_mnthyer_ = :_staement_mnthyer_");
-                    $check_stamnt->execute(array(':email'=> $post[$i]['mail'], ":_statement_"=>$statement, ':_staement_mnthyer_'=>"$month$year",));
+                    $check_stamnt->execute(array(':email'=> $post[$i]['mail'], ':_staement_mnthyer_'=>"$month$year",));
                    if($check_stamnt->rowCount() > 0){
                    $chng_status = $this->db->prepare("UPDATE _user_statements_ SET _status_ = 1, _maxpay_ = :maxpay, _leaves_ = :leaves WHERE _email_ = :email and _statement_ = :_statement_");
                    $chng_status->execute(array(':email'=> $post[$i]['mail'], ":_statement_"=>$statement,
@@ -640,7 +640,7 @@ public function bank_statement_model(){
             // remove html and php tags etc.
             $contents = strip_tags($contents);
             //header to make force download the file
-            header("Content-Disposition: attachment; filename=xl".date('d-m-Y').".csv");
+            header("Content-Disposition: attachment; filename=xl".date('d-m-Y').".xls");
             print $contents;
     }
 }
