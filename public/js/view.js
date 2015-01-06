@@ -168,7 +168,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 var arry_length = d.length;
 
                 for (var i = 0; i < arry_length; i++) {
-                    var str = "<tr id='data-tr'><td>";
+                  var str = "<tr id='data-tr'><td>";
                     if (d[i]['_status_'] == 1 || d[i]['_status_'] == 2)
                         str += "";
                     else
