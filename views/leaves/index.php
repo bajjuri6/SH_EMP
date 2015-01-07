@@ -57,6 +57,7 @@
                                     <p><i>Date: <?php echo date("j-m-Y", $row[$i]['apply_date']) ?></i></p>
                                     <p><i>To:<br/>HR Department<br/>SADDAHAQ</i></p><br/>
                                     <p><b>SUB:</b><i><?php echo $row[$i]['subject']; ?></i></p>
+                                    <b>FOR:</b><i> <?php echo date("j-m-Y", $row[$i]['fromdate']) ?>  <?php if($row[$i]['todate'] != ''){echo  date("- j-m-Y", $row[$i]['todate']);} ?></i>
                                     <p><i>Dear Sir,</i></p>
                                     <p><i><?php echo $row[$i]['description']; ?>......</i></p><br/>
                                     <p><i>Sincerely,<br/><?php echo $row[$i]['emp_name']; ?>.</i></p>

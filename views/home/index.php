@@ -245,6 +245,7 @@
         $("#payslip-popup").find("#frmdat").text(frmdat);
         if(data['todate']!= ''){
         $("#payslip-popup").find("#to-dat").text(todat);
+    }
         $("#leave_manager").find("#mngrlev-date").text(time);
         $("#leave_manager").find("#mngrlev-sub").text(data['subject'].split("\\sq").join("'"));
         $("#leave_manager").find("#mngrlev-desc").text(data['description'].split("\\sq").join("'"));
