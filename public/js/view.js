@@ -108,10 +108,10 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
                 // $("#resp-popup").find(".popupBody").html(stmnt.sts);
                 // $("#btn-trgr").trigger('click');
                 $(".td-apndg-bnk-stmnt").html("<td align='center'>"+stmnt.filename+"</td><td align='center' class='dwnld'><a href='/download/down_staments/"+stmnt.filename+"'><i class='icon-download'></i></a></td>");
-                $('.stats_td').html("<button class='btn btn-info pay_cnfrm' id='pay_cnfrm' value='Done' type='button'>Done</button><button class='btn btn-info pay_cncl' id='pay_cncl' value='Cancel' type='button' style='color: #FF7171;'>Cancel</button>");                
-//                setTimeout(function () {
-//                    window.location.reload();
-//               }, 1000);
+                // $('.stats_td').html("<button class='btn btn-info pay_cnfrm' id='pay_cnfrm' value='Done' type='button'>Done</button><button class='btn btn-info pay_cncl' id='pay_cncl' value='Cancel' type='button' style='color: #FF7171;'>Cancel</button>");                
+                setTimeout(function () {
+                    window.location.reload();
+               }, 1000);
             }
         });
     }
@@ -1024,9 +1024,9 @@ $('.popupContainer_all').on('click', '.edit_emp_save', function(e){
                     $('#table1').find($this).parent().html("<img src='/images/paid.png' style='max-width: 50px;'><div class='revrt'>Revert</div>");
 //                $("#resp-popup").find(".popupBody").html(res);
 //                $("#btn-trgr").trigger('click');
-//                setTimeout(function () {
-//                    window.location.reload();
-//                }, 2000);
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
             }
         });
                 
