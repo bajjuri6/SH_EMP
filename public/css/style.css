@@ -41,7 +41,8 @@
 .popupContainer1{
 	position:absolute;
 	width:auto;
-	height: 340px;
+	/*height: 340px;*/
+	height: auto;
 	left:45%;
 	top:80px;
 	background: #FFF;

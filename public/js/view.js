@@ -740,6 +740,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
      });
      
      $('.profile-img-change-input').change(function(){
+         $('.profile_pop_save').html('<button class="btn btn-info profile_save" id="" value="Done" type="button">Save</button>');
          var formData = new FormData();
          var files = document.getElementById('p-pic-change');
          files = files.files;
@@ -753,7 +754,7 @@ $(".datepicker-dob" ).datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, cha
             processData: false,
             success: function (data) {
                 $('.profile_img').find('img').attr('src', data);
-//                $('.profile_img').find('img').html(data);
+//                $('.profile_img').html('<img src='+data+' id="profile_image_style">');
             }
         });
      });
@@ -1006,19 +1007,23 @@ $('.popupContainer_all').on('click', '.edit_emp_save', function(e){
                     "_statement_": $(this).parents("tr").find('.pay_statement').val()
                 };
                 slctd_emp.push(obj);
+                
                 $.ajax({
             url: "/home/pdf",
             method: 'post',
             data: {"slctd_emp": slctd_emp
                    },
             beforeSend: function () {
-                $('body').leanModal({overlay: 0.2});
                 $('.ajax-loading').css({"position": "fixed", "top": "35%", "left": "45%"}).html('<img src ="/images/loading.gif" style="max-width: 50px;">');
             },
             success: function (res) {
+                
                 $('.ajax-loading').hide();
-                $("#resp-popup").find(".popupBody").html(res);
-                $("#btn-trgr").trigger('click');
+                alert(res);
+                var $this = $(this);
+                    $('#table1').find($this).parent().html("<img src='/images/paid.png' style='max-width: 50px;'><div class='revrt'>Revert</div>");
+//                $("#resp-popup").find(".popupBody").html(res);
+//                $("#btn-trgr").trigger('click');
 //                setTimeout(function () {
 //                    window.location.reload();
 //                }, 2000);
@@ -1053,6 +1058,12 @@ $('.popupContainer_all').on('click', '.edit_emp_save', function(e){
     $('#exprt').click(function(){
         
     });
+    $('.profile_pop_save').on('click', '.profile_save', function(){
+        setTimeout(function () {
+                    window.location.reload();
+                });
+    });
+    
     
     
 

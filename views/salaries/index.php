@@ -2,7 +2,6 @@
 <div class="salaries span7 table-responsive">
     <select id="slct-year"></select>
     <select id='slct-month'>
-    <option value=''>--Select Month--</option>
     <option value="1" selected>January</option>
     <option value="2">February</option>
     <option value="3">March</option>
@@ -31,7 +30,7 @@
     <input type="text" id="cq-no" class="chq-no" placeholder="Cheque no">
     <i class="icon-cog procss-btn"></i>
     <input type="button" id="process" class="btn btn-info" value="Process" name="textarea_hidden" style="color: black;">
-    <a href="/home/export"><button type="button" id="exprt" class="btn btn-info exprt" value="Export" name="textarea_hidden" style="color: black;">Export<i class="icon-xlsx"></i></button></a>
+    <a href="#"><button type="button" id="exprt" class="btn btn-info exprt" value="Export" name="textarea_hidden" style="color: black;">Export<i class="icon-xlsx"></i></button></a>
     <p class="err-sal" style="opacity: 0; line-height: 0.5%; color: red;">ERRR</p>
     </div>
 </div>
@@ -129,12 +128,12 @@ $(document).ready(function(){
                     else
                         str += "</td><td contenteditable='true'  class='tol-pay'>" + d[i]['basic_salarie'] + "</td>";
                     if (d[i]['_status_'] == 1)
-                        str += "<td><button class='btn btn-info pay_cnfrm' id='pay_cnfrm' value='Done' type='button'>Done</button><button class='btn btn-info pay_cncl' id='pay_cncl' value='Cancel' type='button' style='color: #FF7171;'>Cancel</button></td>";
+                        str += "<td class='stats_td'><button class='btn btn-info pay_cnfrm' id='pay_cnfrm' value='Done' type='button'>Done</button><button class='btn btn-info pay_cncl' id='pay_cncl' value='Cancel' type='button' style='color: #FF7171;'>Cancel</button></td>";
                     else if (d[i]['_status_'] == 2)
-                        str += "<td class='paid-img'><img src='/images/paid.png' style='max-width: 50px;'><div class='revrt'>Revert</div></td>";
+                        str += "<td class='paid-img stats_td'><img src='/images/paid.png' style='max-width: 50px;'><div class='revrt'>Revert</div></td>";
                     else
-                        str += "<td><button class='btn btn-info pay_due' id='pay_due' value='DUE' type='button' style='color: #FF7171;'>DUE</button></td>";
-                    str += "<td hidden><input type='hidden' name='' value=" + d[i]['_email_'] + " class='pay_statmnt_email'><input type='hidden' name='' value=" + d[i]['_statement_'] + " class='pay_statement'><input type='hidden' name='' value=" + d[i]['_status_'] + " class='pay_statement_status'><input type='hidden' name='' value=" + d[i]['_time_'] + " class='pay_statement_time'><input type='hidden' name='' value=" + d[i]['emp_email'] + " class='pay_email'><input type='hidden' name='' value='Payslip-" + month_txt + "-" + year + ".pdf' class='payslip-name'><input type='hidden' name='' value=" + d[i]['designation'] + " class='desigination'><input type='hidden' name='' value=" + d[i]['gender'] + " class='gender'><input type='hidden' name='' value='date of joing' class='doj'><input type='hidden' name='' value=" + d[i]['dob'] + "' class='dob'><input type='hidden' name='' value='pf account no not in db' class='pf_ac'><input type='hidden' name='' value='PAN not in DB' class='pan'><input type='hidden' name='' value='BANK ac' class='bank'><input type='hidden' name='' value='ifsc code' class='ifsc'><input type='hidden' name='' value=" + avlble_days + " class='avilble_days'><input type='hidden' name='' value='paid days' class='paid_days'><input type='hidden' name='' value='loss of days' class='loss-days'><input type='hidden' name='' value=" + d[i]['basic_salarie'] + " class='basic'><input type='hidden' name='' value='hra' class='hra'><input type='hidden' name='' value='conveyance_allowance' class='conveyance'><input type='hidden' name='' value='Spcl_allowance' class='Spcl_allowance'><input type='hidden' name='' value='(A) Total Earnings' class='a'><input type='hidden' name='' value='TDS' class='tds'><input type='hidden' name='' value='PF' class='pf'><input type='hidden' name='' value='PT' class='pt'><input type='hidden' name='' value='0 class='b'><input type='hidden' name='' value=" + month_txt + " class='month_slip'><input type='hidden' name='' value=" + year + " class='year_slip'></td>" +
+                        str += "<td class='stats_td'><button class='btn btn-info pay_due' id='pay_due' value='DUE' type='button' style='color: #FF7171;'>DUE</button></td>";
+                    str += "<td hidden><input type='hidden' name='' value=" + d[i]['_email_'] + " class='pay_statmnt_email'><input type='hidden' name='' value=" + d[i]['_statement_'] + " class='pay_statement'><input type='hidden' name='' value=" + d[i]['_status_'] + " class='pay_statement_status'><input type='hidden' name='' value=" + d[i]['_time_'] + " class='pay_statement_time'><input type='hidden' name='' value=" + d[i]['emp_email'] + " class='pay_email'><input type='hidden' name='' value='Payslip-" + month_txt + "-" + year + ".pdf' class='payslip-name'><input type='hidden' name='' value=" + d[i]['designation'] + " class='desigination'><input type='hidden' name='' value=" + d[i]['gender'] + " class='gender'><input type='hidden' name='' value='" + d[i]['date_of_joining'] + "' class='doj'><input type='hidden' name='' value=" + d[i]['dob'] + " class='dob'><input type='hidden' name='' value=" + d[i]['pf_account'] + " class='pf_ac'><input type='hidden' name='' value=" + d[i]['pan'] + " class='pan'><input type='hidden' name='' value=" + d[i]['bank_account'] + " class='bank'><input type='hidden' name='' value=" + d[i]['ifsc_code'] + " class='ifsc'><input type='hidden' name='' value=" + avlble_days + " class='avilble_days'><input type='hidden' name='' value='paid days' class='paid_days'><input type='hidden' name='' value='loss of days' class='loss-days'><input type='hidden' name='' value=" + d[i]['basic_salarie'] + " class='basic'><input type='hidden' name='' value='--' class='hra'><input type='hidden' name='' value='--' class='conveyance'><input type='hidden' name='' value='--' class='Spcl_allowance'><input type='hidden' name='' value='(A) Total Earnings' class='a'><input type='hidden' name='' value='N/A' class='tds'><input type='hidden' name='' value='N/A' class='pf'><input type='hidden' name='' value='N/A' class='pt'><input type='hidden' name='' value='0' class='b'><input type='hidden' name='' value=" + month_txt + " class='month_slip'><input type='hidden' name='' value=" + year + " class='year_slip'></td>" +
                             "</tr>";
                     $("#table1").append(str);
                         // console.log(d[i]['emp_email']);

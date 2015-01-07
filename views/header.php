@@ -122,7 +122,10 @@
                         <img src="/images/avtr.jpg" id="profile_image_style"/><input type="file" class="profile-img-change-input" id="p-pic-change"><i class="icon-add-image"></i>
                         <?php }?>
                         <p class="profle-pop-degnatn"><?php echo $this->user_details[0]['designation']; ?></p>
+                        <div class="profile_pop_save">
+                        </div>
                     </div>
+                    
                     <div class="profile">
                         <p style="margin-left: 5px;">ID:<span style="padding-left: 10px" ><?php echo $this->user_details[0]['emp_id']; ?></span></p>
                         <p><i class="icon-mail"></i><span><?php echo $this->user_details[0]['emp_email']; ?></span></p>

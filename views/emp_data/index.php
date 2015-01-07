@@ -105,7 +105,7 @@
                             <p class="view-emp">Father name: <span><?php echo $row[$i]['fathername']?></span></p>
                             <p class="view-emp">Mother name: <span><?php echo $row[$i]['mothername']?></span></p>
                             <p class="view-emp">phone number: <span><?php echo $row[$i]['phone_no']?></span></p>
-                            <p class="view-emp">Date of birth: <span><?php echo $row[$i]['dob']?></span></p>
+                            <p class="view-emp">Date of birth: <span><?php echo date('j-M-Y', $row[$i]['dob'])?></span></p>
                             <p class="view-emp">Age: <span><?php echo $row[$i]['age']?></span></p>
                             <p class="view-emp">Blood group: <span><?php echo $row[$i]['bloodgroup']?></span></p>
                             </div>

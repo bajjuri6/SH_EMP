@@ -913,5 +913,25 @@ color: #08a526;
 font-size: 1.5em;
 background-position: 20px;
 vertical-align: sub;
-bo
+}
+.profile_save{
+border: 1px solid green !important;
+color: green !important;
+padding-left: 10px !important;
+padding-bottom: 6px !important;
+padding-right: 10px !important;
+padding-top: 6px !important;
+}
+.profile_close{
+border: 1px solid #FF7171 !important;
+color: #FF7171 !important;
+padding-left: 10px !important;
+padding-bottom: 6px !important;
+padding-right: 10px !important;
+padding-top: 6px !important;
+}
+.profile_pop_save{
+    margin-top: 10px !important;
+margin-left: 93px !important;
+margin-bottom: 5px;
 }

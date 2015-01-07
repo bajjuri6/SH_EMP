@@ -447,6 +447,7 @@ public function bank_statement_model(){
         $file = $_FILES['p-pic-change'];
         $allowedExts = array("png", "jpg", "jpeg", "JPG", "JPEG");
         $temp = explode(".", $file["name"]);
+        $org_flnme = preg_replace('/\s+/', '_', $file["name"]);
         $extension = end($temp);
         $folder = UPLOADS."/$email/profile_pic/";
         if ((($file["type"] == "application/pdf") || ($file["type"] == "application/x-pdf") || ($file["type"] == "image/png") || ($file["type"] == "image/jpg") || ($file["type"] == "image/jpeg")|| ($file["type"] == "image/JPG") || ($file["type"] == "image/JPEG")) && ($file["size"] < 40000000) && in_array($extension, $allowedExts)) {
@@ -467,11 +468,11 @@ public function bank_statement_model(){
                 }
                     $finalname = UPLOADS."/$email/profile_pic/";
                     array_map('unlink', glob("$finalname/*"));
-                    $move = move_uploaded_file($file["tmp_name"], $folder . str_replace(" ", "-", "Profile_pic.$extension"));
+                    $move = move_uploaded_file($file["tmp_name"], $folder . str_replace(" ", "-", "$org_flnme"));
                      $folder . $file["name"];
                     
                 
-                $retrnimg = "/uploads/$email/profile_pic/Profile_pic.$extension";
+                $retrnimg = "/uploads/$email/profile_pic/$org_flnme";
                 return $retrnimg;
             }
         } else {
@@ -631,12 +632,12 @@ public function bank_statement_model(){
     }
     public function export_xl(){
         //Enter the headings of the excel columns
-            $contents="id,day name,Date,urls,titles,status\n";
+            $contents="id,name,Basic pay,leaves,titles,status\n";
             $contents.="1,";
-            $contents.="sunday ,";
-            $contents.="today,";
-            $contents.="title,";
-            $contents.="1";
+            $contents.="Jeswanth reddy HR ,";
+            $contents.="50000,";
+            $contents.="2,";
+            $contents.="46774";
             // remove html and php tags etc.
             $contents = strip_tags($contents);
             //header to make force download the file
