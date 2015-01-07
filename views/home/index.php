@@ -153,6 +153,7 @@
                         HR Department <br>
                         SADDAHAQ <br><br>
                         <span><b>SUB: </b><p id="hrlev-sub"></p></span>
+                        <b>For:</b> <span id="frmdat"></span> <span id="to-dat"></span><br>
                         Dear Sir,
                         <p id="hrlev-desc"></p>
                         Sincerely.,
@@ -181,7 +182,8 @@
                         To:<br>
                         HR Department <br>
                         SADDAHAQ <br>
-                        <b>SUB:</b> <p id="mngrlev-sub"></p>  
+                        <b>SUB:</b> <p id="mngrlev-sub"></p>
+                        <b>For:</b> <span id="frmdat"></span> <span id="to-dat"></span><br> 
                         Dear Sir,
                         <p id="mngrlev-desc"></p>
                         Sincerely.,
@@ -214,11 +216,18 @@
         var i = $(this).attr("id");
         var data = $("#all_leaves_hr").data('complete');
         data = data[i];
+        var time = $.datepicker.formatDate('dd-MM-yy.', new Date(data['apply_date']*1000));
+        var frmdat = $.datepicker.formatDate('dd-MM-yy', new Date(data['fromdate']*1000));
+        var todat = $.datepicker.formatDate('TO dd-MM-yy', new Date(data['todate']*1000));
         console.log(data[i]);
         $("#payslip-popup").data("lid", data['id']);
         $("#payslip-popup").find("#hrlev-emp-addr").text(data['address']);
         $("#payslip-popup").find("#hrlev-emp-code").text(data['emp-code']);
-        $("#payslip-popup").find("#hrlev-date").text(data['apply_date']);
+        $("#payslip-popup").find("#frmdat").text(frmdat);
+        if(data['todate']!= ''){
+        $("#payslip-popup").find("#to-dat").text(todat);
+    }
+        $("#payslip-popup").find("#hrlev-date").text(time);
         $("#payslip-popup").find("#hrlev-sub").text(data['subject'].split("\\sq").join("'"));
         $("#payslip-popup").find("#hrlev-desc").text(data['description'].split("\\sq").join("'"));
         $("#payslip-popup").find("#hrlev-emp-name").text(data['emp_name']);
@@ -228,9 +237,15 @@
     $(".maneger-lev").click(function () {
         var i = $(this).attr("id");
         var data = $("#all_leaves").data('complete');
+        var time = $.datepicker.formatDate('dd-MM-yy.', new Date(data['apply_date']*1000));
+        var frmdat = $.datepicker.formatDate('dd-MM-yy', new Date(data['fromdate']*1000));
+        var todat = $.datepicker.formatDate('TO dd-MM-yy', new Date(data['todate']*1000));
         data = data[i];
         $("#leave_manager").data("lid", data['id']);
-        $("#leave_manager").find("#mngrlev-date").text(data['apply_date']);
+        $("#payslip-popup").find("#frmdat").text(frmdat);
+        if(data['todate']!= ''){
+        $("#payslip-popup").find("#to-dat").text(todat);
+        $("#leave_manager").find("#mngrlev-date").text(time);
         $("#leave_manager").find("#mngrlev-sub").text(data['subject'].split("\\sq").join("'"));
         $("#leave_manager").find("#mngrlev-desc").text(data['description'].split("\\sq").join("'"));
         $("#leave_manager").find("#mngrlev-emp-name").text(data['emp_name']);
