@@ -3,8 +3,14 @@
 class Database extends PDO{
 
     function __construct() {
-                parent::__construct('mysql:host=localhost;dbname=SH_EMP', 'root', 'vivenfarms');
-        
+       if($_SERVER['SERVER_NAME'] == 'et.saddahaq.com'){
+         $this -> db = new PDO('mysql:host=localhost;dbname=SH_EMP', 'root', 'vivenfarms');
+      
+       }
+       else{
+         $this -> db = new PDO('mysql:host=localhost;dbname=SH_EMP_LIVE', 'root', 'vivenfarms');
+      
+      } 
     }
 
 }
