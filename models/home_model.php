@@ -644,4 +644,56 @@ public function bank_statement_model(){
             header("Content-Disposition: attachment; filename=xl".date('d-m-Y').".xls");
             print $contents;
     }
+    public function file_download(){
+        
+    $file = APP_PATH."/uploads/hr@saddahaq.com/download.jpg"; 
+
+    header("Content-Description: File Transfer"); 
+    header("Content-Type: application/octet-stream"); 
+    header("Content-Disposition: attachment; filename=\"$file\""); 
+
+    readfile ($file); 
+
+    }
+    
+    public function search(){
+         $name = $_POST['kwd'];
+        $search = $this->db->prepare("SELECT emp_name, emp_email, id FROM new_emp WHERE emp_name like '%".$name."%'");
+        $search->execute();
+        $res = $search->fetchAll(PDO::FETCH_ASSOC);
+        return $res;
+    }
+    
+    public function levs_by_srch(){
+        $get_lvs = $this->db->prepare("SELECT hldys_list FROM new_emp WHERE emp_email = :email");
+        $get_lvs->execute(array(':email' => $_POST['email']));
+        $lvs = $get_lvs->fetchAll(PDO::FETCH_ASSOC);
+        $lvs = $lvs[0]['hldys_list'];
+        $lvs = str_replace(",", '", "', $lvs);
+        $lvs = "/$lvs/";
+        $lvs = str_replace("/", '"', $lvs);
+        $get_ful_lvs = $this->db->prepare("SELECT * FROM holidays_list WHERE h_id IN ($lvs)");
+        $get_ful_lvs->execute();
+        $res = $get_ful_lvs->fetchAll(PDO::FETCH_ASSOC);
+        return $res;
+    }
+    
+    public function user_hlday(){
+        $lv_id = $_POST['key'];
+        $full_data = [];
+        $all = $this->db->prepare("SELECT * FROM new_emp");
+        $all->execute();
+        $res = $all->fetchAll(PDO::FETCH_ASSOC);
+        for($i=0; $i<sizeof($res); $i++){
+        $temp = $res[$i]['hldys_list'];
+        $name = $res[$i]['emp_name'];
+        $str = explode(',', $temp);
+        $index = array_search($lv_id, $str);
+        if($index >= 0 && $index !== false){
+            array_push($full_data, $name);
+        }
+        }
+        return $full_data;
+        
+    }
 }

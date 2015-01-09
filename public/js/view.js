@@ -1064,8 +1064,126 @@ $('.popupContainer_all').on('click', '.edit_emp_save', function(e){
                 });
     });
     
+////  $('#model_holiday_hr #emp_srch-list').autocomplete({
+//        source: [
+//            "ActionScript",
+//            "AppleScript",
+//            "Asp",
+//            "BASIC",
+//            "C",
+//            "C++",
+//            "Clojure",
+//            "COBOL",
+//            "ColdFusion",
+//            "Erlang",
+//            "Fortran",
+//            "Groovy",
+//            "Haskell",
+//            "Java",
+//            "JavaScript",
+//            "Lisp",
+//            "Perl",
+//            "PHP",
+//            "Python",
+//            "Ruby",
+//            "Scala",
+//            "Scheme"
+//            ],
+//        response: function(event, ui) {
+//            if (ui.content.length === 0) {
+//                alert("No results found");
+//            } else {
+//                $(".ui-autocomplete").addClass('srch');
+//            }
+//        }
+//    });
     
     
-
+    $('#model_holiday_hr #emp_srch-list').autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+          url: "home/srch",
+          method: 'post',
+          data: {
+            kwd: request.term
+          },
+          success: function( data ) {
+              var data = JSON.parse(data);
+              $(".ui-autocomplete").addClass('srch');
+             response( $.map(data, function(item, i) {
+              return{
+                  label: item.emp_name,
+                  email: item.emp_email        
+              }
+            }));
+            
+          }
+        });
+      },
+      
+      select: function(event, ui) {
+          $.ajax({
+              url: 'home/get_levs_srch',
+              method: 'post',
+              data: {email: ui.item.email},
+              beforeSend: function () {
+                  $('#model_holiday_hr').find('.holiday_section_hr').html("<div class='holiday_desc hldy_ntfnd'><img src ='/images/loading.gif' style='max-width: 50px;'></div>");
+              },
+              success: function(d){
+              var d = JSON.parse(d);
+              var lnth = d.length
+              if(lnth == 0){
+                  $('#model_holiday_hr').find('.holiday_section_hr').html("<div class='holiday_desc hldy_ntfnd'><h5>No leaves found!!!</h5></div>");
+              }else{
+              $('#model_holiday_hr').find('.holiday_section_hr').html('');
+              for(var i=0; i<lnth; i++){
+              var str = "<ul class='year_hldys'><li class='holidays_li'>";
+              str += "<div class='holiday_img'><img src='/images/"+d[i]['h_id']+".jpg' style='max-width: 82px;'></div>";
+              str += "<div class='holiday_date'><p class='h_day'>"+d[i]['h_date']+"</p></div>";
+              str += "<div class='holiday_desc'><h5>"+d[i]['title']+"</h5>";
+              str += "<p>"+d[i]['desc']+"</p></div><div class='select_hldy'>"
+              str += "<input type='checkbox' class=hldys_chkbx' checked disabled></div></li></ul>";
+              $('#model_holiday_hr').find('.holiday_section_hr').append(str);
+              }
+          }
+              }
+          })
+          
+      }
+    });
+    
+    $('#srch-list_drpdn').change(function (){
+        var key = $('#srch-list_drpdn option:selected').val();
+        var value = $('#srch-list_drpdn option:selected').text();
+       $.ajax({
+          url: "home/get_hldy_usr",
+          method: 'post',
+          data: {
+          key: key         
+          },
+           beforeSend: function () {
+                  $('#model_holiday_hr').find('.holiday_section_hr').html("<div class='holiday_desc hldy_ntfnd'><img src ='/images/loading.gif' style='max-width: 50px;'></div>");
+              },
+          success: function(d){
+              var d = JSON.parse(d);
+              var lnth = d.length
+              if(lnth == 0){
+                  $('#model_holiday_hr').find('.holiday_section_hr').html("<div class='holiday_desc hldy_ntfnd'><h5>No leaves found!!!</h5></div>");
+              }else{
+              $('#model_holiday_hr').find('.holiday_section_hr').html('');
+              for(var i=0; i<lnth; i++){
+              var str = "<ul class='year_hldys'><li class='holidays_li'>";
+              str += "<div class='holiday_img'><img src='/images/"+key+".jpg' style='max-width: 82px;'></div>";
+              str += "<div class='holiday_date'><p class='h_day'>"+value+"</p></div>";
+              str += "<div class='holiday_desc'><h5>"+d[i]+"</h5>";
+              str += "<p></p></div><div class='select_hldy'>"
+              str += "<input type='checkbox' class=hldys_chkbx' checked disabled></div></li></ul>";
+              $('#model_holiday_hr').find('.holiday_section_hr').append(str);
+              }
+          }
+          }
+          
+       }); 
+    });
 });
 

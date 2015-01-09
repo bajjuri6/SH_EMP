@@ -935,3 +935,44 @@ padding-top: 6px !important;
 margin-left: 93px !important;
 margin-bottom: 5px;
 }
+.hr-hldy-fltr{
+    background-color: antiquewhite;
+}
+.hr-hldy-fltr b{
+    
+}
+.emp_srch-list{
+    height: 30px !important;
+    border-radius: 0 !important;
+    margin-left: 108px;
+}
+#emp_srch-list{
+    margin-top: 10px;
+}
+ul.srch{
+list-style-type: none !important;
+margin: 0 !important;
+padding: 0 !important;
+border-top: none !important;
+z-index: 100000001 !important;
+position: fixed;
+}
+.srch li{
+    float: none !important;
+    display: block !important;
+}
+.hldy_ntfnd{
+margin-top: 20%;
+text-align: center;
+margin-left: 159px;
+font-size: 1.3em;
+}
+
+.srch_or{
+ position: absolute;
+padding-left: 41px;
+padding-top: 13px;
+font-family: Bitter, Serif;
+font-size: 1.2em;
+color: rgb(62, 173, 19);   
+}

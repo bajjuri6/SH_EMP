@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="/public/global/bootstrap/css/bootstrap-responsive.min.css" />
         <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Bitter:400,400italic,700.js' rel='stylesheet' type='text/css'>
-        <!--<link rel="stylesheet" href="/public/global/bootstrap/css/jquery-ui.css" />-->
+        <link rel="stylesheet" href="/public/global/bootstrap/css/jquery-ui.css" />
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
         <script src="/public/js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="/public/js/jquery.leanModal.min.js"></script>
@@ -25,8 +25,6 @@
         <script type="text/javascript" src="/public/global/bootstrap/js/jquery-ui.min.js"></script>
     </head>
     <body data-email=<?php echo $this->user_details[0]['emp_email'];?>>
-        
-
         <header>
       
             <a href="/home" id="logo"></a>
@@ -39,6 +37,8 @@
                             <li class="dropdown"><a href="/home" class="current">HOME</a></li>
                             <li class="dropdown"><a href="/leaves">LEAVES</a></li>
                             <li class="dropdown"><a href="/download">DOWNLOADS</a></li>
+                            <li><a href="#model_directory" class="modal_trigger6">DIRECTORY</a></li>
+                            <li><a href="#model_holiday" class="modal_trigger6">HOLIDAY CAL</a></li>
                             <!--<li class="dropdown"><a href="" class="menu-news">NEWS</a></li>-->
                             <?php if($this->user_details[0]['user_level'] == HR_MANAGER){ ?>
                             <li class="dropdown-submenu"><a href="" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#" rel="nofollow">HR</a>
@@ -46,6 +46,7 @@
                                     <li class="dropdown"><a href="/salaries">SALARIES</a></li>
                                     <li class="dropdown"><a href="#model_reg" class="modal_trigger6">NEW EMP</a></li>
                                     <li class="dropdown"><a href="#model_doc" class="modal_trigger6">EMP DOCS</a></li>
+                                    <li class="dropdown"><a href="#model_holiday_hr" class="modal_trigger6">HOLIDAYS</a></li>
                                     <!--<li class="dropdown"><a href="#">EXIT SETTILEMENT</a></li>-->
                                     <li class="dropdown"><a href="/emp_data">ALL EMP</a></li>
                                 </ul>
@@ -79,6 +80,7 @@
                             <li class="dropdown"><a href="/salaries">SALARIES</a></li>
                             <li class="dropdown"><a href="#model_reg" class="modal_trigger6">NEW EMP</a></li>
                             <li class="dropdown"><a href="#model_doc" class="modal_trigger6">EMP DOCS</a></li>
+                            <li class="dropdown"><a href="#model_holiday_hr" class="modal_trigger6">HOLIDAYS</a></li>
                             <!--<li class="dropdown"><a href="#">EXIT SETTILEMENT</a></li>-->
                             <li class="dropdown"><a href="/emp_data">ALL EMP</a></li>
                         </ul>
@@ -328,6 +330,54 @@
             </section>
             <footer class="popupfooter_holiday"><p class="note_hldy">Note: Choose before JAN 7th 2015</p>
                 <span class="footer_title hldys"><button class="btn btn-info"  id="hldy-btn" value="Save" type="button" style="color: white;">Save</button></span></footer>
+        </div>
+        
+        <div id="model_holiday_hr" class="popupContainer" style="display:none; ">
+            <header class="popupHeader_holiday">
+                <span class="header_title hldys">2015 Holidays</span>
+                <span class="modal_close"></span>
+            </header>
+            <div class="hr-hldy-fltr">
+                <input id="emp_srch-list" class="emp_srch-list" type="text" placeholder="Search by name"><span class="srch_or">OR</span>
+                <select id="srch-list_drpdn" class="emp_srch-list">
+                                <option value='h0'>Search by day</option>   
+                                <option value='h1'>New year</option>   
+                                <option value='h2'>Sankranti</option>   
+                                <option value='h3'>Republic Day</option>   
+                                <option value='h4'>Shivaratri</option>   
+                                <option value='h5'>Holi</option>
+                                <option value='h6'>Ugadi</option>   
+                                <option value='h7'>Good Friday</option>
+                                <option value='h8'>May day</option>
+                                <option value='h9'>Ramzan</option>
+                                <option value='h10'>Independence Day</option>
+                                <option value='h11'>Rakhi</option>
+                                <option value='h12'>Vinayaka Chavithi</option>
+                                <option value='h13'>Gandhi Jayanti</option>
+                                <option value='h14'>Dasara</option>
+                                <option value='h15'>Deepavali</option>
+                                <option value='h16'>Christmas</option>
+                            </select>
+            </div>
+            <section class="popupBody holiday_section holiday_section_hr">
+               
+                <ul class="year_hldys">
+                <?php $hldys = $this->get_hldys;?>
+                <?php  for($i=0; $i<sizeof($hldys); $i++){?>
+                <li class="holidays_li">
+                    <div class="holiday_img"><img src="/images/<?php echo $hldys[$i]['h_id']?>.jpg" style="max-width: 82px;"></div>
+                        <div class="holiday_date"><p class="h_day"><?php echo $hldys[$i]["h_date"]?></p></div>
+                        <div class="holiday_desc"><h5><?php echo $hldys[$i]["title"]?></h5>
+                            <p><?php  echo $hldys[$i]["desc"]?></p>
+                        </div>
+                        <div class="select_hldy">
+                            <input type="checkbox" class="hldys_chkbx">
+                        </div>
+                    </li>
+                <?php  }?>
+                    </ul>
+            </section>
+            <footer class="popupfooter_holiday"><p class="note_hldy">Note: Choose before JAN 7th 2015</p>
         </div>
         
         <div id="model_directory" class="popupContainer model_directory" style="display:none; ">

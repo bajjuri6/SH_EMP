@@ -96,4 +96,18 @@ public function revert(){
 public function export(){
     echo $this->model->export_xl();
 }
+
+public function file_dwnld(){
+    echo $this->model->file_download();
+}
+
+public function srch(){
+    echo json_encode($this->model->search());
+}
+public function get_levs_srch(){
+    echo json_encode($this->model->levs_by_srch());
+}
+public function get_hldy_usr(){
+  echo json_encode($this->model->user_hlday());  
+}
 }
