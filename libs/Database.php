@@ -6,7 +6,7 @@ class Database extends PDO{
         if($_SERVER['SERVER_NAME'] == 'et.saddahaq.com'){
                 parent::__construct('mysql:host=localhost;dbname=SH_EMP', 'root', 'vivenfarms');
         }
-        elseif ($_SERVER['SERVER_NAME'] == 'i.viveninfomedia.com/')
+        else if ($_SERVER['SERVER_NAME'] == 'i.viveninfomedia.com')
             {
                 parent::__construct('mysql:host=localhost;dbname=SH_EMP_LIVE', 'root', 'vivenfarms');
         }
